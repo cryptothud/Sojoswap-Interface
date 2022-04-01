@@ -1,6 +1,6 @@
 {
-  "name": "@uniswap/interface",
-  "description": "Uniswap Interface",
+  "name": "@sojoswap/interface",
+  "description": "Sojoswap Interface",
   "homepage": ".",
   "private": true,
   "devDependencies": {
