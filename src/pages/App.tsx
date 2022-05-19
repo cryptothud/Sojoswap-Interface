@@ -67,6 +67,15 @@ const Marginer = styled.div`
   margin-top: 5rem;
 `
 
+const Welcome = styled.h1`
+  position: fixed;
+  font-size: 170px;
+  width: 100%;
+  top: -30px;
+  opacity: 0.1;
+  pointer-events: none;
+`
+
 function TopLevelModals() {
   const open = useModalOpen(ApplicationModal.ADDRESS_CLAIM)
   const toggle = useToggleModal(ApplicationModal.ADDRESS_CLAIM)
@@ -87,6 +96,7 @@ export default function App() {
           <Popups />
           <Polling />
           <TopLevelModals />
+          <Welcome>Welcome to Mars...</Welcome>
           <Web3ReactManager>
             <Switch>
               <Route exact strict path="/swap" component={Swap} />

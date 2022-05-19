@@ -1,4 +1,3 @@
-import { transparentize } from 'polished'
 import React, { useMemo } from 'react'
 import styled, {
   ThemeProvider as StyledComponentsThemeProvider,
@@ -59,17 +58,17 @@ export function colors(darkMode: boolean): Colors {
     advancedBG: darkMode ? 'rgba(0,0,0,0.1)' : 'rgba(255,255,255,0.6)',
 
     //primary colors
-    primary1: darkMode ? '#2172E5' : '#ff007a',
+    primary1: darkMode ? '#0c0c0c' : '#0c0c0c',
     primary2: darkMode ? '#3680E7' : '#FF8CC3',
-    primary3: darkMode ? '#4D8FEA' : '#FF99C9',
-    primary4: darkMode ? '#376bad70' : '#F6DDE8',
-    primary5: darkMode ? '#153d6f70' : '#FDEAF1',
+    primary3: darkMode ? '#40444f' : '#40444f',
+    primary4: darkMode ? '#40444f' : '#40444f',
+    primary5: darkMode ? '#4A0000' : '#4A0000',
 
     // color text
-    primaryText1: darkMode ? '#6da8ff' : '#ff007a',
+    primaryText1: darkMode ? '#fff' : '#fff',
 
     // secondary colors
-    secondary1: darkMode ? '#2172E5' : '#ff007a',
+    secondary1: darkMode ? '#0c0c0c' : '#0c0c0c',
     secondary2: darkMode ? '#17000b26' : '#F6DDE8',
     secondary3: darkMode ? '#17000b26' : '#FDEAF1',
 
@@ -177,13 +176,15 @@ export const TYPE = {
 }
 
 export const FixedGlobalStyle = createGlobalStyle`
+@import url('https://fonts.googleapis.com/css2?family=Chivo:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Montserrat:ital,wght@0,100;0,200;0,300;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
 html, input, textarea, button {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Montserrat';
   font-display: fallback;
 }
 @supports (font-variation-settings: normal) {
   html, input, textarea, button {
-    font-family: 'Inter var', sans-serif;
+    font-family: 'Montserrat';
   }
 }
 
@@ -224,12 +225,14 @@ html {
 
 body {
   min-height: 100vh;
-  background-position: 0 -30vh;
   background-repeat: no-repeat;
-  background-image: ${({ theme }) =>
-    `radial-gradient(50% 50% at 50% 50%, ${transparentize(0.9, theme.primary1)} 0%, ${transparentize(
-      1,
-      theme.bg1
-    )} 100%)`};
+  background-image: url("/images/sojo/martianbg.png");
+  background-size: cover;
+  box-shadow: 3000px 3000px 3000px inset #78000080;
+}
+
+#root {
+  min-height: 100vh;
+  background-image: radial-gradient(#480000, #b11c1c63);
 }
 `

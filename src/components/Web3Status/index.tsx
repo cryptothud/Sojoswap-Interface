@@ -63,10 +63,12 @@ const Web3StatusConnect = styled(Web3StatusGeneric)<{ faded?: boolean }>`
   border: none;
   color: ${({ theme }) => theme.primaryText1};
   font-weight: 500;
+  padding: 15px !important;
 
   :hover,
   :focus {
-    border: 1px solid ${({ theme }) => darken(0.05, theme.primary4)};
+    border: none;
+    opacity: 0.8;
     color: ${({ theme }) => theme.primaryText1};
   }
 
@@ -74,12 +76,13 @@ const Web3StatusConnect = styled(Web3StatusGeneric)<{ faded?: boolean }>`
     faded &&
     css`
       background-color: ${({ theme }) => theme.primary5};
-      border: 1px solid ${({ theme }) => theme.primary5};
+      border: none;
       color: ${({ theme }) => theme.primaryText1};
 
       :hover,
       :focus {
-        border: 1px solid ${({ theme }) => darken(0.05, theme.primary4)};
+        opacity: 0.8;
+        border: none;
         color: ${({ theme }) => darken(0.05, theme.primaryText1)};
       }
     `}
@@ -90,6 +93,7 @@ const Web3StatusConnected = styled(Web3StatusGeneric)<{ pending?: boolean }>`
   border: 1px solid ${({ pending, theme }) => (pending ? theme.primary1 : theme.bg3)};
   color: ${({ pending, theme }) => (pending ? theme.white : theme.text1)};
   font-weight: 500;
+  padding: 15px !important;
   :hover,
   :focus {
     background-color: ${({ pending, theme }) => (pending ? darken(0.05, theme.primary1) : lighten(0.05, theme.bg2))};

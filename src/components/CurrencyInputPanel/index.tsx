@@ -17,7 +17,9 @@ import useTheme from '../../hooks/useTheme'
 
 const InputRow = styled.div<{ selected: boolean }>`
   ${({ theme }) => theme.flexRowNoWrap}
+  flex-direction: row-reverse;
   align-items: center;
+  justify-content: space-between;
   padding: ${({ selected }) => (selected ? '0.75rem 0.5rem 0.75rem 1rem' : '0.75rem 0.75rem 0.75rem 1rem')};
 `
 
@@ -35,7 +37,7 @@ const CurrencySelect = styled.button<{ selected: boolean }>`
   user-select: none;
   border: none;
   padding: 0 0.5rem;
-
+  margin-right: 10px;
   :focus,
   :hover {
     background-color: ${({ selected, theme }) => (selected ? theme.bg2 : darken(0.05, theme.primary1))};
@@ -93,8 +95,8 @@ const StyledTokenName = styled.span<{ active?: boolean }>`
 
 const StyledBalanceMax = styled.button`
   height: 28px;
-  background-color: ${({ theme }) => theme.primary5};
-  border: 1px solid ${({ theme }) => theme.primary5};
+  background-color: #0c0c0c;
+  border: 1px solid #0c0c0c;
   border-radius: 0.5rem;
   font-size: 0.875rem;
 
@@ -103,10 +105,12 @@ const StyledBalanceMax = styled.button`
   margin-right: 0.5rem;
   color: ${({ theme }) => theme.primaryText1};
   :hover {
-    border: 1px solid ${({ theme }) => theme.primary1};
+    background-color: #000;
+    border: 1px solid #000;
   }
   :focus {
-    border: 1px solid ${({ theme }) => theme.primary1};
+    background-color: #000;
+    border: 1px solid #000;
     outline: none;
   }
 
