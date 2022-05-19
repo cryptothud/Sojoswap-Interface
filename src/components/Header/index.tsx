@@ -1,4 +1,4 @@
-import { ChainId,/* TokenAmount*/ } from '@uniswap/sdk'
+import { ChainId /* TokenAmount*/ } from '@uniswap/sdk'
 import React, { useState } from 'react'
 import { Text } from 'rebass'
 //import { NavLink } from 'react-router-dom'
@@ -11,7 +11,7 @@ import Logo from '../../assets/images/sojo/logo.png'
 //import LogoDark from '../../assets/images/sojo/logo.png'
 import { useActiveWeb3React } from '../../hooks'
 //import { useDarkModeManager } from '../../state/user/hooks'
-import { useETHBalances, /*useAggregateUniBalance*/ } from '../../state/wallet/hooks'
+import { useETHBalances /*useAggregateUniBalance*/ } from '../../state/wallet/hooks'
 //import { CardNoise } from '../earn/styled'
 //import { CountUp } from 'use-count-up'
 //import { TYPE, /*ExternalLink*/ } from '../../theme'
@@ -335,7 +335,7 @@ export default function Header() {
       <HeaderRow>
         <Title href=".">
           <UniIcon>
-            <img width={'100px'} style={{margin: '5px'}} src={Logo} alt="logo" />
+            <img width={'100px'} style={{ margin: '5px' }} src={Logo} alt="logo" />
             <h1>SojoSwap</h1>
           </UniIcon>
         </Title>

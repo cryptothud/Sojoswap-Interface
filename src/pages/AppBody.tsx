@@ -22,7 +22,7 @@ const Trading = styled.div`
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%,-50%);
+    transform: translate(-50%, -50%);
     width: 100%;
     height: 100%;
     border-radius: 15px;
@@ -47,13 +47,13 @@ const Wrapper = styled.div`
     flex-direction: column;
     row-gap: 20px;
     align-items: center;
-    margin-top:-50px;
+    margin-top: -50px;
   }
   @media only screen and (max-width: 720px) {
     flex-direction: column;
     row-gap: 20px;
     align-items: center;
-    margin-top:0;
+    margin-top: 0;
   }
 `
 const Text = styled.h1`
