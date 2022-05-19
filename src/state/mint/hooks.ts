@@ -94,7 +94,8 @@ export function useDerivedMintInfo(
   }
 
   // amounts
-  const independentAmount: CurrencyAmount<Currency> | undefined = chainId && tryParseAmount(chainId, typedValue, currencies[independentField])
+  const independentAmount: CurrencyAmount<Currency> | undefined =
+    chainId && tryParseAmount(chainId, typedValue, currencies[independentField])
   const dependentAmount: CurrencyAmount<Currency> | undefined = useMemo(() => {
     if (noLiquidity) {
       if (otherTypedValue && currencies[dependentField]) {
@@ -111,7 +112,13 @@ export function useDerivedMintInfo(
           dependentField === Field.CURRENCY_B
             ? pair.priceOf(tokenA).quote(wrappedIndependentAmount)
             : pair.priceOf(tokenB).quote(wrappedIndependentAmount)
-        return dependentCurrency instanceof NativeCurrency ? CurrencyAmount.fromFractionalAmount(Ether.onChain(chainId || 0), dependentTokenAmount.numerator, dependentTokenAmount.denominator) : dependentTokenAmount
+        return dependentCurrency instanceof NativeCurrency
+          ? CurrencyAmount.fromFractionalAmount(
+              Ether.onChain(chainId || 0),
+              dependentTokenAmount.numerator,
+              dependentTokenAmount.denominator
+            )
+          : dependentTokenAmount
       }
       return undefined
     } else {
@@ -127,7 +134,12 @@ export function useDerivedMintInfo(
     if (noLiquidity) {
       const { [Field.CURRENCY_A]: currencyAAmount, [Field.CURRENCY_B]: currencyBAmount } = parsedAmounts
       if (currencyAAmount && currencyBAmount) {
-        return new Price(currencyAAmount.currency, currencyBAmount.currency, currencyAAmount.quotient, currencyBAmount.quotient)
+        return new Price(
+          currencyAAmount.currency,
+          currencyBAmount.currency,
+          currencyAAmount.quotient,
+          currencyBAmount.quotient
+        )
       }
       return undefined
     } else {

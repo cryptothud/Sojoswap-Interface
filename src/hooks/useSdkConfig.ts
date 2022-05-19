@@ -1,5 +1,5 @@
-import { UNISWAP_DEFAULT_CONFIG } from "@uniswap/sdk"
+import { UNISWAP_DEFAULT_CONFIG } from '@uniswap/sdk'
 
 export const useSdkConfig = () => {
-    return UNISWAP_DEFAULT_CONFIG;
+  return UNISWAP_DEFAULT_CONFIG
 }

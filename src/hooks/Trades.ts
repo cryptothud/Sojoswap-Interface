@@ -42,31 +42,31 @@ function useAllCommonPairs(currencyA?: Currency, currencyB?: Currency): Pair[] {
     () =>
       tokenA && tokenB
         ? [
-          // the direct pair
-          [tokenA, tokenB],
-          // token A against all bases
-          ...bases.map((base): [Token, Token] => [tokenA, base]),
-          // token B against all bases
-          ...bases.map((base): [Token, Token] => [tokenB, base]),
-          // each base against all bases
-          ...basePairs
-        ]
-          .filter((tokens): tokens is [Token, Token] => Boolean(tokens[0] && tokens[1]))
-          .filter(([t0, t1]) => t0.address !== t1.address)
-          .filter(([tokenA, tokenB]) => {
-            if (!chainId) return true
-            const customBases = CUSTOM_BASES[chainId]
+            // the direct pair
+            [tokenA, tokenB],
+            // token A against all bases
+            ...bases.map((base): [Token, Token] => [tokenA, base]),
+            // token B against all bases
+            ...bases.map((base): [Token, Token] => [tokenB, base]),
+            // each base against all bases
+            ...basePairs
+          ]
+            .filter((tokens): tokens is [Token, Token] => Boolean(tokens[0] && tokens[1]))
+            .filter(([t0, t1]) => t0.address !== t1.address)
+            .filter(([tokenA, tokenB]) => {
+              if (!chainId) return true
+              const customBases = CUSTOM_BASES[chainId]
 
-            const customBasesA: Token[] | undefined = customBases?.[tokenA.address]
-            const customBasesB: Token[] | undefined = customBases?.[tokenB.address]
+              const customBasesA: Token[] | undefined = customBases?.[tokenA.address]
+              const customBasesB: Token[] | undefined = customBases?.[tokenB.address]
 
-            if (!customBasesA && !customBasesB) return true
+              if (!customBasesA && !customBasesB) return true
 
-            if (customBasesA && !customBasesA.find(base => tokenB.equals(base))) return false
-            if (customBasesB && !customBasesB.find(base => tokenA.equals(base))) return false
+              if (customBasesA && !customBasesA.find(base => tokenB.equals(base))) return false
+              if (customBasesB && !customBasesB.find(base => tokenA.equals(base))) return false
 
-            return true
-          })
+              return true
+            })
         : [],
     [tokenA, tokenB, bases, basePairs, chainId]
   )
@@ -95,10 +95,13 @@ const MAX_HOPS = 3
 /**
  * Returns the best trade for the exact amount of tokens in to the given token out
  */
-export function useTradeExactIn(currencyAmountIn?: CurrencyAmount<Currency>, currencyOut?: Currency): Trade<Currency, Currency, TradeType> | null {
+export function useTradeExactIn(
+  currencyAmountIn?: CurrencyAmount<Currency>,
+  currencyOut?: Currency
+): Trade<Currency, Currency, TradeType> | null {
   const allowedPairs = useAllCommonPairs(currencyAmountIn?.currency, currencyOut)
-  if(currencyAmountIn && currencyOut) {
-    console.log("good")
+  if (currencyAmountIn && currencyOut) {
+    console.log('good')
   }
   const [singleHopOnly] = useUserSingleHopOnly()
   const sdkConfig = useSdkConfig()
@@ -107,23 +110,26 @@ export function useTradeExactIn(currencyAmountIn?: CurrencyAmount<Currency>, cur
     if (currencyAmountIn && currencyOut && allowedPairs.length > 0) {
       if (singleHopOnly) {
         return (
-          Trade.bestTradeExactIn(allowedPairs, currencyAmountIn, currencyOut, sdkConfig, { maxHops: 1, maxNumResults: 1 })[0] ??
-          null
+          Trade.bestTradeExactIn(allowedPairs, currencyAmountIn, currencyOut, sdkConfig, {
+            maxHops: 1,
+            maxNumResults: 1
+          })[0] ?? null
         )
       }
       // search through trades with varying hops, find best trade out of them
       let bestTradeSoFar: Trade<Currency, Currency, TradeType> | null = null
       for (let i = 1; i <= MAX_HOPS; i++) {
         const currentTrade: Trade<Currency, Currency, TradeType> | null =
-          Trade.bestTradeExactIn(allowedPairs, currencyAmountIn, currencyOut, sdkConfig, { maxHops: i, maxNumResults: 1 })[0] ??
-          null
+          Trade.bestTradeExactIn(allowedPairs, currencyAmountIn, currencyOut, sdkConfig, {
+            maxHops: i,
+            maxNumResults: 1
+          })[0] ?? null
         // if current trade is best yet, save it
         if (isTradeBetter(bestTradeSoFar, currentTrade, BETTER_TRADE_LESS_HOPS_THRESHOLD)) {
           bestTradeSoFar = currentTrade
         }
       }
       return bestTradeSoFar
-
     }
 
     return null
@@ -133,7 +139,10 @@ export function useTradeExactIn(currencyAmountIn?: CurrencyAmount<Currency>, cur
 /**
  * Returns the best trade for the token in to the exact amount of token out
  */
-export function useTradeExactOut(currencyIn?: Currency, currencyAmountOut?: CurrencyAmount<Currency>): Trade<Currency, Currency, TradeType> | null {
+export function useTradeExactOut(
+  currencyIn?: Currency,
+  currencyAmountOut?: CurrencyAmount<Currency>
+): Trade<Currency, Currency, TradeType> | null {
   const allowedPairs = useAllCommonPairs(currencyIn, currencyAmountOut?.currency)
 
   const [singleHopOnly] = useUserSingleHopOnly()
@@ -144,16 +153,20 @@ export function useTradeExactOut(currencyIn?: Currency, currencyAmountOut?: Curr
     if (currencyIn && currencyAmountOut && allowedPairs.length > 0) {
       if (singleHopOnly) {
         return (
-          Trade.bestTradeExactOut(allowedPairs, currencyIn, currencyAmountOut, sdkConfig, { maxHops: 1, maxNumResults: 1 })[0] ??
-          null
+          Trade.bestTradeExactOut(allowedPairs, currencyIn, currencyAmountOut, sdkConfig, {
+            maxHops: 1,
+            maxNumResults: 1
+          })[0] ?? null
         )
       }
       // search through trades with varying hops, find best trade out of them
       let bestTradeSoFar: Trade<Currency, Currency, TradeType> | null = null
       for (let i = 1; i <= MAX_HOPS; i++) {
         const currentTrade =
-          Trade.bestTradeExactOut(allowedPairs, currencyIn, currencyAmountOut, sdkConfig, { maxHops: i, maxNumResults: 1 })[0] ??
-          null
+          Trade.bestTradeExactOut(allowedPairs, currencyIn, currencyAmountOut, sdkConfig, {
+            maxHops: i,
+            maxNumResults: 1
+          })[0] ?? null
         if (isTradeBetter(bestTradeSoFar, currentTrade, BETTER_TRADE_LESS_HOPS_THRESHOLD)) {
           bestTradeSoFar = currentTrade
         }

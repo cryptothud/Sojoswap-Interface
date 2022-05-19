@@ -67,7 +67,10 @@ export function useDerivedBurnInfo(
     JSBI.greaterThanOrEqual(totalSupply.quotient, userLiquidity.quotient)
       ? CurrencyAmount.fromRawAmount(tokenB, pair.getLiquidityValue(tokenB, totalSupply, userLiquidity, false).quotient)
       : undefined
-  const liquidityValues: { [Field.CURRENCY_A]?: CurrencyAmount<Currency>; [Field.CURRENCY_B]?: CurrencyAmount<Currency> } = {
+  const liquidityValues: {
+    [Field.CURRENCY_A]?: CurrencyAmount<Currency>
+    [Field.CURRENCY_B]?: CurrencyAmount<Currency>
+  } = {
     [Field.CURRENCY_A]: liquidityValueA,
     [Field.CURRENCY_B]: liquidityValueB
   }
@@ -106,7 +109,10 @@ export function useDerivedBurnInfo(
     [Field.LIQUIDITY_PERCENT]: percentToRemove,
     [Field.LIQUIDITY]:
       userLiquidity && percentToRemove && percentToRemove.greaterThan('0')
-        ? CurrencyAmount.fromRawAmount(userLiquidity.currency, percentToRemove.multiply(userLiquidity.quotient).quotient)
+        ? CurrencyAmount.fromRawAmount(
+            userLiquidity.currency,
+            percentToRemove.multiply(userLiquidity.quotient).quotient
+          )
         : undefined,
     [Field.CURRENCY_A]:
       tokenA && percentToRemove && percentToRemove.greaterThan('0') && liquidityValueA

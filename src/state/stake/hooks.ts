@@ -155,12 +155,22 @@ export function useStakingInfo(pairToFilterBy?: Pair | null): StakingInfo[] {
 
         // get the LP token
         const tokens = info[index].tokens
-        const dummyPair = new Pair(CurrencyAmount.fromRawAmount(tokens[0], '0'), CurrencyAmount.fromRawAmount(tokens[1], '0'), sdkConfig)
+        const dummyPair = new Pair(
+          CurrencyAmount.fromRawAmount(tokens[0], '0'),
+          CurrencyAmount.fromRawAmount(tokens[1], '0'),
+          sdkConfig
+        )
 
         // check for account, if no account set to 0
 
-        const stakedAmount = CurrencyAmount.fromRawAmount(dummyPair.liquidityToken, JSBI.BigInt(balanceState?.result?.[0] ?? 0))
-        const totalStakedAmount = CurrencyAmount.fromRawAmount(dummyPair.liquidityToken, JSBI.BigInt(totalSupplyState.result?.[0]))
+        const stakedAmount = CurrencyAmount.fromRawAmount(
+          dummyPair.liquidityToken,
+          JSBI.BigInt(balanceState?.result?.[0] ?? 0)
+        )
+        const totalStakedAmount = CurrencyAmount.fromRawAmount(
+          dummyPair.liquidityToken,
+          JSBI.BigInt(totalSupplyState.result?.[0])
+        )
         const totalRewardRate = CurrencyAmount.fromRawAmount(uni, JSBI.BigInt(rewardRateState.result?.[0]))
 
         const getHypotheticalRewardRate = (
@@ -273,9 +283,11 @@ export function useDerivedUnstakeInfo(
 } {
   const { account, chainId } = useActiveWeb3React()
 
-  const parsedInput: CurrencyAmount<Currency> | undefined = chainId && tryParseAmount(chainId, typedValue, stakingAmount.currency)
+  const parsedInput: CurrencyAmount<Currency> | undefined =
+    chainId && tryParseAmount(chainId, typedValue, stakingAmount.currency)
 
-  const parsedAmount = parsedInput && JSBI.lessThanOrEqual(parsedInput.quotient, stakingAmount.quotient) ? parsedInput : undefined
+  const parsedAmount =
+    parsedInput && JSBI.lessThanOrEqual(parsedInput.quotient, stakingAmount.quotient) ? parsedInput : undefined
 
   let error: string | undefined
   if (!account) {

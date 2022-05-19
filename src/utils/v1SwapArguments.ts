@@ -1,5 +1,14 @@
 import { MaxUint256 } from '@ethersproject/constants'
-import { Currency, CurrencyAmount, NativeCurrency, SwapParameters, Token, Trade, TradeOptionsDeadline, TradeType } from '@uniswap/sdk'
+import {
+  Currency,
+  CurrencyAmount,
+  NativeCurrency,
+  SwapParameters,
+  Token,
+  Trade,
+  TradeOptionsDeadline,
+  TradeType
+} from '@uniswap/sdk'
 import { getTradeVersion } from '../data/V1'
 import { Version } from '../hooks/useToggledVersion'
 
