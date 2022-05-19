@@ -1,4 +1,4 @@
-import { ChainId, CurrencyAmount, JSBI, Token, TokenAmount, WETH, Pair } from '@uniswap/sdk'
+import { ChainId, CurrencyAmount, Token, Pair, WETH9, Currency } from '@uniswap/sdk'
 import { useMemo } from 'react'
 import { DAI, UNI, USDC, USDT, WBTC } from '../../constants'
 import { STAKING_REWARDS_INTERFACE } from '../../constants/abis/staking-rewards'
@@ -6,6 +6,8 @@ import { useActiveWeb3React } from '../../hooks'
 import { NEVER_RELOAD, useMultipleContractSingleData } from '../multicall/hooks'
 import { tryParseAmount } from '../swap/hooks'
 import useCurrentBlockTimestamp from 'hooks/useCurrentBlockTimestamp'
+import { useSdkConfig } from 'hooks/useSdkConfig'
+import JSBI from 'jsbi'
 
 export const STAKING_GENESIS = 1600387200
 
@@ -20,19 +22,19 @@ export const STAKING_REWARDS_INFO: {
 } = {
   [ChainId.MAINNET]: [
     {
-      tokens: [WETH[ChainId.MAINNET], DAI],
+      tokens: [WETH9[ChainId.MAINNET], DAI],
       stakingRewardAddress: '0xa1484C3aa22a66C62b77E0AE78E15258bd0cB711'
     },
     {
-      tokens: [WETH[ChainId.MAINNET], USDC],
+      tokens: [WETH9[ChainId.MAINNET], USDC],
       stakingRewardAddress: '0x7FBa4B8Dc5E7616e59622806932DBea72537A56b'
     },
     {
-      tokens: [WETH[ChainId.MAINNET], USDT],
+      tokens: [WETH9[ChainId.MAINNET], USDT],
       stakingRewardAddress: '0x6C3e4cb2E96B01F4b866965A91ed4437839A121a'
     },
     {
-      tokens: [WETH[ChainId.MAINNET], WBTC],
+      tokens: [WETH9[ChainId.MAINNET], WBTC],
       stakingRewardAddress: '0xCA35e32e7926b96A9988f61d510E038108d8068e'
     }
   ]
@@ -44,32 +46,32 @@ export interface StakingInfo {
   // the tokens involved in this pair
   tokens: [Token, Token]
   // the amount of token currently staked, or undefined if no account
-  stakedAmount: TokenAmount
+  stakedAmount: CurrencyAmount<Token>
   // the amount of reward token earned by the active account, or undefined if no account
-  earnedAmount: TokenAmount
+  earnedAmount: CurrencyAmount<Token>
   // the total amount of token staked in the contract
-  totalStakedAmount: TokenAmount
+  totalStakedAmount: CurrencyAmount<Token>
   // the amount of token distributed per second to all LPs, constant
-  totalRewardRate: TokenAmount
+  totalRewardRate: CurrencyAmount<Token>
   // the current amount of token distributed to the active account per second.
   // equivalent to percent of total supply * reward rate
-  rewardRate: TokenAmount
+  rewardRate: CurrencyAmount<Token>
   // when the period ends
   periodFinish: Date | undefined
   // if pool is active
   active: boolean
   // calculates a hypothetical amount of token distributed to the active account per second.
   getHypotheticalRewardRate: (
-    stakedAmount: TokenAmount,
-    totalStakedAmount: TokenAmount,
-    totalRewardRate: TokenAmount
-  ) => TokenAmount
+    stakedAmount: CurrencyAmount<Token>,
+    totalStakedAmount: CurrencyAmount<Token>,
+    totalRewardRate: CurrencyAmount<Token>
+  ) => CurrencyAmount<Token>
 }
 
 // gets the staking info from the network for the active chain id
 export function useStakingInfo(pairToFilterBy?: Pair | null): StakingInfo[] {
   const { chainId, account } = useActiveWeb3React()
-
+  const sdkConfig = useSdkConfig()
   // detect if staking is ended
   const currentBlockTimestamp = useCurrentBlockTimestamp()
 
@@ -153,23 +155,23 @@ export function useStakingInfo(pairToFilterBy?: Pair | null): StakingInfo[] {
 
         // get the LP token
         const tokens = info[index].tokens
-        const dummyPair = new Pair(new TokenAmount(tokens[0], '0'), new TokenAmount(tokens[1], '0'))
+        const dummyPair = new Pair(CurrencyAmount.fromRawAmount(tokens[0], '0'), CurrencyAmount.fromRawAmount(tokens[1], '0'), sdkConfig)
 
         // check for account, if no account set to 0
 
-        const stakedAmount = new TokenAmount(dummyPair.liquidityToken, JSBI.BigInt(balanceState?.result?.[0] ?? 0))
-        const totalStakedAmount = new TokenAmount(dummyPair.liquidityToken, JSBI.BigInt(totalSupplyState.result?.[0]))
-        const totalRewardRate = new TokenAmount(uni, JSBI.BigInt(rewardRateState.result?.[0]))
+        const stakedAmount = CurrencyAmount.fromRawAmount(dummyPair.liquidityToken, JSBI.BigInt(balanceState?.result?.[0] ?? 0))
+        const totalStakedAmount = CurrencyAmount.fromRawAmount(dummyPair.liquidityToken, JSBI.BigInt(totalSupplyState.result?.[0]))
+        const totalRewardRate = CurrencyAmount.fromRawAmount(uni, JSBI.BigInt(rewardRateState.result?.[0]))
 
         const getHypotheticalRewardRate = (
-          stakedAmount: TokenAmount,
-          totalStakedAmount: TokenAmount,
-          totalRewardRate: TokenAmount
-        ): TokenAmount => {
-          return new TokenAmount(
+          stakedAmount: CurrencyAmount<Token>,
+          totalStakedAmount: CurrencyAmount<Token>,
+          totalRewardRate: CurrencyAmount<Token>
+        ): CurrencyAmount<Token> => {
+          return CurrencyAmount.fromRawAmount(
             uni,
-            JSBI.greaterThan(totalStakedAmount.raw, JSBI.BigInt(0))
-              ? JSBI.divide(JSBI.multiply(totalRewardRate.raw, stakedAmount.raw), totalStakedAmount.raw)
+            JSBI.greaterThan(totalStakedAmount.quotient, JSBI.BigInt(0))
+              ? JSBI.divide(JSBI.multiply(totalRewardRate.quotient, stakedAmount.quotient), totalStakedAmount.quotient)
               : JSBI.BigInt(0)
           )
         }
@@ -187,7 +189,7 @@ export function useStakingInfo(pairToFilterBy?: Pair | null): StakingInfo[] {
           stakingRewardAddress: rewardsAddress,
           tokens: info[index].tokens,
           periodFinish: periodFinishMs > 0 ? new Date(periodFinishMs) : undefined,
-          earnedAmount: new TokenAmount(uni, JSBI.BigInt(earnedAmountState?.result?.[0] ?? 0)),
+          earnedAmount: CurrencyAmount.fromRawAmount(uni, JSBI.BigInt(earnedAmountState?.result?.[0] ?? 0)),
           rewardRate: individualRewardRate,
           totalRewardRate: totalRewardRate,
           stakedAmount: stakedAmount,
@@ -208,11 +210,12 @@ export function useStakingInfo(pairToFilterBy?: Pair | null): StakingInfo[] {
     rewardRates,
     rewardsAddresses,
     totalSupplies,
-    uni
+    uni,
+    sdkConfig
   ])
 }
 
-export function useTotalUniEarned(): TokenAmount | undefined {
+export function useTotalUniEarned(): CurrencyAmount<Token> | undefined {
   const { chainId } = useActiveWeb3React()
   const uni = chainId ? UNI[chainId] : undefined
   const stakingInfos = useStakingInfo()
@@ -222,8 +225,8 @@ export function useTotalUniEarned(): TokenAmount | undefined {
     return (
       stakingInfos?.reduce(
         (accumulator, stakingInfo) => accumulator.add(stakingInfo.earnedAmount),
-        new TokenAmount(uni, '0')
-      ) ?? new TokenAmount(uni, '0')
+        CurrencyAmount.fromRawAmount(uni, '0')
+      ) ?? CurrencyAmount.fromRawAmount(uni, '0')
     )
   }, [stakingInfos, uni])
 }
@@ -232,17 +235,17 @@ export function useTotalUniEarned(): TokenAmount | undefined {
 export function useDerivedStakeInfo(
   typedValue: string,
   stakingToken: Token,
-  userLiquidityUnstaked: TokenAmount | undefined
+  userLiquidityUnstaked: CurrencyAmount<Token> | undefined
 ): {
-  parsedAmount?: CurrencyAmount
+  parsedAmount?: CurrencyAmount<Currency>
   error?: string
 } {
-  const { account } = useActiveWeb3React()
+  const { account, chainId } = useActiveWeb3React()
 
-  const parsedInput: CurrencyAmount | undefined = tryParseAmount(typedValue, stakingToken)
+  const parsedInput: CurrencyAmount<Currency> | undefined = chainId && tryParseAmount(chainId, typedValue, stakingToken)
 
   const parsedAmount =
-    parsedInput && userLiquidityUnstaked && JSBI.lessThanOrEqual(parsedInput.raw, userLiquidityUnstaked.raw)
+    parsedInput && userLiquidityUnstaked && JSBI.lessThanOrEqual(parsedInput.quotient, userLiquidityUnstaked.quotient)
       ? parsedInput
       : undefined
 
@@ -263,16 +266,16 @@ export function useDerivedStakeInfo(
 // based on typed value
 export function useDerivedUnstakeInfo(
   typedValue: string,
-  stakingAmount: TokenAmount
+  stakingAmount: CurrencyAmount<Token>
 ): {
-  parsedAmount?: CurrencyAmount
+  parsedAmount?: CurrencyAmount<Currency>
   error?: string
 } {
-  const { account } = useActiveWeb3React()
+  const { account, chainId } = useActiveWeb3React()
 
-  const parsedInput: CurrencyAmount | undefined = tryParseAmount(typedValue, stakingAmount.token)
+  const parsedInput: CurrencyAmount<Currency> | undefined = chainId && tryParseAmount(chainId, typedValue, stakingAmount.currency)
 
-  const parsedAmount = parsedInput && JSBI.lessThanOrEqual(parsedInput.raw, stakingAmount.raw) ? parsedInput : undefined
+  const parsedAmount = parsedInput && JSBI.lessThanOrEqual(parsedInput.quotient, stakingAmount.quotient) ? parsedInput : undefined
 
   let error: string | undefined
   if (!account) {

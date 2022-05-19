@@ -3,16 +3,17 @@ import {
   BigintIsh,
   Currency,
   CurrencyAmount,
-  ETHER,
-  JSBI,
+  FACTORY_CONFIG,
+  NativeCurrency,
   Pair,
   Route,
   Token,
-  TokenAmount,
   Trade,
   TradeType,
-  WETH
+  WETH9,
 } from '@uniswap/sdk'
+import { useSdkConfig } from 'hooks/useSdkConfig'
+import JSBI from 'jsbi'
 import { useMemo } from 'react'
 import { useActiveWeb3React } from '../hooks'
 import { useAllTokens } from '../hooks/Tokens'
@@ -29,23 +30,23 @@ export function useV1ExchangeAddress(tokenAddress?: string): string | undefined 
 }
 
 export class MockV1Pair extends Pair {
-  constructor(etherAmount: BigintIsh, tokenAmount: TokenAmount) {
-    super(tokenAmount, new TokenAmount(WETH[tokenAmount.token.chainId], etherAmount))
+  constructor(etherAmount: BigintIsh, tokenAmount: CurrencyAmount<Token>, config: FACTORY_CONFIG) {
+    super(tokenAmount, CurrencyAmount.fromRawAmount(WETH9[tokenAmount.currency.chainId], etherAmount), config)
   }
 }
 
 function useMockV1Pair(inputCurrency?: Currency): MockV1Pair | undefined {
   const token = inputCurrency instanceof Token ? inputCurrency : undefined
-
-  const isWETH = Boolean(token && token.equals(WETH[token.chainId]))
+  const sdkConfig = useSdkConfig()
+  const isWETH = Boolean(token && token.equals(WETH9[token.chainId]))
   const v1PairAddress = useV1ExchangeAddress(isWETH ? undefined : token?.address)
   const tokenBalance = useTokenBalance(v1PairAddress, token)
   const ETHBalance = useETHBalances([v1PairAddress])[v1PairAddress ?? '']
 
   return useMemo(
     () =>
-      token && tokenBalance && ETHBalance && inputCurrency ? new MockV1Pair(ETHBalance.raw, tokenBalance) : undefined,
-    [ETHBalance, inputCurrency, token, tokenBalance]
+      token && tokenBalance && ETHBalance && inputCurrency ? new MockV1Pair(ETHBalance.quotient, tokenBalance, sdkConfig) : undefined,
+    [ETHBalance, inputCurrency, token, tokenBalance, sdkConfig]
   )
 }
 
@@ -86,7 +87,7 @@ export function useUserHasLiquidityInAllTokens(): boolean | undefined {
   return useMemo(
     () =>
       Object.keys(balances).some(tokenAddress => {
-        const b = balances[tokenAddress]?.raw
+        const b = balances[tokenAddress]?.quotient
         return b && JSBI.greaterThan(b, JSBI.BigInt(0))
       }),
     [balances]
@@ -100,14 +101,15 @@ export function useV1Trade(
   isExactIn?: boolean,
   inputCurrency?: Currency,
   outputCurrency?: Currency,
-  exactAmount?: CurrencyAmount
-): Trade | undefined {
+  exactAmount?: CurrencyAmount<Currency>
+): Trade<Currency, Currency, TradeType> | undefined {
+  const sdkConfig = useSdkConfig()
   // get the mock v1 pairs
   const inputPair = useMockV1Pair(inputCurrency)
   const outputPair = useMockV1Pair(outputCurrency)
 
-  const inputIsETH = inputCurrency === ETHER
-  const outputIsETH = outputCurrency === ETHER
+  const inputIsETH = inputCurrency instanceof NativeCurrency
+  const outputIsETH = outputCurrency instanceof NativeCurrency
 
   // construct a direct or through ETH v1 route
   let pairs: Pair[] = []
@@ -121,12 +123,12 @@ export function useV1Trade(
     pairs = [inputPair, outputPair]
   }
 
-  const route = inputCurrency && pairs && pairs.length > 0 && new Route(pairs, inputCurrency, outputCurrency)
-  let v1Trade: Trade | undefined
+  const route = inputCurrency && outputCurrency && pairs && pairs.length > 0 && new Route(pairs, inputCurrency, outputCurrency)
+  let v1Trade: Trade<Currency, Currency, TradeType> | undefined
   try {
     v1Trade =
       route && exactAmount
-        ? new Trade(route, exactAmount, isExactIn ? TradeType.EXACT_INPUT : TradeType.EXACT_OUTPUT)
+        ? new Trade(route, exactAmount, isExactIn ? TradeType.EXACT_INPUT : TradeType.EXACT_OUTPUT, sdkConfig)
         : undefined
   } catch (error) {
     console.debug('Failed to create V1 trade', error)
@@ -134,7 +136,7 @@ export function useV1Trade(
   return v1Trade
 }
 
-export function getTradeVersion(trade?: Trade): Version | undefined {
+export function getTradeVersion(trade?: Trade<Currency, Currency, TradeType>): Version | undefined {
   const isV1 = trade?.route?.pairs?.some(pair => pair instanceof MockV1Pair)
   if (isV1) return Version.v1
   if (isV1 === false) return Version.v2
@@ -142,15 +144,15 @@ export function getTradeVersion(trade?: Trade): Version | undefined {
 }
 
 // returns the v1 exchange against which a trade should be executed
-export function useV1TradeExchangeAddress(trade: Trade | undefined): string | undefined {
+export function useV1TradeExchangeAddress(trade: Trade<Currency, Currency, TradeType> | undefined): string | undefined {
   const tokenAddress: string | undefined = useMemo(() => {
     if (!trade) return undefined
     const isV1 = getTradeVersion(trade) === Version.v1
     if (!isV1) return undefined
-    return trade.inputAmount instanceof TokenAmount
-      ? trade.inputAmount.token.address
-      : trade.outputAmount instanceof TokenAmount
-      ? trade.outputAmount.token.address
+    return trade.inputAmount.currency.isToken
+      ? trade.inputAmount.currency.address
+      : trade.outputAmount.currency.isToken
+      ? trade.outputAmount.currency.address
       : undefined
   }, [trade])
   return useV1ExchangeAddress(tokenAddress)

@@ -1,10 +1,11 @@
 import { ZERO_PERCENT, ONE_HUNDRED_PERCENT } from './../constants/index'
-import { Trade, Percent, currencyEquals } from '@uniswap/sdk'
+import { Trade, Percent, Currency, TradeType } from '@uniswap/sdk'
+import JSBI from 'jsbi'
 
 // returns whether tradeB is better than tradeA by at least a threshold percentage amount
 export function isTradeBetter(
-  tradeA: Trade | undefined | null,
-  tradeB: Trade | undefined | null,
+  tradeA: Trade<Currency, Currency, TradeType> | undefined | null,
+  tradeB: Trade<Currency, Currency, TradeType> | undefined | null,
   minimumDelta: Percent = ZERO_PERCENT
 ): boolean | undefined {
   if (tradeA && !tradeB) return false
@@ -13,8 +14,8 @@ export function isTradeBetter(
 
   if (
     tradeA.tradeType !== tradeB.tradeType ||
-    !currencyEquals(tradeA.inputAmount.currency, tradeB.inputAmount.currency) ||
-    !currencyEquals(tradeB.outputAmount.currency, tradeB.outputAmount.currency)
+    !tradeA.inputAmount.currency.equals(tradeB.inputAmount.currency) ||
+    !tradeB.outputAmount.currency.equals(tradeB.outputAmount.currency)
   ) {
     throw new Error('Trades are not comparable')
   }
@@ -22,6 +23,11 @@ export function isTradeBetter(
   if (minimumDelta.equalTo(ZERO_PERCENT)) {
     return tradeA.executionPrice.lessThan(tradeB.executionPrice)
   } else {
-    return tradeA.executionPrice.raw.multiply(minimumDelta.add(ONE_HUNDRED_PERCENT)).lessThan(tradeB.executionPrice)
+    const val = minimumDelta.add(ONE_HUNDRED_PERCENT)
+    const numerator = val.numerator
+    const denominator = val.denominator
+
+    const cmp = JSBI.divide(JSBI.multiply(tradeA.executionPrice.quotient, numerator), denominator)
+    return JSBI.lessThan(cmp, tradeB.executionPrice.quotient)
   }
 }

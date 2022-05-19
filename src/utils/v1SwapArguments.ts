@@ -1,10 +1,10 @@
 import { MaxUint256 } from '@ethersproject/constants'
-import { CurrencyAmount, ETHER, SwapParameters, Token, Trade, TradeOptionsDeadline, TradeType } from '@uniswap/sdk'
+import { Currency, CurrencyAmount, NativeCurrency, SwapParameters, Token, Trade, TradeOptionsDeadline, TradeType } from '@uniswap/sdk'
 import { getTradeVersion } from '../data/V1'
 import { Version } from '../hooks/useToggledVersion'
 
-function toHex(currencyAmount: CurrencyAmount): string {
-  return `0x${currencyAmount.raw.toString(16)}`
+function toHex(currencyAmount: CurrencyAmount<Currency>): string {
+  return `0x${currencyAmount.quotient.toString(16)}`
 }
 
 /**
@@ -13,7 +13,7 @@ function toHex(currencyAmount: CurrencyAmount): string {
  * @param options options for swapping
  */
 export default function v1SwapArguments(
-  trade: Trade,
+  trade: Trade<Currency, Currency, TradeType>,
   options: Omit<TradeOptionsDeadline, 'feeOnTransfer'>
 ): SwapParameters {
   if (getTradeVersion(trade) !== Version.v1) {
@@ -23,8 +23,8 @@ export default function v1SwapArguments(
     throw new Error('too many pairs')
   }
   const isExactIn = trade.tradeType === TradeType.EXACT_INPUT
-  const inputETH = trade.inputAmount.currency === ETHER
-  const outputETH = trade.outputAmount.currency === ETHER
+  const inputETH = trade.inputAmount.currency instanceof NativeCurrency
+  const outputETH = trade.outputAmount.currency instanceof NativeCurrency
   if (inputETH && outputETH) throw new Error('ETHER to ETHER')
   const minimumAmountOut = toHex(trade.minimumAmountOut(options.allowedSlippage))
   const maximumAmountIn = toHex(trade.maximumAmountIn(options.allowedSlippage))

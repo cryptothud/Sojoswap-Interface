@@ -318,7 +318,7 @@ export default function Header() {
 
   //const { claimTxn } = useUserHasSubmittedClaim(account ?? undefined)
 
-  //const aggregateBalance: TokenAmount | undefined = useAggregateUniBalance()
+  //const aggregateBalance: CurrencyAmount<Token> | undefined = useAggregateUniBalance()
 
   const [showUniBalanceModal, setShowUniBalanceModal] = useState(false)
   //const showClaimPopup = useShowClaimPopup()
