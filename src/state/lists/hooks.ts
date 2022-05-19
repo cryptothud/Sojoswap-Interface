@@ -60,8 +60,8 @@ export function listToTokenMap(list: TokenList): TokenAddressMap {
             return { ...list.tags[tagId], id: tagId }
           })
           ?.filter((x): x is TagInfo => Boolean(x)) ?? []
-      const token:WrappedTokenInfo = new WrappedTokenInfo(tokenInfo, tags)
-      if(!(token.chainId in ChainId)) {
+      const token: WrappedTokenInfo = new WrappedTokenInfo(tokenInfo, tags)
+      if (!(token.chainId in ChainId)) {
         console.error(new Error(`Invalid chainid! ${token.chainId}`))
         return tokenMap
       }

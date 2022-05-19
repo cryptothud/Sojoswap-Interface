@@ -42,16 +42,23 @@ function V1PairRemoval({
 }) {
   const { chainId } = useActiveWeb3React()
   const totalSupply = useTotalSupply(liquidityTokenAmount.currency)
-  const exchangeETHBalance = useETHBalances([liquidityTokenAmount.currency.address])?.[liquidityTokenAmount.currency.address]
+  const exchangeETHBalance = useETHBalances([liquidityTokenAmount.currency.address])?.[
+    liquidityTokenAmount.currency.address
+  ]
   const exchangeTokenBalance = useTokenBalance(liquidityTokenAmount.currency.address, token)
 
   const [confirmingRemoval, setConfirmingRemoval] = useState<boolean>(false)
   const [pendingRemovalHash, setPendingRemovalHash] = useState<string | null>(null)
 
-  const shareFraction: Fraction = totalSupply ? new Percent(liquidityTokenAmount.quotient, totalSupply.quotient) : ZERO_FRACTION
+  const shareFraction: Fraction = totalSupply
+    ? new Percent(liquidityTokenAmount.quotient, totalSupply.quotient)
+    : ZERO_FRACTION
 
   const ethWorth: CurrencyAmount<Currency> = exchangeETHBalance
-    ? CurrencyAmount.fromRawAmount(Ether.onChain(chainId || 0),  exchangeETHBalance.multiply(shareFraction).multiply(WEI_DENOM).quotient)
+    ? CurrencyAmount.fromRawAmount(
+        Ether.onChain(chainId || 0),
+        exchangeETHBalance.multiply(shareFraction).multiply(WEI_DENOM).quotient
+      )
     : CurrencyAmount.fromRawAmount(Ether.onChain(chainId || 0), ZERO)
 
   const tokenWorth: CurrencyAmount<Token> = exchangeTokenBalance

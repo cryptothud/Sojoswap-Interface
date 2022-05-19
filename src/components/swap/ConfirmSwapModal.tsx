@@ -12,12 +12,15 @@ import SwapModalHeader from './SwapModalHeader'
  * @param tradeA trade A
  * @param tradeB trade B
  */
-function tradeMeaningfullyDiffers(tradeA: Trade<Currency, Currency, TradeType>, tradeB:Trade<Currency, Currency, TradeType>): boolean {
+function tradeMeaningfullyDiffers(
+  tradeA: Trade<Currency, Currency, TradeType>,
+  tradeB: Trade<Currency, Currency, TradeType>
+): boolean {
   return (
     tradeA.tradeType !== tradeB.tradeType ||
-    !(tradeA.inputAmount.currency.equals(tradeB.inputAmount.currency)) ||
+    !tradeA.inputAmount.currency.equals(tradeB.inputAmount.currency) ||
     !tradeA.inputAmount.equalTo(tradeB.inputAmount) ||
-    !(tradeA.outputAmount.currency.equals(tradeB.outputAmount.currency)) ||
+    !tradeA.outputAmount.currency.equals(tradeB.outputAmount.currency) ||
     !tradeA.outputAmount.equalTo(tradeB.outputAmount)
   )
 }

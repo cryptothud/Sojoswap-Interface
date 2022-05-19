@@ -10,7 +10,7 @@ import {
   Token,
   Trade,
   TradeType,
-  WETH9,
+  WETH9
 } from '@uniswap/sdk'
 import { useSdkConfig } from 'hooks/useSdkConfig'
 import JSBI from 'jsbi'
@@ -45,7 +45,9 @@ function useMockV1Pair(inputCurrency?: Currency): MockV1Pair | undefined {
 
   return useMemo(
     () =>
-      token && tokenBalance && ETHBalance && inputCurrency ? new MockV1Pair(ETHBalance.quotient, tokenBalance, sdkConfig) : undefined,
+      token && tokenBalance && ETHBalance && inputCurrency
+        ? new MockV1Pair(ETHBalance.quotient, tokenBalance, sdkConfig)
+        : undefined,
     [ETHBalance, inputCurrency, token, tokenBalance, sdkConfig]
   )
 }
@@ -123,7 +125,8 @@ export function useV1Trade(
     pairs = [inputPair, outputPair]
   }
 
-  const route = inputCurrency && outputCurrency && pairs && pairs.length > 0 && new Route(pairs, inputCurrency, outputCurrency)
+  const route =
+    inputCurrency && outputCurrency && pairs && pairs.length > 0 && new Route(pairs, inputCurrency, outputCurrency)
   let v1Trade: Trade<Currency, Currency, TradeType> | undefined
   try {
     v1Trade =

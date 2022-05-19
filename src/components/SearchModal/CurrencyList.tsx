@@ -166,7 +166,7 @@ export default function CurrencyList({
   setImportToken: (token: Token) => void
   breakIndex: number | undefined
 }) {
-  const {chainId} = useActiveWeb3React()
+  const { chainId } = useActiveWeb3React()
   const itemData: (Currency | undefined)[] = useMemo(() => {
     let formatted: (Currency | undefined)[] = showETH ? [Ether.onChain(chainId || 0), ...currencies] : currencies
     if (breakIndex !== undefined) {
