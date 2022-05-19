@@ -100,9 +100,6 @@ export function useTradeExactIn(
   currencyOut?: Currency
 ): Trade<Currency, Currency, TradeType> | null {
   const allowedPairs = useAllCommonPairs(currencyAmountIn?.currency, currencyOut)
-  if (currencyAmountIn && currencyOut) {
-    console.log('good')
-  }
   const [singleHopOnly] = useUserSingleHopOnly()
   const sdkConfig = useSdkConfig()
 
