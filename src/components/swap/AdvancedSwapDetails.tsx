@@ -21,7 +21,13 @@ const InfoLink = styled(ExternalLink)`
   color: ${({ theme }) => theme.text1};
 `
 
-function TradeSummary({ trade, allowedSlippage }: { trade: Trade<Currency, Currency, TradeType>; allowedSlippage: number }) {
+function TradeSummary({
+  trade,
+  allowedSlippage
+}: {
+  trade: Trade<Currency, Currency, TradeType>
+  allowedSlippage: number
+}) {
   const theme = useContext(ThemeContext)
   const { priceImpactWithoutFee, realizedLPFee } = computeTradePriceBreakdown(trade)
   const isExactIn = trade.tradeType === TradeType.EXACT_INPUT

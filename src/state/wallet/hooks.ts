@@ -18,7 +18,7 @@ export function useETHBalances(
   uncheckedAddresses?: (string | undefined)[]
 ): { [address: string]: CurrencyAmount<Currency> | undefined } {
   const multicallContract = useMulticallContract()
-  const {chainId} = useActiveWeb3React()
+  const { chainId } = useActiveWeb3React()
   const addresses: string[] = useMemo(
     () =>
       uncheckedAddresses
@@ -40,7 +40,8 @@ export function useETHBalances(
     () =>
       addresses.reduce<{ [address: string]: CurrencyAmount<Currency> }>((memo, address, i) => {
         const value = results?.[i]?.result?.[0]
-        if (value) memo[address] = CurrencyAmount.fromRawAmount(Ether.onChain(chainId || 0), JSBI.BigInt(value.toString()))
+        if (value)
+          memo[address] = CurrencyAmount.fromRawAmount(Ether.onChain(chainId || 0), JSBI.BigInt(value.toString()))
         return memo
       }, {}),
     [addresses, results, chainId]
@@ -107,7 +108,10 @@ export function useCurrencyBalances(
   ])
 
   const tokenBalances = useTokenBalances(account, tokens)
-  const containsETH: boolean = useMemo(() => currencies?.some(currency => currency instanceof NativeCurrency) ?? false, [currencies])
+  const containsETH: boolean = useMemo(
+    () => currencies?.some(currency => currency instanceof NativeCurrency) ?? false,
+    [currencies]
+  )
   const ethBalance = useETHBalances(containsETH ? [account] : [])
 
   return useMemo(

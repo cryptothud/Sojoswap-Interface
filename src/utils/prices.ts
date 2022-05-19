@@ -38,8 +38,14 @@ export function computeTradePriceBreakdown(
     realizedLPFee &&
     trade &&
     (trade.inputAmount.currency instanceof Token
-      ? CurrencyAmount.fromRawAmount(trade.inputAmount.currency, realizedLPFee.multiply(trade.inputAmount.quotient).quotient)
-      : CurrencyAmount.fromRawAmount(Ether.onChain(chainId || 0), realizedLPFee.multiply(trade.inputAmount.quotient).quotient))
+      ? CurrencyAmount.fromRawAmount(
+          trade.inputAmount.currency,
+          realizedLPFee.multiply(trade.inputAmount.quotient).quotient
+        )
+      : CurrencyAmount.fromRawAmount(
+          Ether.onChain(chainId || 0),
+          realizedLPFee.multiply(trade.inputAmount.quotient).quotient
+        ))
 
   return { priceImpactWithoutFee: priceImpactWithoutFeePercent, realizedLPFee: realizedLPFeeAmount }
 }

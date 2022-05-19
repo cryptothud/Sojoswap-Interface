@@ -430,9 +430,7 @@ export default function RemoveLiquidity({
 
   const oneCurrencyIsETH = currencyA instanceof NativeCurrency || currencyB instanceof NativeCurrency
   const oneCurrencyIsWETH = Boolean(
-    chainId &&
-      ((currencyA && WETH9[chainId].equals(currencyA)) ||
-        (currencyB && WETH9[chainId].equals(currencyB)))
+    chainId && ((currencyA && WETH9[chainId].equals(currencyA)) || (currencyB && WETH9[chainId].equals(currencyB)))
   )
 
   const handleSelectCurrencyA = useCallback(
@@ -572,17 +570,17 @@ export default function RemoveLiquidity({
                       <RowBetween style={{ justifyContent: 'flex-end' }}>
                         {oneCurrencyIsETH ? (
                           <StyledInternalLink
-                            to={`/remove/${currencyA instanceof NativeCurrency ? WETH9[chainId].address : currencyIdA}/${
-                              currencyB instanceof NativeCurrency ? WETH9[chainId].address : currencyIdB
-                            }`}
+                            to={`/remove/${
+                              currencyA instanceof NativeCurrency ? WETH9[chainId].address : currencyIdA
+                            }/${currencyB instanceof NativeCurrency ? WETH9[chainId].address : currencyIdB}`}
                           >
                             Receive WETH
                           </StyledInternalLink>
                         ) : oneCurrencyIsWETH ? (
                           <StyledInternalLink
-                            to={`/remove/${
-                              currencyA && currencyA.equals(WETH9[chainId]) ? 'ETH' : currencyIdA
-                            }/${currencyB && currencyB.equals(WETH9[chainId]) ? 'ETH' : currencyIdB}`}
+                            to={`/remove/${currencyA && currencyA.equals(WETH9[chainId]) ? 'ETH' : currencyIdA}/${
+                              currencyB && currencyB.equals(WETH9[chainId]) ? 'ETH' : currencyIdB
+                            }`}
                           >
                             Receive ETH
                           </StyledInternalLink>

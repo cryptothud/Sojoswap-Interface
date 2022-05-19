@@ -87,10 +87,18 @@ export function V1LiquidityInfo({
   )
 }
 
-function V1PairMigration({ liquidityTokenAmount, token }: { liquidityTokenAmount: CurrencyAmount<Token>; token: Token }) {
+function V1PairMigration({
+  liquidityTokenAmount,
+  token
+}: {
+  liquidityTokenAmount: CurrencyAmount<Token>
+  token: Token
+}) {
   const { account, chainId } = useActiveWeb3React()
   const totalSupply = useTotalSupply(liquidityTokenAmount.currency)
-  const exchangeETHBalance = useETHBalances([liquidityTokenAmount.currency.address])?.[liquidityTokenAmount.currency.address]
+  const exchangeETHBalance = useETHBalances([liquidityTokenAmount.currency.address])?.[
+    liquidityTokenAmount.currency.address
+  ]
   const exchangeTokenBalance = useTokenBalance(liquidityTokenAmount.currency.address, token)
 
   const [v2PairState, v2Pair] = usePair(chainId ? WETH9[chainId] : undefined, token)
@@ -101,10 +109,15 @@ function V1PairMigration({ liquidityTokenAmount, token }: { liquidityTokenAmount
   const [confirmingMigration, setConfirmingMigration] = useState<boolean>(false)
   const [pendingMigrationHash, setPendingMigrationHash] = useState<string | null>(null)
 
-  const shareFraction: Fraction = totalSupply ? new Percent(liquidityTokenAmount.quotient, totalSupply.quotient) : ZERO_FRACTION
-  
+  const shareFraction: Fraction = totalSupply
+    ? new Percent(liquidityTokenAmount.quotient, totalSupply.quotient)
+    : ZERO_FRACTION
+
   const ethWorth: CurrencyAmount<Currency> = exchangeETHBalance
-    ? CurrencyAmount.fromRawAmount(Ether.onChain(chainId || 0), exchangeETHBalance.multiply(shareFraction).multiply(WEI_DENOM).quotient)
+    ? CurrencyAmount.fromRawAmount(
+        Ether.onChain(chainId || 0),
+        exchangeETHBalance.multiply(shareFraction).multiply(WEI_DENOM).quotient
+      )
     : CurrencyAmount.fromRawAmount(Ether.onChain(chainId || 0), ZERO)
 
   const tokenWorth: CurrencyAmount<Token> = exchangeTokenBalance

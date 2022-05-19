@@ -45,11 +45,15 @@ interface StakingModalProps {
 
 export default function StakingModal({ isOpen, onDismiss, stakingInfo, userLiquidityUnstaked }: StakingModalProps) {
   const { account, chainId, library } = useActiveWeb3React()
-  const sdkConfig = useSdkConfig();
+  const sdkConfig = useSdkConfig()
 
   // track and parse user input
   const [typedValue, setTypedValue] = useState('')
-  const { parsedAmount, error } = useDerivedStakeInfo(typedValue, stakingInfo.stakedAmount.currency, userLiquidityUnstaked)
+  const { parsedAmount, error } = useDerivedStakeInfo(
+    typedValue,
+    stakingInfo.stakedAmount.currency,
+    userLiquidityUnstaked
+  )
   const parsedAmountWrapped = wrappedCurrencyAmount(parsedAmount, chainId)
 
   let hypotheticalRewardRate: CurrencyAmount<Token> = CurrencyAmount.fromRawAmount(stakingInfo.rewardRate.currency, '0')
@@ -72,7 +76,11 @@ export default function StakingModal({ isOpen, onDismiss, stakingInfo, userLiqui
   }, [onDismiss])
 
   // pair contract for this token to be staked
-  const dummyPair = new Pair(CurrencyAmount.fromRawAmount(stakingInfo.tokens[0], '0'), CurrencyAmount.fromRawAmount(stakingInfo.tokens[1], '0'), sdkConfig)
+  const dummyPair = new Pair(
+    CurrencyAmount.fromRawAmount(stakingInfo.tokens[0], '0'),
+    CurrencyAmount.fromRawAmount(stakingInfo.tokens[1], '0'),
+    sdkConfig
+  )
   const pairContract = usePairContract(dummyPair.liquidityToken.address)
 
   // approval data for stake
