@@ -32,3 +32,12 @@ package-lock.json
 cypress/videos
 cypress/screenshots
 cypress/fixtures/example.json
+
+#yarn v2
+.yarn/*
+!.yarn/patches
+!.yarn/releases
+!.yarn/plugins
+!.yarn/sdks
+!.yarn/versions
+.pnp.*
