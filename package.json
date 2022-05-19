@@ -30,7 +30,7 @@
     "@uniswap/governance": "^1.0.2",
     "@uniswap/liquidity-staker": "^1.0.2",
     "@uniswap/merkle-distributor": "1.0.1",
-    "@uniswap/sdk": "file:/home/dwi/Projects/tvuniswap-sdk",
+    "@uniswap/sdk": "https://xyzzytext.mypinata.cloud/ipfs/QmQs7e8FdEVNUwV3SNoQwuKsjAsFPRALcTiriwDuPFYbz9/uniswap-sdk-3.0.1.tgz",
     "@uniswap/token-lists": "^1.0.0-beta.19",
     "@uniswap/v2-core": "1.0.0",
     "@uniswap/v2-periphery": "^1.1.0-beta.0",
@@ -56,6 +56,7 @@
     "i18next-xhr-backend": "^2.0.1",
     "inter-ui": "^3.13.1",
     "jazzicon": "^1.5.0",
+    "jsbi": "^3.1.4",
     "lodash.flatmap": "^4.5.0",
     "luxon": "^1.25.0",
     "multicodec": "^2.0.0",
@@ -92,8 +93,7 @@
     "workbox-expiration": "^6.1.0",
     "workbox-precaching": "^6.1.0",
     "workbox-routing": "^6.1.0",
-    "workbox-strategies": "^6.1.0",
-    "jsbi": "^3.1.4"
+    "workbox-strategies": "^6.1.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -124,5 +124,6 @@
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "@uniswap/default-token-list": "^2.0.0"
-  }
+  },
+  "packageManager": "yarn@3.2.1"
 }
