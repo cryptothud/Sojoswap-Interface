@@ -1,5 +1,5 @@
 import { TransactionResponse } from '@ethersproject/abstract-provider'
-import { JSBI, Token, TokenAmount, WETH, Fraction, Percent, CurrencyAmount } from '@uniswap/sdk'
+import { Token, Fraction, Percent, CurrencyAmount, Currency, Ether, WETH9 } from '@uniswap/sdk'
 import React, { useCallback, useMemo, useState } from 'react'
 import ReactGA from 'react-ga'
 import { Redirect, RouteComponentProps } from 'react-router'
@@ -24,6 +24,7 @@ import { AddressZero } from '@ethersproject/constants'
 import { Dots } from '../../components/swap/styleds'
 import { Contract } from '@ethersproject/contracts'
 import { useTotalSupply } from '../../data/TotalSupply'
+import JSBI from 'jsbi'
 
 const WEI_DENOM = JSBI.exponentiate(JSBI.BigInt(10), JSBI.BigInt(18))
 const ZERO = JSBI.BigInt(0)
@@ -36,26 +37,26 @@ function V1PairRemoval({
   token
 }: {
   exchangeContract: Contract
-  liquidityTokenAmount: TokenAmount
+  liquidityTokenAmount: CurrencyAmount<Token>
   token: Token
 }) {
   const { chainId } = useActiveWeb3React()
-  const totalSupply = useTotalSupply(liquidityTokenAmount.token)
-  const exchangeETHBalance = useETHBalances([liquidityTokenAmount.token.address])?.[liquidityTokenAmount.token.address]
-  const exchangeTokenBalance = useTokenBalance(liquidityTokenAmount.token.address, token)
+  const totalSupply = useTotalSupply(liquidityTokenAmount.currency)
+  const exchangeETHBalance = useETHBalances([liquidityTokenAmount.currency.address])?.[liquidityTokenAmount.currency.address]
+  const exchangeTokenBalance = useTokenBalance(liquidityTokenAmount.currency.address, token)
 
   const [confirmingRemoval, setConfirmingRemoval] = useState<boolean>(false)
   const [pendingRemovalHash, setPendingRemovalHash] = useState<string | null>(null)
 
-  const shareFraction: Fraction = totalSupply ? new Percent(liquidityTokenAmount.raw, totalSupply.raw) : ZERO_FRACTION
+  const shareFraction: Fraction = totalSupply ? new Percent(liquidityTokenAmount.quotient, totalSupply.quotient) : ZERO_FRACTION
 
-  const ethWorth: CurrencyAmount = exchangeETHBalance
-    ? CurrencyAmount.ether(exchangeETHBalance.multiply(shareFraction).multiply(WEI_DENOM).quotient)
-    : CurrencyAmount.ether(ZERO)
+  const ethWorth: CurrencyAmount<Currency> = exchangeETHBalance
+    ? CurrencyAmount.fromRawAmount(Ether.onChain(chainId || 0),  exchangeETHBalance.multiply(shareFraction).multiply(WEI_DENOM).quotient)
+    : CurrencyAmount.fromRawAmount(Ether.onChain(chainId || 0), ZERO)
 
-  const tokenWorth: TokenAmount = exchangeTokenBalance
-    ? new TokenAmount(token, shareFraction.multiply(exchangeTokenBalance.raw).quotient)
-    : new TokenAmount(token, ZERO)
+  const tokenWorth: CurrencyAmount<Token> = exchangeTokenBalance
+    ? CurrencyAmount.fromRawAmount(token, shareFraction.multiply(exchangeTokenBalance.quotient).quotient)
+    : CurrencyAmount.fromRawAmount(token, ZERO)
 
   const addTransaction = useTransactionAdder()
   const isRemovalPending = useIsTransactionPending(pendingRemovalHash ?? undefined)
@@ -66,7 +67,7 @@ function V1PairRemoval({
     setConfirmingRemoval(true)
     exchangeContract
       .removeLiquidity(
-        liquidityTokenAmount.raw.toString(),
+        liquidityTokenAmount.quotient.toString(),
         1, // min_eth, this is safe because we're removing liquidity
         1, // min_tokens, this is safe because we're removing liquidity
         Math.floor(new Date().getTime() / 1000) + DEFAULT_DEADLINE_FROM_NOW
@@ -79,7 +80,7 @@ function V1PairRemoval({
         })
 
         addTransaction(response, {
-          summary: `Remove ${chainId && token.equals(WETH[chainId]) ? 'WETH' : token.symbol}/ETH V1 liquidity`
+          summary: `Remove ${chainId && token.equals(WETH9[chainId]) ? 'WETH' : token.symbol}/ETH V1 liquidity`
         })
         setPendingRemovalHash(response.hash)
       })
@@ -119,7 +120,7 @@ function V1PairRemoval({
       </LightCard>
       <TYPE.darkGray style={{ textAlign: 'center' }}>
         {`Your Uniswap V1 ${
-          chainId && token.equals(WETH[chainId]) ? 'WETH' : token.symbol
+          chainId && token.equals(WETH9[chainId]) ? 'WETH' : token.symbol
         }/ETH liquidity will be redeemed for underlying assets.`}
       </TYPE.darkGray>
     </AutoColumn>

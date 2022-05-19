@@ -1,4 +1,4 @@
-import { Trade, TradeType } from '@uniswap/sdk'
+import { Currency, Trade, TradeType } from '@uniswap/sdk'
 import React, { useContext, useMemo, useState } from 'react'
 import { Repeat } from 'react-feather'
 import { Text } from 'rebass'
@@ -25,7 +25,7 @@ export default function SwapModalFooter({
   swapErrorMessage,
   disabledConfirm
 }: {
-  trade: Trade
+  trade: Trade<Currency, Currency, TradeType>
   allowedSlippage: number
   onConfirm: () => void
   swapErrorMessage: string | undefined

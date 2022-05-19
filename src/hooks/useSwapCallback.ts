@@ -1,6 +1,6 @@
 import { BigNumber } from '@ethersproject/bignumber'
 import { Contract } from '@ethersproject/contracts'
-import { JSBI, Percent, Router, SwapParameters, Trade, TradeType } from '@uniswap/sdk'
+import { Currency, Percent, Router, SwapParameters, Trade, TradeType } from '@uniswap/sdk'
 import { useMemo } from 'react'
 import { BIPS_BASE, INITIAL_ALLOWED_SLIPPAGE } from '../constants'
 import { getTradeVersion, useV1TradeExchangeAddress } from '../data/V1'
@@ -13,6 +13,7 @@ import { useV1ExchangeContract } from './useContract'
 import useTransactionDeadline from './useTransactionDeadline'
 import useENS from './useENS'
 import { Version } from './useToggledVersion'
+import JSBI from 'jsbi'
 
 export enum SwapCallbackState {
   INVALID,
@@ -44,7 +45,7 @@ type EstimatedSwapCall = SuccessfulCall | FailedCall
  * @param recipientAddressOrName
  */
 function useSwapCallArguments(
-  trade: Trade | undefined, // trade to execute, required
+  trade: Trade<Currency, Currency, TradeType> | undefined, // trade to execute, required
   allowedSlippage: number = INITIAL_ALLOWED_SLIPPAGE, // in bips
   recipientAddressOrName: string | null // the ENS name or address of the recipient of the trade, or null if swap should be returned to sender
 ): SwapCall[] {
@@ -107,7 +108,7 @@ function useSwapCallArguments(
 // returns a function that will execute a swap, if the parameters are all valid
 // and the user has approved the slippage adjusted input amount for the trade
 export function useSwapCallback(
-  trade: Trade | undefined, // trade to execute, required
+  trade: Trade<Currency, Currency, TradeType> | undefined, // trade to execute, required
   allowedSlippage: number = INITIAL_ALLOWED_SLIPPAGE, // in bips
   recipientAddressOrName: string | null // the ENS name or address of the recipient of the trade, or null if swap should be returned to sender
 ): { state: SwapCallbackState; callback: null | (() => Promise<string>); error: string | null } {

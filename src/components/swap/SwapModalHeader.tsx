@@ -1,4 +1,4 @@
-import { Trade, TradeType } from '@uniswap/sdk'
+import { Currency, Trade, TradeType } from '@uniswap/sdk'
 import React, { useContext, useMemo } from 'react'
 import { ArrowDown, AlertTriangle } from 'react-feather'
 import { Text } from 'rebass'
@@ -20,7 +20,7 @@ export default function SwapModalHeader({
   showAcceptChanges,
   onAcceptChanges
 }: {
-  trade: Trade
+  trade: Trade<Currency, Currency, TradeType>
   allowedSlippage: number
   recipient: string | null
   showAcceptChanges: boolean

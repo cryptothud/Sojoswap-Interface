@@ -1,5 +1,5 @@
 import { UNI } from './../../constants/index'
-import { TokenAmount, JSBI, ChainId } from '@uniswap/sdk'
+import { ChainId, CurrencyAmount, Token } from '@uniswap/sdk'
 import { TransactionResponse } from '@ethersproject/providers'
 import { useEffect, useState } from 'react'
 import { useActiveWeb3React } from '../../hooks'
@@ -7,6 +7,7 @@ import { useMerkleDistributorContract } from '../../hooks/useContract'
 import { useSingleCallResult } from '../multicall/hooks'
 import { calculateGasMargin, isAddress } from '../../utils'
 import { useTransactionAdder } from '../transactions/hooks'
+import JSBI from 'jsbi'
 
 interface UserClaimData {
   index: number
@@ -73,7 +74,7 @@ export function useUserHasAvailableClaim(account: string | null | undefined): bo
   return Boolean(userClaimData && !isClaimedResult.loading && isClaimedResult.result?.[0] === false)
 }
 
-export function useUserUnclaimedAmount(account: string | null | undefined): TokenAmount | undefined {
+export function useUserUnclaimedAmount(account: string | null | undefined): CurrencyAmount<Token> | undefined {
   const { chainId } = useActiveWeb3React()
   const userClaimData = useUserClaimData(account)
   const canClaim = useUserHasAvailableClaim(account)
@@ -81,9 +82,9 @@ export function useUserUnclaimedAmount(account: string | null | undefined): Toke
   const uni = chainId ? UNI[chainId] : undefined
   if (!uni) return undefined
   if (!canClaim || !userClaimData) {
-    return new TokenAmount(uni, JSBI.BigInt(0))
+    return CurrencyAmount.fromRawAmount(uni, JSBI.BigInt(0))
   }
-  return new TokenAmount(uni, JSBI.BigInt(userClaimData.amount))
+  return CurrencyAmount.fromRawAmount(uni, JSBI.BigInt(userClaimData.amount))
 }
 
 export function useClaimCallback(
@@ -96,7 +97,7 @@ export function useClaimCallback(
   const claimData = useUserClaimData(account)
 
   // used for popup summary
-  const unClaimedAmount: TokenAmount | undefined = useUserUnclaimedAmount(account)
+  const unClaimedAmount: CurrencyAmount<Token> | undefined = useUserUnclaimedAmount(account)
   const addTransaction = useTransactionAdder()
   const distributorContract = useMerkleDistributorContract()
 

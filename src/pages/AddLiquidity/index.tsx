@@ -1,6 +1,6 @@
 import { BigNumber } from '@ethersproject/bignumber'
 import { TransactionResponse } from '@ethersproject/providers'
-import { Currency, currencyEquals, ETHER, TokenAmount, WETH } from '@uniswap/sdk'
+import { Currency, CurrencyAmount, NativeCurrency, WETH9 } from '@uniswap/sdk'
 import React, { useCallback, useContext, useState } from 'react'
 import { Plus } from 'react-feather'
 import ReactGA from 'react-ga'
@@ -55,8 +55,8 @@ export default function AddLiquidity({
 
   const oneCurrencyIsWETH = Boolean(
     chainId &&
-      ((currencyA && currencyEquals(currencyA, WETH[chainId])) ||
-        (currencyB && currencyEquals(currencyB, WETH[chainId])))
+      ((currencyA && currencyA.equals(WETH9[chainId])) ||
+        (currencyB && currencyB.equals(WETH9[chainId])))
   )
 
   const toggleWalletModal = useWalletModalToggle() // toggle wallet when disconnected
@@ -99,7 +99,7 @@ export default function AddLiquidity({
   }
 
   // get the max amounts user can add
-  const maxAmounts: { [field in Field]?: TokenAmount } = [Field.CURRENCY_A, Field.CURRENCY_B].reduce(
+  const maxAmounts: { [field in Field]?: CurrencyAmount<Currency> } = [Field.CURRENCY_A, Field.CURRENCY_B].reduce(
     (accumulator, field) => {
       return {
         ...accumulator,
@@ -109,7 +109,7 @@ export default function AddLiquidity({
     {}
   )
 
-  const atMaxAmounts: { [field in Field]?: TokenAmount } = [Field.CURRENCY_A, Field.CURRENCY_B].reduce(
+  const atMaxAmounts: { [field in Field]?: CurrencyAmount<Currency> } = [Field.CURRENCY_A, Field.CURRENCY_B].reduce(
     (accumulator, field) => {
       return {
         ...accumulator,
@@ -143,27 +143,27 @@ export default function AddLiquidity({
       method: (...args: any) => Promise<TransactionResponse>,
       args: Array<string | string[] | number>,
       value: BigNumber | null
-    if (currencyA === ETHER || currencyB === ETHER) {
-      const tokenBIsETH = currencyB === ETHER
+    if (currencyA instanceof NativeCurrency || currencyB instanceof NativeCurrency) {
+      const tokenBIsETH = currencyB instanceof NativeCurrency
       estimate = router.estimateGas.addLiquidityETH
       method = router.addLiquidityETH
       args = [
         wrappedCurrency(tokenBIsETH ? currencyA : currencyB, chainId)?.address ?? '', // token
-        (tokenBIsETH ? parsedAmountA : parsedAmountB).raw.toString(), // token desired
+        (tokenBIsETH ? parsedAmountA : parsedAmountB).quotient.toString(), // token desired
         amountsMin[tokenBIsETH ? Field.CURRENCY_A : Field.CURRENCY_B].toString(), // token min
         amountsMin[tokenBIsETH ? Field.CURRENCY_B : Field.CURRENCY_A].toString(), // eth min
         account,
         deadline.toHexString()
       ]
-      value = BigNumber.from((tokenBIsETH ? parsedAmountB : parsedAmountA).raw.toString())
+      value = BigNumber.from((tokenBIsETH ? parsedAmountB : parsedAmountA).quotient.toString())
     } else {
       estimate = router.estimateGas.addLiquidity
       method = router.addLiquidity
       args = [
         wrappedCurrency(currencyA, chainId)?.address ?? '',
         wrappedCurrency(currencyB, chainId)?.address ?? '',
-        parsedAmountA.raw.toString(),
-        parsedAmountB.raw.toString(),
+        parsedAmountA.quotient.toString(),
+        parsedAmountB.quotient.toString(),
         amountsMin[Field.CURRENCY_A].toString(),
         amountsMin[Field.CURRENCY_B].toString(),
         account,

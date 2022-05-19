@@ -1,4 +1,4 @@
-import { ChainId, TokenAmount } from '@uniswap/sdk'
+import { ChainId, CurrencyAmount, Token } from '@uniswap/sdk'
 import React, { useState } from 'react'
 import { Text } from 'rebass'
 import { NavLink } from 'react-router-dom'
@@ -308,7 +308,7 @@ export default function Header() {
 
   const { claimTxn } = useUserHasSubmittedClaim(account ?? undefined)
 
-  const aggregateBalance: TokenAmount | undefined = useAggregateUniBalance()
+  const aggregateBalance: CurrencyAmount<Token> | undefined = useAggregateUniBalance()
 
   const [showUniBalanceModal, setShowUniBalanceModal] = useState(false)
   const showClaimPopup = useShowClaimPopup()
