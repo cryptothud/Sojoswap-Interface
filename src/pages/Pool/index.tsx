@@ -57,6 +57,13 @@ const ResponsiveButtonPrimary = styled(ButtonPrimary)`
   ${({ theme }) => theme.mediaWidth.upToSmall`
     width: 48%;
   `};
+  color: #0c0c0c;
+  background: #ffffff;
+  &:hover {
+    background: none;
+    color: #fff;
+    border: 1px solid #fff;
+  }
 `
 
 const ResponsiveButtonSecondary = styled(ButtonSecondary)`
@@ -64,10 +71,16 @@ const ResponsiveButtonSecondary = styled(ButtonSecondary)`
   ${({ theme }) => theme.mediaWidth.upToSmall`
     width: 48%;
   `};
+  color: #fff;
+  border: 1px solid #fff;
+  &:hover {
+    background: #fff;
+    color: #0c0c0c;
+  }
 `
 
 const EmptyProposals = styled.div`
-  border: 1px solid ${({ theme }) => theme.text4};
+  border: 1px solid #fff;
   padding: 16px 12px;
   border-radius: 12px;
   display: flex;

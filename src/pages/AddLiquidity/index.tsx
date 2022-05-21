@@ -332,7 +332,7 @@ export default function AddLiquidity({
             {noLiquidity ||
               (isCreate ? (
                 <ColumnCenter>
-                  <BlueCard>
+                  <BlueCard style={{background: '#212429'}}>
                     <AutoColumn gap="10px">
                       <TYPE.link fontWeight={600} color={'primaryText1'}>
                         You are the first liquidity provider.
