@@ -336,7 +336,7 @@ export default function Header() {
         <Title href=".">
           <UniIcon>
             <img width={'100px'} style={{ margin: '5px' }} src={Logo} alt="logo" />
-            <h1>SojoSwap</h1>
+            <h1>SOJOSwap</h1>
           </UniIcon>
         </Title>
         <HeaderLinks>
