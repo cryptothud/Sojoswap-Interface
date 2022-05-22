@@ -18,10 +18,10 @@ const DetailsFooter = styled.div<{ show: boolean }>`
   padding-bottom: 20px;
   margin-top: -2rem;
   width: 100%;
-  margin-left: -300px;
   max-width: 600px;
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
+  margin-left: -300px;
   color: ${({ theme }) => theme.text2};
   background-color: ${({ theme }) => theme.advancedBG};
   z-index: -1;
@@ -29,6 +29,12 @@ const DetailsFooter = styled.div<{ show: boolean }>`
   transform: ${({ show }) => (show ? 'translateY(0%)' : 'translateY(-100%)')};
   transition: transform 300ms ease-in-out;
   text-align: center;
+  @media only screen and (max-width: 1400px) {
+    margin-left: 0px;
+  }
+  @media only screen and (max-width: 720px) {
+    width: 90%;
+  }
 `
 
 const AddressText = styled(TYPE.blue)`

@@ -55,11 +55,24 @@ const HeaderFrame = styled.div`
   `}
 `
 
+const Socials = styled.div`
+  display: flex;
+  column-gap: 5px;
+  img {
+    width: 23px;
+    cursor: pointer;
+    &:hover {
+      transform: rotate(-5deg);
+    }
+  }
+`
+
 const HeaderControls = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: row-reverse;
   align-items: center;
   justify-self: flex-end;
+  column-gap: 10px;
 
   ${({ theme }) => theme.mediaWidth.upToMedium`
     flex-direction: row;
@@ -75,7 +88,7 @@ const HeaderControls = styled.div`
     z-index: 99;
     height: 72px;
     border-radius: 12px 12px 0 0;
-    background-color: #660000;
+    background-color: #0C0C0F;
   `};
 `
 
@@ -430,6 +443,12 @@ export default function Header() {
           <Menu />
         </HeaderElementWrap>
         */}
+        <Socials>
+          <img src="/images/sojo/twitter.png" alt="" />
+          <img src="/images/sojo/discord.png" alt="" />
+          <img src="/images/sojo/telegram.png" alt="" />
+          <img src="/images/sojo/email.png" alt="" />
+        </Socials>
       </HeaderControls>
     </HeaderFrame>
   )

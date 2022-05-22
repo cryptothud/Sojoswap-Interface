@@ -2,7 +2,6 @@ import React from 'react'
 import styled from 'styled-components'
 import Settings from '../Settings'
 import { RowBetween } from '../Row'
-import { TYPE } from '../../theme'
 
 const StyledSwapHeader = styled.div`
   padding: 12px 1rem 0px 1.5rem;
@@ -12,11 +11,19 @@ const StyledSwapHeader = styled.div`
   color: ${({ theme }) => theme.text2};
 `
 
+const SwapText = styled.div`
+box-sizing: border-box;
+margin: 0;
+min-width: 0;
+font-weight: 500;
+color: #fff !important;
+`
+
 export default function SwapHeader() {
   return (
     <StyledSwapHeader>
       <RowBetween>
-        <TYPE.black fontWeight={500}>Swap</TYPE.black>
+        <SwapText>Swap</SwapText>
         <Settings />
       </RowBetween>
     </StyledSwapHeader>
