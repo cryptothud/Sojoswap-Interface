@@ -76,6 +76,54 @@ const Welcome = styled.h1`
   pointer-events: none;
 `
 
+const Trading = styled.div`
+  position: relative;
+  max-width: 250px;
+  width: 100%;
+  background: #0c0c0cc9;
+  box-shadow: 0 0 10px #000;
+  border-radius: 15px;
+  backdrop-filter: blur(10px);
+  display: none;
+  z-index: 1;
+  h2 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+    font-weight: 100;
+    color: #fff !important;
+  }
+  @media only screen and (max-width: 1400px) {
+    display: block;
+    max-width: 600px;
+    height: 200px;
+    margin: 0 auto;
+    transform: translateY(-30px);
+  }
+  @media only screen and (max-width: 720px) {
+    max-width: calc(90% - 32px);
+    margin-bottom: 50px;
+  }
+`
+const Text = styled.h1`
+  padding: 12px 1rem 0px 1.5rem;
+  margin-bottom: -4px;
+  width: 100%;
+  max-width: 100%;
+  color: #fff;
+  font-weight: 500;
+  font-size: 16px;
+  opacity: 0.1;
+`
 function TopLevelModals() {
   const open = useModalOpen(ApplicationModal.ADDRESS_CLAIM)
   const toggle = useToggleModal(ApplicationModal.ADDRESS_CLAIM)
@@ -126,6 +174,10 @@ export default function App() {
           </Web3ReactManager>
           <Marginer />
         </BodyWrapper>
+        <Trading>
+          <h2>Coming Soon...</h2>
+          <Text>Live Trades</Text>
+        </Trading>
       </AppWrapper>
     </Suspense>
   )

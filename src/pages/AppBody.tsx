@@ -4,11 +4,16 @@ import styled from 'styled-components'
 
 export const BodyWrapper = styled.div`
   position: relative;
+  min-width: 600px;
   max-width: 600px;
   width: 100%;
   background: #0c0c0c;
   box-shadow: 0 0 10px #000;
   border-radius: 15px;
+  @media only screen and (max-width: 720px) {
+    min-width: 0px;
+    max-width: 100%;
+  }
 `
 const Trading = styled.div`
   position: relative;
@@ -32,9 +37,10 @@ const Trading = styled.div`
     padding: 0;
     margin: 0;
     font-weight: 100;
+    color: #fff !important;
   }
   @media only screen and (max-width: 1400px) {
-    max-width: 600px;
+    display: none;
     height: 200px;
   }
 `
@@ -54,6 +60,7 @@ const Wrapper = styled.div`
     row-gap: 20px;
     align-items: center;
     margin-top: 0;
+    width: 90%;
   }
 `
 const Text = styled.h1`
@@ -66,23 +73,6 @@ const Text = styled.h1`
   font-size: 16px;
   opacity: 0.1;
 `
-const Socials = styled.div`
-  position: fixed;
-  left: 10px;
-  top: 50%;
-  transform: translateY(-50%);
-  display: flex;
-  flex-direction: column;
-  row-gap: 12px;
-  img {
-    width: 23px;
-    cursor: pointer;
-    &:hover {
-      transform: rotate(-5deg);
-    }
-  }
-`
-
 /**
  * The styled container element that wraps the content of most pages and the tabs.
  */
@@ -94,12 +84,6 @@ export default function AppBody({ children }: { children: React.ReactNode }) {
         <h2>Coming Soon...</h2>
         <Text>Live Trades</Text>
       </Trading>
-      <Socials>
-        <img src="/images/sojo/twitter.png" alt="" />
-        <img src="/images/sojo/discord.png" alt="" />
-        <img src="/images/sojo/telegram.png" alt="" />
-        <img src="/images/sojo/email.png" alt="" />
-      </Socials>
     </Wrapper>
   )
 }
