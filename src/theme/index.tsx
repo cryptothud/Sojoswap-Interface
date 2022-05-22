@@ -44,11 +44,11 @@ export function colors(darkMode: boolean): Colors {
     text2: darkMode ? '#C3C5CB' : '#565A69',
     text3: darkMode ? '#6C7284' : '#888D9B',
     text4: darkMode ? '#565A69' : '#C3C5CB',
-    text5: darkMode ? '#2C2F36' : '#EDEEF2',
+    text5: darkMode ? '#0c0c0c' : '#EDEEF2',
 
     // backgrounds / greys
     bg1: darkMode ? '#212429' : '#FFFFFF',
-    bg2: darkMode ? '#2C2F36' : '#F7F8FA',
+    bg2: darkMode ? '#0c0c0c' : '#F7F8FA',
     bg3: darkMode ? '#40444F' : '#EDEEF2',
     bg4: darkMode ? '#565A69' : '#CED0D9',
     bg5: darkMode ? '#6C7284' : '#888D9B',
@@ -62,7 +62,7 @@ export function colors(darkMode: boolean): Colors {
     primary2: darkMode ? '#3680E7' : '#FF8CC3',
     primary3: darkMode ? '#40444f' : '#40444f',
     primary4: darkMode ? '#40444f' : '#40444f',
-    primary5: darkMode ? '#4A0000' : '#4A0000',
+    primary5: darkMode ? '#40444F' : '#40444F',
 
     // color text
     primaryText1: darkMode ? '#fff' : '#fff',
@@ -229,6 +229,7 @@ body {
   background-image: url("/images/sojo/martianbg.png");
   background-size: cover;
   box-shadow: 3000px 3000px 3000px inset #78000080;
+  background-attachment: fixed;
 }
 
 #root {
