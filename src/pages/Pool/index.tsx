@@ -179,7 +179,18 @@ export default function Pool() {
         </VoteCard>
 
         <AutoColumn gap="lg" justify="center">
-          <AutoColumn gap="lg" style={{ width: '100%', background: '#0c0c0c', padding: '1rem', boxShadow: 'rgb(0 0 0) 0px 0px 10px', borderRadius: '15px', position: 'relative', overflow: 'hidden'}}>
+          <AutoColumn
+            gap="lg"
+            style={{
+              width: '100%',
+              background: '#0c0c0c',
+              padding: '1rem',
+              boxShadow: 'rgb(0 0 0) 0px 0px 10px',
+              borderRadius: '15px',
+              position: 'relative',
+              overflow: 'hidden'
+            }}
+          >
             <TitleRow style={{ marginTop: '1rem' }} padding={'0'}>
               <HideSmall>
                 <TYPE.mediumHeader style={{ marginTop: '0.5rem', justifySelf: 'flex-start' }}>

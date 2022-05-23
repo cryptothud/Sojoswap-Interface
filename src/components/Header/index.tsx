@@ -275,7 +275,7 @@ const StyledNavLink = styled(NavLink).attrs({
     color: #fff !important;
     background: #520606 !important;
     border: 2px solid #fff !important;
-    :hover{
+    :hover {
       color: #ffffff80 !important;
     }
   }
