@@ -18,7 +18,7 @@ import { useActiveWeb3React } from '../../hooks'
 import { usePairs } from '../../data/Reserves'
 import { toV2LiquidityToken, useTrackedTokenPairs } from '../../state/user/hooks'
 import { Dots } from '../../components/swap/styleds'
-import { CardSection, DataCard, CardNoise, CardBGImage } from '../../components/earn/styled'
+import { /*CardSection*/ DataCard, CardNoise, CardBGImage } from '../../components/earn/styled'
 import { useStakingInfo } from '../../state/stake/hooks'
 import { BIG_INT_ZERO } from '../../constants'
 import JSBI from 'jsbi'
@@ -57,12 +57,12 @@ const ResponsiveButtonPrimary = styled(ButtonPrimary)`
   ${({ theme }) => theme.mediaWidth.upToSmall`
     width: 48%;
   `};
-  color: #fff;
-  background: #ffffff50;
+  color: #0c0c0c;
   border: 1px solid #fff;
+  background: #ffffff;
   &:hover {
-    background: #ffffff;
-    color: #0c0c0c;
+    background: #ffffff50;
+    color: #fff;
     border: 1px solid #fff;
   }
 `
@@ -72,12 +72,13 @@ const ResponsiveButtonSecondary = styled(ButtonSecondary)`
   ${({ theme }) => theme.mediaWidth.upToSmall`
     width: 48%;
   `};
-  color: #fff;
+  color: #0c0c0c;
   border: 1px solid #fff;
-  background: #ffffff50;
+  background: #ffffff;
   &:hover {
-    background: #fff;
-    color: #0c0c0c;
+    background: #ffffff50;
+    color: #fff;
+    border: 1px solid #fff;
   }
 `
 
@@ -89,7 +90,8 @@ const EmptyProposals = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: #ffffff50;
+  border: 1px solid #0c0c0c !important;
+  background-color: #212429 !important;
 `
 
 export default function Pool() {
@@ -151,6 +153,7 @@ export default function Pool() {
         <VoteCard>
           <CardBGImage />
           <CardNoise />
+          {/*
           <CardSection>
             <AutoColumn gap="md">
               <RowBetween>
@@ -170,12 +173,13 @@ export default function Pool() {
               </ExternalLink>
             </AutoColumn>
           </CardSection>
+        */}
           <CardBGImage />
           <CardNoise />
         </VoteCard>
 
         <AutoColumn gap="lg" justify="center">
-          <AutoColumn gap="lg" style={{ width: '100%' }}>
+          <AutoColumn gap="lg" style={{ width: '100%', background: '#0c0c0c', padding: '1rem', boxShadow: 'rgb(0 0 0) 0px 0px 10px', borderRadius: '15px', position: 'relative', overflow: 'hidden'}}>
             <TitleRow style={{ marginTop: '1rem' }} padding={'0'}>
               <HideSmall>
                 <TYPE.mediumHeader style={{ marginTop: '0.5rem', justifySelf: 'flex-start' }}>

@@ -107,11 +107,13 @@ const Trading = styled.div`
     max-width: 600px;
     height: 200px;
     margin: 0 auto;
-    transform: translateY(-30px);
+    transform: translateY(-50px);
+  }
+  @media only screen and (max-width: 960px) {
+    margin-bottom: 50px;
   }
   @media only screen and (max-width: 720px) {
     max-width: calc(90% - 32px);
-    margin-bottom: 50px;
   }
 `
 const Text = styled.h1`
@@ -132,9 +134,9 @@ function TopLevelModals() {
 
 export default function App() {
   const [currentPage, setCurrentPage] = useState('/swap')
-  const location = useLocation()
+  let location = useLocation()
   useEffect(() => {
-    setCurrentPage(location.pathname)
+      setCurrentPage(location.pathname)
   }, [location.pathname])
   return (
     <Suspense fallback={null}>
@@ -179,12 +181,12 @@ export default function App() {
           </Web3ReactManager>
           <Marginer />
         </BodyWrapper>
-        {currentPage === '/swap' ? (
+        {currentPage === "/swap" ?
           <Trading>
             <h2>Coming Soon...</h2>
             <Text>Live Trades</Text>
           </Trading>
-        ) : null}
+        : null}
       </AppWrapper>
     </Suspense>
   )
