@@ -57,11 +57,12 @@ const ResponsiveButtonPrimary = styled(ButtonPrimary)`
   ${({ theme }) => theme.mediaWidth.upToSmall`
     width: 48%;
   `};
-  color: #0c0c0c;
-  background: #ffffff;
+  color: #fff;
+  background: #ffffff50;
+  border: 1px solid #fff;
   &:hover {
-    background: none;
-    color: #fff;
+    background: #ffffff;
+    color: #0c0c0c;
     border: 1px solid #fff;
   }
 `
@@ -73,6 +74,7 @@ const ResponsiveButtonSecondary = styled(ButtonSecondary)`
   `};
   color: #fff;
   border: 1px solid #fff;
+  background: #ffffff50;
   &:hover {
     background: #fff;
     color: #0c0c0c;
@@ -87,6 +89,7 @@ const EmptyProposals = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background: #ffffff50;
 `
 
 export default function Pool() {
@@ -235,7 +238,7 @@ export default function Pool() {
               </>
             ) : (
               <EmptyProposals>
-                <TYPE.body color={theme.text3} textAlign="center">
+                <TYPE.body color={'#fff'} textAlign="center">
                   No liquidity found.
                 </TYPE.body>
               </EmptyProposals>

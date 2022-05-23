@@ -1,5 +1,5 @@
-import React, { Suspense } from 'react'
-import { Route, Switch } from 'react-router-dom'
+import React, { Suspense, useEffect, useState } from 'react'
+import { Route, Switch, useLocation } from 'react-router-dom'
 import styled from 'styled-components'
 import GoogleAnalyticsReporter from '../components/analytics/GoogleAnalyticsReporter'
 import AddressClaimModal from '../components/claim/AddressClaimModal'
@@ -131,6 +131,11 @@ function TopLevelModals() {
 }
 
 export default function App() {
+  const [currentPage, setCurrentPage] = useState('/swap')
+  let location = useLocation()
+  useEffect(() => {
+      setCurrentPage(location.pathname)
+  }, [location.pathname])
   return (
     <Suspense fallback={null}>
       <Route component={GoogleAnalyticsReporter} />
@@ -174,10 +179,12 @@ export default function App() {
           </Web3ReactManager>
           <Marginer />
         </BodyWrapper>
-        <Trading>
-          <h2>Coming Soon...</h2>
-          <Text>Live Trades</Text>
-        </Trading>
+        {currentPage === "/swap" ?
+          <Trading>
+            <h2>Coming Soon...</h2>
+            <Text>Live Trades</Text>
+          </Trading>
+        : null}
       </AppWrapper>
     </Suspense>
   )
