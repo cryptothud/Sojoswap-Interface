@@ -66,7 +66,7 @@ export const ButtonPrimary = styled(Base)`
 `
 
 export const ButtonLight = styled(Base)`
-  background-color: #40444f;
+  background-color: #40444F;
   color: #fff;
   font-size: 16px;
   font-weight: 500;

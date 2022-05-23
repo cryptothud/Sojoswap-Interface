@@ -1,8 +1,8 @@
 import { ChainId } from '@uniswap/sdk'
 import React, { useState } from 'react'
 import { Text } from 'rebass'
-//import { NavLink } from 'react-router-dom'
-//import { darken } from 'polished'
+import { NavLink } from 'react-router-dom'
+import { darken } from 'polished'
 //import { useTranslation } from 'react-i18next'
 
 import styled from 'styled-components'
@@ -14,7 +14,7 @@ import { useActiveWeb3React } from '../../hooks'
 import { useETHBalances /*useAggregateUniBalance*/ } from '../../state/wallet/hooks'
 //import { CardNoise } from '../earn/styled'
 //import { CountUp } from 'use-count-up'
-//import { TYPE, /*ExternalLink*/ } from '../../theme'
+//import { /*TYPE,*/ ExternalLink } from '../../theme'
 
 import { YellowCard } from '../Card'
 //import { Moon, Sun } from 'react-feather'
@@ -120,6 +120,20 @@ const HeaderRow = styled(RowFixed)`
 
 const HeaderLinks = styled(Row)`
   justify-content: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  border-radius: 50px !important;
+  width: auto !important;
+  @media only screen and (max-width: 960px) {
+    position: fixed;
+    bottom: 72px;
+    top: auto;
+    padding: 0 !important;
+    box-shadow: 0 0 20px #00000050;
+  }
   ${({ theme }) => theme.mediaWidth.upToMedium`
     padding: 1rem 0 1rem 1rem;
     justify-content: flex-end;
@@ -140,6 +154,25 @@ const AccountElement = styled.div<{ active: boolean }>`
     border: 1px solid blue;
   }
 `
+/*
+const NavigationTabs = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #ffffff20;
+  border-radius: 50px;
+  h1 {
+    font-size: 16px;
+    padding: 0 25px;
+    cursor: pointer;
+    border-radius: 50px;
+  }
+`
+*/
 /*
 const UNIAmount = styled(AccountElement)`
   color: white;
@@ -219,7 +252,6 @@ const UniIcon = styled.div`
   }
 `
 
-/*
 const activeClassName = 'ACTIVE'
 
 const StyledNavLink = styled(NavLink).attrs({
@@ -231,16 +263,18 @@ const StyledNavLink = styled(NavLink).attrs({
   outline: none;
   cursor: pointer;
   text-decoration: none;
-  color: ${({ theme }) => theme.text2};
+  color: #00000090;
   font-size: 1rem;
   width: fit-content;
-  margin: 0 12px;
   font-weight: 500;
+  padding: 5px 12px;
+  border-radius: 50px !important;
 
   &.${activeClassName} {
-    border-radius: 12px;
     font-weight: 600;
-    color: ${({ theme }) => theme.text1};
+    color: #fff;
+    background: #520606;
+    border: 2px solid;
   }
 
   :hover,
@@ -248,7 +282,7 @@ const StyledNavLink = styled(NavLink).attrs({
     color: ${({ theme }) => darken(0.1, theme.text1)};
   }
 `
-
+/*
 const StyledExternalLink = styled(ExternalLink).attrs({
   activeClassName
 })<{ isActive?: boolean }>`
@@ -280,7 +314,6 @@ const StyledExternalLink = styled(ExternalLink).attrs({
 `}
 `
 */
-
 export const StyledMenuButton = styled.button`
   position: relative;
   width: 100%;
@@ -353,9 +386,8 @@ export default function Header() {
           </UniIcon>
         </Title>
         <HeaderLinks>
-          {/*
           <StyledNavLink id={`swap-nav-link`} to={'/swap'}>
-            {t('swap')}
+            Swap
           </StyledNavLink>
           <StyledNavLink
             id={`pool-nav-link`}
@@ -368,8 +400,9 @@ export default function Header() {
               pathname.startsWith('/find')
             }
           >
-            {t('pool')}
+            Pool
           </StyledNavLink>
+          {/*
           <StyledNavLink id={`stake-nav-link`} to={'/uni'}>
             UNI
           </StyledNavLink>
