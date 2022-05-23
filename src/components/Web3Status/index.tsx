@@ -1,6 +1,6 @@
 import { AbstractConnector } from '@web3-react/abstract-connector'
 import { UnsupportedChainIdError, useWeb3React } from '@web3-react/core'
-import { darken, lighten } from 'polished'
+//import { darken, lighten } from 'polished'
 import React, { useMemo } from 'react'
 import { Activity } from 'react-feather'
 import { useTranslation } from 'react-i18next'
@@ -48,59 +48,59 @@ const Web3StatusGeneric = styled(ButtonSecondary)`
   }
 `
 const Web3StatusError = styled(Web3StatusGeneric)`
-  background-color: ${({ theme }) => theme.red1};
-  border: 1px solid ${({ theme }) => theme.red1};
-  color: ${({ theme }) => theme.white};
+  background-color: #0c0c0c;
+  border: 1px solid #0c0c0c;
+  color: #ffffff;
   font-weight: 500;
-  :hover,
-  :focus {
-    background-color: ${({ theme }) => darken(0.1, theme.red1)};
+  :hover {
+    opacity: 0.6;
+  }
+  @media only screen and (max-width: 960px) {
+    background-color: #212429;
+    border: 1px solid #212429;
   }
 `
 
 const Web3StatusConnect = styled(Web3StatusGeneric)<{ faded?: boolean }>`
-  background-color: ${({ theme }) => theme.primary4};
+  background-color: #0c0c0c;
   border: none;
-  color: ${({ theme }) => theme.primaryText1};
+  color: #fff;
   font-weight: 500;
   padding: 15px !important;
 
-  :hover,
-  :focus {
+  :hover {
     border: none;
-    opacity: 0.8;
-    color: ${({ theme }) => theme.primaryText1};
+    opacity: 0.6;
+  }
+  @media only screen and (max-width: 960px) {
+    background-color: #212429;
   }
 
   ${({ faded }) =>
     faded &&
     css`
-      background-color: ${({ theme }) => theme.primary5};
       border: none;
-      color: ${({ theme }) => theme.primaryText1};
 
       :hover,
       :focus {
-        opacity: 0.8;
+        opacity: 0.6;
         border: none;
-        color: ${({ theme }) => darken(0.05, theme.primaryText1)};
       }
     `}
 `
 
 const Web3StatusConnected = styled(Web3StatusGeneric)<{ pending?: boolean }>`
-  background-color: ${({ pending, theme }) => (pending ? theme.primary1 : theme.bg2)};
-  border: 1px solid ${({ pending, theme }) => (pending ? theme.primary1 : theme.bg3)};
-  color: ${({ pending, theme }) => (pending ? theme.white : theme.text1)};
+  background-color: #0c0c0c;
+  border: 1px solid #0c0c0c;
+  color: #fff;
   font-weight: 500;
   padding: 15px !important;
-  :hover,
-  :focus {
-    background-color: ${({ pending, theme }) => (pending ? darken(0.05, theme.primary1) : lighten(0.05, theme.bg2))};
-
-    :focus {
-      border: 1px solid ${({ pending, theme }) => (pending ? darken(0.1, theme.primary1) : darken(0.1, theme.bg3))};
-    }
+  :hover {
+    opacity: 0.6;
+  }
+  @media only screen and (max-width: 960px) {
+    background-color: #212429;
+    border: 1px solid #212429;
   }
 `
 
