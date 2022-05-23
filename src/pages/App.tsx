@@ -132,9 +132,9 @@ function TopLevelModals() {
 
 export default function App() {
   const [currentPage, setCurrentPage] = useState('/swap')
-  let location = useLocation()
+  const location = useLocation()
   useEffect(() => {
-      setCurrentPage(location.pathname)
+    setCurrentPage(location.pathname)
   }, [location.pathname])
   return (
     <Suspense fallback={null}>
@@ -179,12 +179,12 @@ export default function App() {
           </Web3ReactManager>
           <Marginer />
         </BodyWrapper>
-        {currentPage === "/swap" ?
+        {currentPage === '/swap' ? (
           <Trading>
             <h2>Coming Soon...</h2>
             <Text>Live Trades</Text>
           </Trading>
-        : null}
+        ) : null}
       </AppWrapper>
     </Suspense>
   )
