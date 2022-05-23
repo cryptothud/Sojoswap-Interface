@@ -2,7 +2,7 @@ import { ChainId } from '@uniswap/sdk'
 import React, { useState } from 'react'
 import { Text } from 'rebass'
 import { NavLink } from 'react-router-dom'
-import { darken } from 'polished'
+//import { darken } from 'polished'
 //import { useTranslation } from 'react-i18next'
 
 import styled from 'styled-components'
@@ -263,7 +263,7 @@ const StyledNavLink = styled(NavLink).attrs({
   outline: none;
   cursor: pointer;
   text-decoration: none;
-  color: #00000090;
+  color: #00000090 !important;
   font-size: 1rem;
   width: fit-content;
   font-weight: 500;
@@ -272,14 +272,16 @@ const StyledNavLink = styled(NavLink).attrs({
 
   &.${activeClassName} {
     font-weight: 600;
-    color: #fff;
-    background: #520606;
-    border: 2px solid;
+    color: #fff !important;
+    background: #520606 !important;
+    border: 2px solid #fff !important;
+    :hover{
+      color: #ffffff80 !important;
+    }
   }
 
-  :hover,
-  :focus {
-    color: ${({ theme }) => darken(0.1, theme.text1)};
+  :hover {
+    color: #00000050 !important;
   }
 `
 /*

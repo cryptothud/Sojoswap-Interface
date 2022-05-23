@@ -12,11 +12,11 @@ const StyledSwapHeader = styled.div`
 `
 
 const SwapText = styled.div`
-  box-sizing: border-box;
-  margin: 0;
-  min-width: 0;
-  font-weight: 500;
-  color: #fff !important;
+box-sizing: border-box;
+margin: 0;
+min-width: 0;
+font-weight: 500;
+color: #fff !important;
 `
 
 export default function SwapHeader() {
