@@ -1,5 +1,5 @@
-import React, { useContext, useMemo } from 'react'
-import styled, { ThemeContext } from 'styled-components'
+import React, { /*useContext, */useMemo } from 'react'
+import styled/*, { ThemeContext } */from 'styled-components'
 import { Pair } from '@uniswap/sdk'
 import { Link } from 'react-router-dom'
 import { SwapPoolTabs } from '../../components/NavigationTabs'
@@ -95,7 +95,7 @@ const EmptyProposals = styled.div`
 `
 
 export default function Pool() {
-  const theme = useContext(ThemeContext)
+  //const theme = useContext(ThemeContext)
   const { account } = useActiveWeb3React()
   const sdkConfig = useSdkConfig()
 
@@ -193,7 +193,7 @@ export default function Pool() {
           >
             <TitleRow style={{ marginTop: '1rem' }} padding={'0'}>
               <HideSmall>
-                <TYPE.mediumHeader style={{ marginTop: '0.5rem', justifySelf: 'flex-start' }}>
+                <TYPE.mediumHeader style={{ marginTop: '0.5rem', justifySelf: 'flex-start', color: '#ffffff !important' }}>
                   Your liquidity
                 </TYPE.mediumHeader>
               </HideSmall>
@@ -217,13 +217,13 @@ export default function Pool() {
 
             {!account ? (
               <Card padding="40px">
-                <TYPE.body color={theme.text3} textAlign="center">
+                <TYPE.body color={'#ffffff !important'} textAlign="center">
                   Connect to a wallet to view your liquidity.
                 </TYPE.body>
               </Card>
             ) : v2IsLoading ? (
               <EmptyProposals>
-                <TYPE.body color={theme.text3} textAlign="center">
+                <TYPE.body color={'#ffffff !important'} textAlign="center">
                   <Dots>Loading</Dots>
                 </TYPE.body>
               </EmptyProposals>
@@ -253,14 +253,14 @@ export default function Pool() {
               </>
             ) : (
               <EmptyProposals>
-                <TYPE.body color={'#fff'} textAlign="center">
+                <TYPE.body color={'#fff !important'} textAlign="center">
                   No liquidity found.
                 </TYPE.body>
               </EmptyProposals>
             )}
 
             <AutoColumn justify={'center'} gap="md">
-              <Text textAlign="center" fontSize={14} style={{ padding: '.5rem 0 .5rem 0' }}>
+              <Text textAlign="center" fontSize={14} style={{ padding: '.5rem 0 .5rem 0', color: '#ffffff !important' }}>
                 {hasV1Liquidity ? 'Uniswap V1 liquidity found!' : "Don't see a pool you joined?"}{' '}
                 <StyledInternalLink id="import-pool-link" to={hasV1Liquidity ? '/migrate/v1' : '/find'}>
                   {hasV1Liquidity ? 'Migrate now.' : 'Import it.'}
