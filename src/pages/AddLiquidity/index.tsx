@@ -153,6 +153,7 @@ export default function AddLiquidity({
         account,
         deadline.toHexString()
       ]
+      console.log({args})
       value = BigNumber.from((tokenBIsETH ? parsedAmountB : parsedAmountA).quotient.toString())
     } else {
       estimate = router.estimateGas.addLiquidity
@@ -306,7 +307,6 @@ export default function AddLiquidity({
   const isCreate = history.location.pathname.includes('/create')
 
   const addIsUnsupported = useIsTransactionUnsupported(currencies?.CURRENCY_A, currencies?.CURRENCY_B)
-
   return (
     <>
       <AppBody>
