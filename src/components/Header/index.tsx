@@ -388,10 +388,7 @@ export default function Header() {
           </UniIcon>
         </Title>
         <HeaderLinks>
-          <StyledNavLink id={`home-nav-link`} to={''}
-            isActive={(match, { pathname }) =>
-              pathname.length===1
-            }>
+          <StyledNavLink id={`home-nav-link`} to={''} isActive={(match, { pathname }) => pathname.length === 1}>
             Home
           </StyledNavLink>
           <StyledNavLink id={`swap-nav-link`} to={'/swap'}>

@@ -67,7 +67,7 @@ export const ButtonLight = styled(Base)`
     background-color: transparent;
   }
   &:hover {
-    background-color:transparent;
+    background-color: transparent;
   }
   &:active {
     box-shadow: 0 0 0 1pt ${({ theme, disabled }) => !disabled && darken(0.05, theme.primary5)};

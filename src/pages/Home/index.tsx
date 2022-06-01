@@ -33,7 +33,7 @@ const Card = styled.a`
   flex-direction: column;
   justify-content: space-between;
   cursor: pointer;
-  transition: .4s ease-in-out;
+  transition: 0.4s ease-in-out;
   text-decoration: none;
   color: #fff;
   position: relative;
@@ -88,7 +88,7 @@ const DisabledCard = styled.div`
   flex-direction: column;
   justify-content: space-between;
   cursor: pointer;
-  transition: .4s ease-in-out;
+  transition: 0.4s ease-in-out;
   position: relative;
   overflow: hidden;
   img {
@@ -153,7 +153,10 @@ export default function Home({ history }: RouteComponentProps) {
           <h3>Swap Now {'→'}</h3>
         </Card>
         <Card href="/#/pool">
-          <img src="https://img.icons8.com/external-phatplus-solid-phatplus/344/external-liquidity-global-crisis-phatplus-solid-phatplus.png" alt="" />
+          <img
+            src="https://img.icons8.com/external-phatplus-solid-phatplus/344/external-liquidity-global-crisis-phatplus-solid-phatplus.png"
+            alt=""
+          />
           <div>
             <h1>Launchpad</h1>
             <h2>Add liquidity to create your own Martian project!</h2>
@@ -161,9 +164,14 @@ export default function Home({ history }: RouteComponentProps) {
           <h3>Add Liquidity {'→'}</h3>
         </Card>
         <DisabledCard>
-          <img src="https://img.icons8.com/external-glyph-wichaiwi/344/external-business-business-glyph-wichaiwi-10.png" alt="" />
+          <img
+            src="https://img.icons8.com/external-glyph-wichaiwi/344/external-business-business-glyph-wichaiwi-10.png"
+            alt=""
+          />
           <div>
-            <a><h1>Claim Tokens</h1></a>
+            <a>
+              <h1>Claim Tokens</h1>
+            </a>
             <h2>Connect your wallet to claim your rewards.</h2>
           </div>
           <h3>Claim Tokens {'→'}</h3>
@@ -171,7 +179,9 @@ export default function Home({ history }: RouteComponentProps) {
         <DisabledCard>
           <img src="https://img.icons8.com/ios-filled/344/treasure-chest.png" alt="" />
           <div>
-            <a><h1>Treasury</h1></a>
+            <a>
+              <h1>Treasury</h1>
+            </a>
             <h2>Purchase treasury notes, backed by physical gold and earn royalties.</h2>
           </div>
           <h3>Purchase Now {'→'}</h3>
@@ -179,7 +189,9 @@ export default function Home({ history }: RouteComponentProps) {
         <DisabledCard>
           <img src="https://img.icons8.com/ios/344/safe.png" alt="" />
           <div>
-            <a><h1>Vault</h1></a>
+            <a>
+              <h1>Vault</h1>
+            </a>
             <h2>View current ledger of gold in storage.</h2>
           </div>
           <h3>Enter Vault {'→'}</h3>
@@ -187,7 +199,9 @@ export default function Home({ history }: RouteComponentProps) {
         <DisabledCard>
           <img src="https://img.icons8.com/ios-filled/344/dots-loading--v2.png" alt="" />
           <div>
-            <a><h1>SOJO Disperse</h1></a>
+            <a>
+              <h1>SOJO Disperse</h1>
+            </a>
             <h2>Airdrop tokens across the solar system.</h2>
           </div>
           <h3>Airdrop Now {'→'}</h3>
@@ -195,7 +209,9 @@ export default function Home({ history }: RouteComponentProps) {
         <DisabledCard>
           <img src="https://img.icons8.com/material/344/bullish--v1.png" alt="" />
           <div>
-            <a><h1>FarmUp</h1></a>
+            <a>
+              <h1>FarmUp</h1>
+            </a>
             <h2>Create a certificate of deposit by providing liquidity.</h2>
           </div>
           <h3>Provide Now {'→'}</h3>
@@ -203,7 +219,9 @@ export default function Home({ history }: RouteComponentProps) {
         <DisabledCard>
           <img src="https://img.icons8.com/pastel-glyph/344/nft-node--v1.png" alt="" />
           <div>
-            <a><h1>NFTs</h1></a>
+            <a>
+              <h1>NFTs</h1>
+            </a>
             <h2>Digital art marketplace</h2>
           </div>
           <h3>Visit Marketplace {'→'}</h3>
