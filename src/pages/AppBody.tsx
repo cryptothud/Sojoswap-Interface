@@ -7,9 +7,10 @@ export const BodyWrapper = styled.div`
   min-width: 600px;
   max-width: 600px;
   width: 100%;
-  background: #0c0c0c;
-  box-shadow: 0 0 10px #000;
   border-radius: 15px;
+  background: linear-gradient(45deg,#0c0c0c52,transparent);
+  box-shadow: 0 0 2px #ffffff59, 0 0 100px #0000001c, 0 0 100px #0000002e;
+  backdrop-filter: blur(10px);
   @media only screen and (max-width: 720px) {
     min-width: 0px;
     max-width: 100%;
@@ -19,9 +20,9 @@ const Trading = styled.div`
   position: relative;
   max-width: 250px;
   width: 100%;
-  background: #0c0c0cc9;
-  box-shadow: 0 0 10px #000;
   border-radius: 15px;
+  background: linear-gradient(45deg,#0c0c0c52,transparent);
+  box-shadow: 0 0 2px #ffffff59, 0 0 100px #0000001c, 0 0 100px #0000002e;
   backdrop-filter: blur(10px);
   h2 {
     position: absolute;

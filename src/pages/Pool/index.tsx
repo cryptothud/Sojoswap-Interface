@@ -1,5 +1,5 @@
-import React, { /*useContext, */ useMemo } from 'react'
-import styled /*, { ThemeContext } */ from 'styled-components'
+import React, { /*useContext, */useMemo } from 'react'
+import styled/*, { ThemeContext } */from 'styled-components'
 import { Pair } from '@uniswap/sdk'
 import { Link } from 'react-router-dom'
 import { SwapPoolTabs } from '../../components/NavigationTabs'
@@ -83,15 +83,14 @@ const ResponsiveButtonSecondary = styled(ButtonSecondary)`
 `
 
 const EmptyProposals = styled.div`
-  border: 1px solid #fff;
   padding: 16px 12px;
   border-radius: 12px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border: 1px solid #0c0c0c !important;
-  background-color: #212429 !important;
+  box-shadow: 0 0 2px #ffffff59, 0 0 100px #0000001c, 0 0 100px #0000002e;
+  background-color: none;
 `
 
 export default function Pool() {
@@ -183,19 +182,18 @@ export default function Pool() {
             gap="lg"
             style={{
               width: '100%',
-              background: '#0c0c0c',
               padding: '1rem',
-              boxShadow: 'rgb(0 0 0) 0px 0px 10px',
               borderRadius: '15px',
               position: 'relative',
-              overflow: 'hidden'
+              overflow: 'hidden',
+              background: 'linear-gradient(45deg,#0c0c0c52,transparent)',
+              boxShadow: '0 0 2px #ffffff59, 0 0 100px #0000001c, 0 0 100px #0000002e',
+              backdropFilter: 'blur(10px)',
             }}
           >
             <TitleRow style={{ marginTop: '1rem' }} padding={'0'}>
               <HideSmall>
-                <TYPE.mediumHeader
-                  style={{ marginTop: '0.5rem', justifySelf: 'flex-start', color: '#ffffff !important' }}
-                >
+                <TYPE.mediumHeader style={{ marginTop: '0.5rem', justifySelf: 'flex-start', color: '#ffffff !important' }}>
                   Your liquidity
                 </TYPE.mediumHeader>
               </HideSmall>
@@ -262,11 +260,7 @@ export default function Pool() {
             )}
 
             <AutoColumn justify={'center'} gap="md">
-              <Text
-                textAlign="center"
-                fontSize={14}
-                style={{ padding: '.5rem 0 .5rem 0', color: '#ffffff !important' }}
-              >
+              <Text textAlign="center" fontSize={14} style={{ padding: '.5rem 0 .5rem 0', color: '#ffffff !important' }}>
                 {hasV1Liquidity ? 'Uniswap V1 liquidity found!' : "Don't see a pool you joined?"}{' '}
                 <StyledInternalLink id="import-pool-link" to={hasV1Liquidity ? '/migrate/v1' : '/find'}>
                   {hasV1Liquidity ? 'Migrate now.' : 'Import it.'}

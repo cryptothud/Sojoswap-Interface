@@ -27,6 +27,7 @@ import PoolFinder from './PoolFinder'
 import RemoveLiquidity from './RemoveLiquidity'
 import { RedirectOldRemoveLiquidityPathStructure } from './RemoveLiquidity/redirects'
 import Swap from './Swap'
+import Home from './Home'
 import { OpenClaimAddressModalAndRedirectToSwap, RedirectPathToSwapOnly, RedirectToSwap } from './Swap/redirects'
 import Vote from './Vote'
 import VotePage from './Vote/VotePage'
@@ -72,7 +73,7 @@ const Welcome = styled.h1`
   font-size: 170px;
   width: 100%;
   top: -30px;
-  opacity: 0.1;
+  opacity: 0;
   pointer-events: none;
 `
 
@@ -80,9 +81,9 @@ const Trading = styled.div`
   position: relative;
   max-width: 250px;
   width: 100%;
-  background: #0c0c0cc9;
-  box-shadow: 0 0 10px #000;
   border-radius: 15px;
+  background: linear-gradient(45deg,#0c0c0c52,transparent);
+  box-shadow: 0 0 2px #ffffff59, 0 0 100px #0000001c, 0 0 100px #0000002e;
   backdrop-filter: blur(10px);
   display: none;
   z-index: 1;
@@ -154,6 +155,7 @@ export default function App() {
           <Welcome>Welcome to Mars...</Welcome>
           <Web3ReactManager>
             <Switch>
+              <Route exact strict path="/" component={Home} />
               <Route exact strict path="/swap" component={Swap} />
               <Route exact strict path="/claim" component={OpenClaimAddressModalAndRedirectToSwap} />
               <Route exact strict path="/swap/:outputCurrency" component={RedirectToSwap} />
