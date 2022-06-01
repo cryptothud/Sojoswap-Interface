@@ -47,7 +47,7 @@ export function colors(darkMode: boolean): Colors {
     text5: darkMode ? '#0c0c0c' : '#EDEEF2',
 
     // backgrounds / greys
-    bg1: darkMode ? '#212429' : '#FFFFFF',
+    bg1: darkMode ? '#fff' : '#FFFFFF',
     bg2: darkMode ? '#0c0c0c' : '#F7F8FA',
     bg3: darkMode ? '#40444F' : '#EDEEF2',
     bg4: darkMode ? '#565A69' : '#CED0D9',
@@ -226,7 +226,7 @@ html {
 body {
   min-height: 100vh;
   background-repeat: no-repeat;
-  background-image: url("/images/sojo/martianbg.png");
+  background-image: url("https://i.ibb.co/Y2R6Rs9/photo-2022-06-01-01-10-43.png");
   background-size: cover;
   box-shadow: 3000px 3000px 3000px inset #78000080;
   background-attachment: fixed;
