@@ -27,7 +27,7 @@ export const ArrowWrapper = styled.div<{ clickable: boolean }>`
 export const SectionBreak = styled.div`
   height: 1px;
   width: 100%;
-  background-color: ${({ theme }) => theme.bg3};
+  background-color: #dddddd;
 `
 
 export const BottomGrouping = styled.div`
@@ -149,5 +149,5 @@ export const SwapShowAcceptChanges = styled(AutoColumn)`
 export const Separator = styled.div`
   width: 100%;
   height: 1px;
-  background-color: ${({ theme }) => theme.bg2};
+  background-color: #dddddd;
 `

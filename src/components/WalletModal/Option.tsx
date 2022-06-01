@@ -3,16 +3,15 @@ import styled from 'styled-components'
 import { ExternalLink } from '../../theme'
 
 const InfoCard = styled.button<{ active?: boolean }>`
-  background-color: ${({ theme, active }) => (active ? theme.bg3 : theme.bg2)};
-  padding: 1rem;
+  background-color: #fff;
+  padding: 1rem 2rem;
   outline: none;
-  border: 1px solid;
-  border-radius: 12px;
+  border-radius: 0;
+  border: none;
   width: 100% !important;
-  &:focus {
-    box-shadow: 0 0 0 1px ${({ theme }) => theme.primary1};
+  &:hover {
+    background-color: #00000057;
   }
-  border-color: ${({ theme, active }) => (active ? 'transparent' : theme.bg3)};
 `
 
 const OptionCard = styled(InfoCard as any)`
@@ -21,7 +20,7 @@ const OptionCard = styled(InfoCard as any)`
   align-items: center;
   justify-content: space-between;
   margin-top: 2rem;
-  padding: 1rem;
+  padding: 1rem 2rem;
 `
 
 const OptionCardLeft = styled.div`
@@ -34,7 +33,6 @@ const OptionCardClickable = styled(OptionCard as any)<{ clickable?: boolean }>`
   margin-top: 0;
   &:hover {
     cursor: ${({ clickable }) => (clickable ? 'pointer' : '')};
-    border: ${({ clickable, theme }) => (clickable ? `1px solid ${theme.primary1}` : ``)};
   }
   opacity: ${({ disabled }) => (disabled ? '0.5' : '1')};
 `

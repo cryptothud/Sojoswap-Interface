@@ -88,7 +88,7 @@ const StyledMenu = styled.div`
 
 const MenuFlyout = styled.span`
   min-width: 20.125rem;
-  background-color: #212429;
+  background-color: #fff;
   box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.01), 0px 4px 8px rgba(0, 0, 0, 0.04), 0px 16px 24px rgba(0, 0, 0, 0.04),
     0px 24px 32px rgba(0, 0, 0, 0.01), 0 0 5px #000;
   border-radius: 12px;
@@ -100,6 +100,9 @@ const MenuFlyout = styled.span`
   right: 0rem;
   z-index: 100;
   div {
+    color: #0c0c0c;
+  }
+  svg {
     color: #fff;
   }
 
@@ -111,7 +114,7 @@ const MenuFlyout = styled.span`
 const Break = styled.div`
   width: 100%;
   height: 1px;
-  background-color: ${({ theme }) => theme.bg3};
+  background-color: #dddddd;
 `
 
 const ModalContentWrapper = styled.div`
@@ -150,18 +153,18 @@ export default function SettingsTab() {
           <AutoColumn gap="lg">
             <RowBetween style={{ padding: '0 2rem' }}>
               <div />
-              <Text fontWeight={500} fontSize={20}>
+              <Text style={{color: '#fff'}} fontWeight={500} fontSize={20}>
                 Are you sure?
               </Text>
               <StyledCloseIcon onClick={() => setShowConfirmation(false)} />
             </RowBetween>
             <Break />
             <AutoColumn gap="lg" style={{ padding: '0 2rem' }}>
-              <Text fontWeight={500} fontSize={20}>
+              <Text style={{color: '#fff'}} fontWeight={500} fontSize={20}>
                 Expert mode turns off the confirm transaction prompt and allows high slippage trades that often result
                 in bad rates and lost funds.
               </Text>
-              <Text fontWeight={600} fontSize={20}>
+              <Text style={{color: '#fff'}} fontWeight={600} fontSize={20}>
                 ONLY USE THIS MODE IF YOU KNOW WHAT YOU ARE DOING.
               </Text>
               <ButtonError

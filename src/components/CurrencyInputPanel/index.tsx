@@ -28,19 +28,24 @@ const CurrencySelect = styled.button<{ selected: boolean }>`
   height: 2.2rem;
   font-size: 20px;
   font-weight: 500;
-  background-color: ${({ selected, theme }) => (selected ? '#212429' : '#0c0c0c')};
-  color: ${({ selected, theme }) => (selected ? '#fff' : '#fff')};
+  background-color: #fff;
+  border: 1px solid #fff;
+  color: #0c0c0c;
   border-radius: 12px;
   box-shadow: ${({ selected }) => (selected ? 'none' : '0px 6px 10px rgba(0, 0, 0, 0.075)')};
   outline: none;
   cursor: pointer;
   user-select: none;
-  border: none;
   padding: 0 0.5rem;
   margin-right: 10px;
   :focus,
   :hover {
-    background-color: ${({ selected, theme }) => (selected ? theme.bg2 : darken(0.05, theme.primary1))};
+    background: #ffffff50;
+    color: #fff;
+    border: 1px solid #fff;
+    path {
+      stroke: #fff !important;
+    }
   }
 `
 
@@ -68,7 +73,7 @@ const StyledDropDown = styled(DropDown)<{ selected: boolean }>`
   height: 35%;
 
   path {
-    stroke: ${({ selected, theme }) => (selected ? theme.text1 : theme.white)};
+    stroke: #0c0c0c;
     stroke-width: 1.5px;
   }
 `
@@ -77,14 +82,12 @@ const InputPanel = styled.div<{ hideInput?: boolean }>`
   ${({ theme }) => theme.flexColumnNoWrap}
   position: relative;
   border-radius: ${({ hideInput }) => (hideInput ? '8px' : '20px')};
-  background-color: ${({ theme }) => theme.bg2};
   z-index: 1;
 `
 
 const Container = styled.div<{ hideInput: boolean }>`
   border-radius: ${({ hideInput }) => (hideInput ? '8px' : '20px')};
-  border: 1px solid #0c0c0c !important;
-  background-color: #212429 !important;
+  box-shadow: 0 0 2px #ffffff59, 0 0 100px #0000001c, 0 0 100px #0000002e;
 `
 
 const StyledTokenName = styled.span<{ active?: boolean }>`
@@ -95,23 +98,20 @@ const StyledTokenName = styled.span<{ active?: boolean }>`
 
 const StyledBalanceMax = styled.button`
   height: 28px;
-  background-color: #0c0c0c;
-  border: 1px solid #0c0c0c;
+  background-color: #fff;
+  border: 1px solid #fff;
   border-radius: 0.5rem;
   font-size: 0.875rem;
 
   font-weight: 500;
   cursor: pointer;
   margin-right: 0.5rem;
-  color: ${({ theme }) => theme.primaryText1};
+  color: #0c0c0c;
+  :focus,
   :hover {
-    background-color: #000;
-    border: 1px solid #000;
-  }
-  :focus {
-    background-color: #000;
-    border: 1px solid #000;
-    outline: none;
+    background: #ffffff50;
+    color: #fff;
+    border: 1px solid #fff;
   }
 
   ${({ theme }) => theme.mediaWidth.upToExtraSmall`

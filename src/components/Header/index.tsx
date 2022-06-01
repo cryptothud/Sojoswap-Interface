@@ -88,7 +88,7 @@ const HeaderControls = styled.div`
     z-index: 99;
     height: 72px;
     border-radius: 12px 12px 0 0;
-    background-color: #0C0C0F;
+    background-color: #0C0C0C;
   `};
 `
 
@@ -242,7 +242,7 @@ const UniIcon = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  column-gap: 40px;
+  column-gap: 25px;
   h1 {
     color: #fff;
     text-decoration: none !important;
@@ -381,13 +381,19 @@ export default function Header() {
         <UniBalanceContent setShowUniBalanceModal={setShowUniBalanceModal} />
       </Modal>
       <HeaderRow>
-        <Title href=".">
+        <Title href="/#/">
           <UniIcon>
             <img width={'100px'} style={{ margin: '5px' }} src={Logo} alt="logo" />
-            <h1>SOJOSwap</h1>
+            <h1>SOJOswap</h1>
           </UniIcon>
         </Title>
         <HeaderLinks>
+          <StyledNavLink id={`home-nav-link`} to={''}
+            isActive={(match, { pathname }) =>
+              pathname.length===1
+            }>
+            Home
+          </StyledNavLink>
           <StyledNavLink id={`swap-nav-link`} to={'/swap'}>
             Swap
           </StyledNavLink>
