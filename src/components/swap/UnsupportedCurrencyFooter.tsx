@@ -25,7 +25,6 @@ const DetailsFooter = styled.div<{ show: boolean }>`
   color: ${({ theme }) => theme.text2};
   background-color: ${({ theme }) => theme.advancedBG};
   z-index: -1;
-
   transform: ${({ show }) => (show ? 'translateY(0%)' : 'translateY(-100%)')};
   transition: transform 300ms ease-in-out;
   text-align: center;
@@ -35,6 +34,7 @@ const DetailsFooter = styled.div<{ show: boolean }>`
   @media only screen and (max-width: 720px) {
     width: 90%;
   }
+  opacity: ${({ show }) => (show ? '0' : '1')};
 `
 
 const AddressText = styled(TYPE.blue)`

@@ -12,6 +12,7 @@ const AdvancedDetailsFooter = styled.div<{ show: boolean }>`
   max-width: 600px;
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
+  opacity: ${({ show }) => (show ? '1' : '0')};
   color: ${({ theme }) => theme.text2};
   background-color: ${({ theme }) => theme.advancedBG};
   z-index: -1;

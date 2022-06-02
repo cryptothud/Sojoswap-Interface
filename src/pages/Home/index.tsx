@@ -2,6 +2,7 @@ import React from 'react'
 import { SwapPoolTabs } from '../../components/NavigationTabs'
 import { RouteComponentProps } from 'react-router-dom'
 import styled from 'styled-components'
+import { NavLink } from 'react-router-dom'
 
 const Container = styled.div`
   position: relative;
@@ -20,7 +21,7 @@ const Container = styled.div`
     width: 90vw;
   }
 `
-const Card = styled.a`
+const Card = styled(NavLink)`
   width: 40%;
   min-height: 250px;
   background: linear-gradient(45deg, #0c0c0c52, transparent);
@@ -144,7 +145,7 @@ export default function Home({ history }: RouteComponentProps) {
     <>
       <SwapPoolTabs active={'/'} />
       <Container>
-        <Card href="/#/swap">
+        <Card to={'/swap'}>
           <img src="https://img.icons8.com/glyph-neue/344/swap.png" alt="" />
           <div>
             <h1>Swap</h1>
@@ -152,7 +153,7 @@ export default function Home({ history }: RouteComponentProps) {
           </div>
           <h3>Swap Now {'→'}</h3>
         </Card>
-        <Card href="/#/pool">
+        <Card to={'/pool'}>
           <img
             src="https://img.icons8.com/external-phatplus-solid-phatplus/344/external-liquidity-global-crisis-phatplus-solid-phatplus.png"
             alt=""
