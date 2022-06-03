@@ -8,7 +8,7 @@ export const BodyWrapper = styled.div`
   max-width: 600px;
   width: 100%;
   border-radius: 15px;
-  background: linear-gradient(45deg,#00000080,#00000040);
+  background: linear-gradient(45deg, #00000080, #00000040);
   box-shadow: 0 0 2px #ffffff59, 0 0 100px #0000001c, 0 0 100px #0000002e;
   backdrop-filter: blur(10px);
   @media only screen and (max-width: 720px) {
@@ -21,7 +21,7 @@ const Trading = styled.div`
   max-width: 250px;
   width: 100%;
   border-radius: 15px;
-  background: linear-gradient(45deg,#00000080,#00000040);
+  background: linear-gradient(45deg, #00000080, #00000040);
   box-shadow: 0 0 2px #ffffff59, 0 0 100px #0000001c, 0 0 100px #0000002e;
   backdrop-filter: blur(10px);
   pointer-events: none;
