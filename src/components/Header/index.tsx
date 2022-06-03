@@ -392,7 +392,7 @@ export const MenuIcon = styled.h1`
 `
 export const TheMenu = styled.div`
   position: absolute;
-  top: calc(100% - 2rem);
+  top: calc(100% - 1rem);
   right: 15px;
   background: #ffffff;
   row-gap: 5px;
