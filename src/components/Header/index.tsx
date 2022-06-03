@@ -319,7 +319,24 @@ const StyledNavLink2 = styled(NavLink).attrs({
     color: #0c0c0c;
     background: #0c0c0c27;
   }
-
+`
+const StyledNavLink3 = styled.a`
+  padding: 0;
+  margin: 0;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 400;
+  cursor: not-allowed;
+  color: #0c0c0c;
+  width: 100%;
+  padding: 10px 0;
+  transition: 0.2s ease-in-out;
+  justify-content: center;
+  text-decoration: none;
+  opacity: 0.4
+  &:hover {
+    opacity: 0.4;
+  }
 `
 /*
 const StyledExternalLink = styled(ExternalLink).attrs({
@@ -575,6 +592,11 @@ export default function Header() {
           >
             Pool
           </StyledNavLink2>
+          <StyledNavLink3
+            id={`whitepaper-nav-link`}
+          >
+            Whitepaper
+          </StyledNavLink3>
           <Socials>
             <img src="/images/sojo/twitter.png" alt="" />
             <img src="/images/sojo/discord.png" alt="" />
