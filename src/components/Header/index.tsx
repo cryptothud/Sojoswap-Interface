@@ -20,7 +20,7 @@ import { YellowCard } from '../Card'
 //import { Moon, Sun } from 'react-feather'
 //import Menu from '../Menu'
 
-import /*Row,*/ { RowFixed } from '../Row'
+import { /*Row,*/ RowFixed } from '../Row'
 import Web3Status from '../Web3Status'
 import ClaimModal from '../claim/ClaimModal'
 //import { useToggleSelfClaimModal, useShowClaimPopup } from '../../state/application/hooks'
@@ -319,7 +319,6 @@ const StyledNavLink2 = styled(NavLink).attrs({
     color: #0c0c0c;
     background: #0c0c0c27;
   }
-
 `
 /*
 const StyledExternalLink = styled(ExternalLink).attrs({
@@ -404,7 +403,8 @@ export const TheMenu = styled.div`
   justify-content: center;
   align-items: center;
   transition: 0.2s ease-in-out;
-  box-shadow: 0px 0px 1px rgb(0 0 0 / 1%), 0px 4px 8px rgb(0 0 0 / 4%), 0px 16px 24px rgb(0 0 0 / 4%), 0px 24px 32px rgb(0 0 0 / 1%), 0 0 5px #5e5e5e;
+  box-shadow: 0px 0px 1px rgb(0 0 0 / 1%), 0px 4px 8px rgb(0 0 0 / 4%), 0px 16px 24px rgb(0 0 0 / 4%),
+    0px 24px 32px rgb(0 0 0 / 1%), 0 0 5px #5e5e5e;
   @media only screen and (max-width: 960px) {
     top: auto;
     bottom: calc(100% + 5px);
@@ -423,7 +423,7 @@ export default function Header() {
   const { account, chainId } = useActiveWeb3React()
   //const { t } = useTranslation()
 
-  const [showMenu, setShowMenu] = useState({opacity: '0', pointerEvents: 'none' as 'auto'})
+  const [showMenu, setShowMenu] = useState({ opacity: '0', pointerEvents: 'none' as 'auto' })
 
   const userEthBalance = useETHBalances(account ? [account] : [])?.[account ?? '']
   // const [isDark] = useDarkModeManager()
@@ -552,7 +552,13 @@ export default function Header() {
           <Menu />
         </HeaderElementWrap>
         */}
-        <MenuIcon onClick={() => showMenu.opacity==='0' ? setShowMenu({opacity: '1', pointerEvents: 'auto' as 'auto'}) : setShowMenu({opacity: '0', pointerEvents: 'none' as 'auto'})}>
+        <MenuIcon
+          onClick={() =>
+            showMenu.opacity === '0'
+              ? setShowMenu({ opacity: '1', pointerEvents: 'auto' as 'auto' })
+              : setShowMenu({ opacity: '0', pointerEvents: 'none' as 'auto' })
+          }
+        >
           MENU
         </MenuIcon>
         <TheMenu style={showMenu}>

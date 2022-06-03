@@ -24,7 +24,7 @@ const Container = styled.div`
 const Card = styled(NavLink)`
   width: 40%;
   min-height: 250px;
-  background: linear-gradient(45deg,#00000080,#00000040);
+  background: linear-gradient(45deg, #00000080, #00000040);
   box-shadow: 0 0 2px #ffffff59, 0 0 100px #0000001c, 0 0 100px #0000002e;
   backdrop-filter: blur(10px);
   border-radius: 20px;
@@ -52,7 +52,7 @@ const Card = styled(NavLink)`
   &:hover {
     transform: translateY(-6px);
     filter: brightness(1.2);
-    background: linear-gradient(45deg,#00000040,#00000080);
+    background: linear-gradient(45deg, #00000040, #00000080);
     box-shadow: 0 0 30px #ffffff40;
     img {
       transform: rotate(45deg) rotateY(-180deg);
@@ -79,7 +79,7 @@ const Card = styled(NavLink)`
 const DisabledCard = styled.div`
   width: 40%;
   min-height: 250px;
-  background: linear-gradient(45deg,#00000080,#00000040);
+  background: linear-gradient(45deg, #00000080, #00000040);
   box-shadow: 0 0 2px #ffffff59, 0 0 100px #0000001c, 0 0 100px #0000002e;
   backdrop-filter: blur(10px);
   border-radius: 20px;
@@ -105,7 +105,7 @@ const DisabledCard = styled.div`
   &:hover {
     transform: translateY(-6px);
     filter: brightness(1.2);
-    background: linear-gradient(45deg,#00000040,#00000080);
+    background: linear-gradient(45deg, #00000040, #00000080);
     box-shadow: 0 0 30px #ffffff40;
     img {
       transform: rotate(45deg) rotateY(-180deg);
