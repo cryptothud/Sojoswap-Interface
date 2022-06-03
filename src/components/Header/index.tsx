@@ -624,17 +624,8 @@ export default function Header() {
           >
             Pool
           </StyledNavLink2>
-<<<<<<< HEAD
-          <StyledNavLink3
-            id={`whitepaper-nav-link`}
-          >
-            Whitepaper
-          </StyledNavLink3>
-          <Socials2>
-=======
           <StyledNavLink3 id={`whitepaper-nav-link`}>Whitepaper</StyledNavLink3>
-          <Socials>
->>>>>>> 041ccf60e2eae662ef7bae41275fd3a76a33de1e
+          <Socials2>
             <img src="/images/sojo/twitter.png" alt="" />
             <img src="/images/sojo/discord.png" alt="" />
             <img src="/images/sojo/telegram.png" alt="" />
