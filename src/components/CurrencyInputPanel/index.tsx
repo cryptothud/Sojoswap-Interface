@@ -28,7 +28,7 @@ const CurrencySelect = styled.button<{ selected: boolean }>`
   height: 2.2rem;
   font-size: 20px;
   font-weight: 500;
-  background-color: #fff;
+  background: #fff;
   border: 1px solid #fff;
   color: #0c0c0c;
   border-radius: 12px;
@@ -38,6 +38,7 @@ const CurrencySelect = styled.button<{ selected: boolean }>`
   user-select: none;
   padding: 0 0.5rem;
   margin-right: 10px;
+  transition: 0.2s ease-in-out;
   :focus,
   :hover {
     background: #ffffff50;
@@ -98,7 +99,7 @@ const StyledTokenName = styled.span<{ active?: boolean }>`
 
 const StyledBalanceMax = styled.button`
   height: 28px;
-  background-color: #fff;
+  background: #fff;
   border: 1px solid #fff;
   border-radius: 0.5rem;
   font-size: 0.875rem;
@@ -107,6 +108,7 @@ const StyledBalanceMax = styled.button`
   cursor: pointer;
   margin-right: 0.5rem;
   color: #0c0c0c;
+  transition: 0.2s ease-in-out;
   :focus,
   :hover {
     background: #ffffff50;

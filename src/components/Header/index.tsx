@@ -20,7 +20,7 @@ import { YellowCard } from '../Card'
 //import { Moon, Sun } from 'react-feather'
 //import Menu from '../Menu'
 
-import Row, { RowFixed } from '../Row'
+import /*Row,*/ { RowFixed } from '../Row'
 import Web3Status from '../Web3Status'
 import ClaimModal from '../claim/ClaimModal'
 //import { useToggleSelfClaimModal, useShowClaimPopup } from '../../state/application/hooks'
@@ -58,18 +58,23 @@ const HeaderFrame = styled.div`
 const Socials = styled.div`
   display: flex;
   column-gap: 5px;
+  margin: 5px;
+  width: 100%;
+  justify-content: space-evenly;
   img {
     width: 23px;
     cursor: pointer;
+    filter: invert(100%);
+    transition: 0.2s ease-in-out;
     &:hover {
-      transform: rotate(-5deg);
+      opacity: 0.2;
     }
   }
 `
 
 const HeaderControls = styled.div`
   display: flex;
-  flex-direction: row-reverse;
+  flex-direction: row;
   align-items: center;
   justify-self: flex-end;
   column-gap: 10px;
@@ -117,7 +122,7 @@ const HeaderRow = styled(RowFixed)`
    width: 100%;
   `};
 `
-
+/*
 const HeaderLinks = styled(Row)`
   justify-content: center;
   position: absolute;
@@ -127,6 +132,8 @@ const HeaderLinks = styled(Row)`
   background: #fff;
   border-radius: 50px !important;
   width: auto !important;
+  height: 40px;
+  border: 3px solid #00000026 !important;
   @media only screen and (max-width: 960px) {
     position: fixed;
     bottom: 72px;
@@ -139,13 +146,13 @@ const HeaderLinks = styled(Row)`
     justify-content: flex-end;
 `};
 `
-
+*/
 const AccountElement = styled.div<{ active: boolean }>`
   display: flex;
   flex-direction: row;
   align-items: center;
-  background-color: ${({ theme, active }) => (!active ? theme.bg1 : theme.bg3)};
-  border-radius: 12px;
+  background-color: none;
+  border-radius: 50px;
   white-space: nowrap;
   width: 100%;
   cursor: pointer;
@@ -253,7 +260,7 @@ const UniIcon = styled.div`
 `
 
 const activeClassName = 'ACTIVE'
-
+/*
 const StyledNavLink = styled(NavLink).attrs({
   activeClassName
 })`
@@ -266,6 +273,9 @@ const StyledNavLink = styled(NavLink).attrs({
   color: #00000090 !important;
   font-size: 1rem;
   width: fit-content;
+  height: -webkit-fill-available;
+  justify-content: center;
+  align-items: center;
   font-weight: 500;
   padding: 5px 12px;
   border-radius: 50px !important;
@@ -273,7 +283,7 @@ const StyledNavLink = styled(NavLink).attrs({
   &.${activeClassName} {
     font-weight: 600;
     color: #fff !important;
-    background: #520606 !important;
+    background: #0c0c0c !important;
     border: 2px solid #fff !important;
     :hover {
       color: #ffffff80 !important;
@@ -283,6 +293,33 @@ const StyledNavLink = styled(NavLink).attrs({
   :hover {
     color: #00000050 !important;
   }
+`
+*/
+const StyledNavLink2 = styled(NavLink).attrs({
+  activeClassName
+})`
+  ${({ theme }) => theme.flexRowNoWrap}
+  padding: 0;
+  margin: 0;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 400;
+  cursor: pointer;
+  color: #0c0c0c;
+  width: 100%;
+  padding: 10px 0;
+  transition: 0.2s ease-in-out;
+  justify-content: center;
+  text-decoration: none;
+  &:hover {
+    opacity: 0.4;
+  }
+  &.${activeClassName} {
+    font-weight: 600;
+    color: #0c0c0c;
+    background: #0c0c0c27;
+  }
+
 `
 /*
 const StyledExternalLink = styled(ExternalLink).attrs({
@@ -344,6 +381,36 @@ export const StyledMenuButton = styled.button`
     stroke: ${({ theme }) => theme.text1};
   }
 `
+export const MenuIcon = styled.h1`
+  cursor: pointer;
+  font-weight: 30px;
+  font-weight: 700;
+  color: #fff;
+  &:hover {
+    opacity: 0.7;
+  }
+`
+export const TheMenu = styled.div`
+  position: absolute;
+  top: calc(100% - 2rem);
+  right: 15px;
+  background: #ffffff;
+  row-gap: 5px;
+  padding: 5px 0;
+  width: 200px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: 0.2s ease-in-out;
+  box-shadow: 0px 0px 1px rgb(0 0 0 / 1%), 0px 4px 8px rgb(0 0 0 / 4%), 0px 16px 24px rgb(0 0 0 / 4%), 0px 24px 32px rgb(0 0 0 / 1%), 0 0 5px #5e5e5e;
+  @media only screen and (max-width: 960px) {
+    top: auto;
+    bottom: calc(100% + 5px);
+    right: 5px;
+  }
+`
 
 const NETWORK_LABELS: { [chainId in ChainId]?: string } = {
   [ChainId.RINKEBY]: 'Rinkeby',
@@ -355,6 +422,8 @@ const NETWORK_LABELS: { [chainId in ChainId]?: string } = {
 export default function Header() {
   const { account, chainId } = useActiveWeb3React()
   //const { t } = useTranslation()
+
+  const [showMenu, setShowMenu] = useState({opacity: '0', pointerEvents: 'none' as 'auto'})
 
   const userEthBalance = useETHBalances(account ? [account] : [])?.[account ?? '']
   // const [isDark] = useDarkModeManager()
@@ -387,6 +456,7 @@ export default function Header() {
             <h1>SOJOswap</h1>
           </UniIcon>
         </Title>
+        {/*
         <HeaderLinks>
           <StyledNavLink id={`home-nav-link`} to={''} isActive={(match, { pathname }) => pathname.length === 1}>
             Home
@@ -417,8 +487,9 @@ export default function Header() {
           <StyledExternalLink id={`stake-nav-link`} href={'https://uniswap.info'}>
             Charts <span style={{ fontSize: '11px' }}>↗</span>
           </StyledExternalLink>
-          */}
+          
         </HeaderLinks>
+        */}
       </HeaderRow>
       <HeaderControls>
         <HeaderElement>
@@ -481,12 +552,36 @@ export default function Header() {
           <Menu />
         </HeaderElementWrap>
         */}
-        <Socials>
-          <img src="/images/sojo/twitter.png" alt="" />
-          <img src="/images/sojo/discord.png" alt="" />
-          <img src="/images/sojo/telegram.png" alt="" />
-          <img src="/images/sojo/email.png" alt="" />
-        </Socials>
+        <MenuIcon onClick={() => showMenu.opacity==='0' ? setShowMenu({opacity: '1', pointerEvents: 'auto' as 'auto'}) : setShowMenu({opacity: '0', pointerEvents: 'none' as 'auto'})}>
+          MENU
+        </MenuIcon>
+        <TheMenu style={showMenu}>
+          <StyledNavLink2 id={`home-nav-link`} to={''} isActive={(match, { pathname }) => pathname.length === 1}>
+            Home
+          </StyledNavLink2>
+          <StyledNavLink2 id={`swap-nav-link`} to={'/swap'}>
+            Swap
+          </StyledNavLink2>
+          <StyledNavLink2
+            id={`pool-nav-link`}
+            to={'/pool'}
+            isActive={(match, { pathname }) =>
+              Boolean(match) ||
+              pathname.startsWith('/add') ||
+              pathname.startsWith('/remove') ||
+              pathname.startsWith('/create') ||
+              pathname.startsWith('/find')
+            }
+          >
+            Pool
+          </StyledNavLink2>
+          <Socials>
+            <img src="/images/sojo/twitter.png" alt="" />
+            <img src="/images/sojo/discord.png" alt="" />
+            <img src="/images/sojo/telegram.png" alt="" />
+            <img src="/images/sojo/email.png" alt="" />
+          </Socials>
+        </TheMenu>
       </HeaderControls>
     </HeaderFrame>
   )

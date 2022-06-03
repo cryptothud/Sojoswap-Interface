@@ -42,6 +42,7 @@ export const ButtonPrimary = styled(Base)`
   background-color: transparent;
   color: white;
   box-shadow: 0 0 2px #ffffff59, 0 0 100px #0000001c, 0 0 100px #0000002e;
+  transition: 0.2s ease-in-out;
   &:focus {
     background-color: #ffffff1c;
   }

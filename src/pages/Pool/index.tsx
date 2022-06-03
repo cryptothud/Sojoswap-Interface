@@ -27,6 +27,7 @@ import { useSdkConfig } from 'hooks/useSdkConfig'
 const PageWrapper = styled(AutoColumn)`
   max-width: 640px;
   width: 100%;
+  backdrop-filter: blur(10px);
 `
 
 const VoteCard = styled(DataCard)`
@@ -60,6 +61,7 @@ const ResponsiveButtonPrimary = styled(ButtonPrimary)`
   color: #0c0c0c;
   border: 1px solid #fff;
   background: #ffffff;
+  transition: 0.2s ease-in-out;
   &:hover {
     background: #ffffff50;
     color: #fff;
@@ -75,6 +77,7 @@ const ResponsiveButtonSecondary = styled(ButtonSecondary)`
   color: #0c0c0c;
   border: 1px solid #fff;
   background: #ffffff;
+  transition: 0.2s ease-in-out;
   &:hover {
     background: #ffffff50;
     color: #fff;
@@ -186,7 +189,7 @@ export default function Pool() {
               borderRadius: '15px',
               position: 'relative',
               overflow: 'hidden',
-              background: 'linear-gradient(45deg,#0c0c0c52,transparent)',
+              background: 'linear-gradient(45deg,#00000080,#00000040)',
               boxShadow: '0 0 2px #ffffff59, 0 0 100px #0000001c, 0 0 100px #0000002e',
               backdropFilter: 'blur(10px)'
             }}

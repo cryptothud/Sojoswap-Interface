@@ -40,7 +40,7 @@ const Web3StatusGeneric = styled(ButtonSecondary)`
   width: 100%;
   align-items: center;
   padding: 0.5rem;
-  border-radius: 12px;
+  border-radius: 50px;
   cursor: pointer;
   user-select: none;
   :focus {
@@ -59,14 +59,19 @@ const Web3StatusError = styled(Web3StatusGeneric)`
     background-color: #212429;
     border: 1px solid #212429;
   }
+  border-radius: 50px;
 `
 
 const Web3StatusConnect = styled(Web3StatusGeneric)<{ faded?: boolean }>`
-  background-color: #0c0c0c;
+  background-color: #fff;
   border: none;
-  color: #fff;
-  font-weight: 500;
-  padding: 15px !important;
+  color: #0c0c0c;
+  font-weight: 700;
+  border-radius: 50px;
+  height: 40px;
+  padding: 0 20px;
+  border: 3px solid #00000057 !important;
+  box-sizing: inherit;
 
   :hover {
     border: none;
@@ -94,7 +99,11 @@ const Web3StatusConnected = styled(Web3StatusGeneric)<{ pending?: boolean }>`
   border: 1px solid #0c0c0c;
   color: #fff;
   font-weight: 500;
-  padding: 15px !important;
+  height: 40px;
+  padding: 0 20px;
+  border: 3px solid #00000057 !important;
+  box-sizing: inherit;
+  border-radius: 50px;
   :hover {
     opacity: 0.6;
   }
@@ -112,7 +121,7 @@ const Text = styled.p`
   margin: 0 0.5rem 0 0.25rem;
   font-size: 1rem;
   width: fit-content;
-  font-weight: 500;
+  font-weight: 700;
 `
 
 const NetworkIcon = styled(Activity)`
@@ -210,7 +219,7 @@ function Web3StatusInner() {
   } else {
     return (
       <Web3StatusConnect id="connect-wallet" onClick={toggleWalletModal} faded={!account}>
-        <Text>{t('Connect to a wallet')}</Text>
+        <Text>{t('Connect wallet')}</Text>
       </Web3StatusConnect>
     )
   }

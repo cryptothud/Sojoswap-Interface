@@ -228,12 +228,26 @@ body {
   background-repeat: no-repeat;
   background-image: url("https://i.ibb.co/Y2R6Rs9/photo-2022-06-01-01-10-43.png");
   background-size: cover;
-  box-shadow: 3000px 3000px 3000px inset #78000080;
   background-attachment: fixed;
 }
 
 #root {
   min-height: 100vh;
-  background-image: radial-gradient(#480000, #b11c1c63);
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }
 `
