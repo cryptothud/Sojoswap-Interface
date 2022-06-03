@@ -41,7 +41,7 @@ const HeaderFrame = styled.div`
   width: 100%;
   top: 0;
   position: relative;
-  padding: 1rem;
+  padding: 0 1rem;
   z-index: 2;
   ${({ theme }) => theme.mediaWidth.upToMedium`
     grid-template-columns: 1fr;
@@ -452,7 +452,7 @@ export default function Header() {
       <HeaderRow>
         <Title href="/#/">
           <UniIcon>
-            <img width={'100px'} style={{ margin: '5px' }} src={Logo} alt="logo" />
+            <img width={'80px'} style={{ margin: '5px' }} src={Logo} alt="logo" />
             <h1>SOJOswap</h1>
           </UniIcon>
         </Title>

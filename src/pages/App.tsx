@@ -31,6 +31,7 @@ import Home from './Home'
 import { OpenClaimAddressModalAndRedirectToSwap, RedirectPathToSwapOnly, RedirectToSwap } from './Swap/redirects'
 import Vote from './Vote'
 import VotePage from './Vote/VotePage'
+import { keyframes } from 'styled-components'
 
 const AppWrapper = styled.div`
   display: flex;
@@ -128,6 +129,37 @@ const Text = styled.h1`
   font-size: 16px;
   opacity: 0.1;
 `
+
+const marquee = keyframes`
+  0% { transform: translateX(100%); }
+  100% { transform: translate(-100%); }
+`
+
+const Coins = styled.div`
+  position: sticky;
+  top: 0;
+  width: 100vw;
+  height: 30px;
+  z-index:100;
+  background: #0c0c0c40;
+  display: flex;
+  align-items: center;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 10px #00000090;
+  div {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    animation: ${marquee} 30s linear infinite
+  }
+  h2 {
+    padding: 0;
+    margin: 0;
+    font-size: 14px;
+    font-weight: 400;
+  }
+`
 function TopLevelModals() {
   const open = useModalOpen(ApplicationModal.ADDRESS_CLAIM)
   const toggle = useToggleModal(ApplicationModal.ADDRESS_CLAIM)
@@ -145,6 +177,13 @@ export default function App() {
       <Route component={GoogleAnalyticsReporter} />
       <Route component={DarkModeQueryParamReader} />
       <AppWrapper>
+          <Coins>
+            <div>
+              <h2>Coin1: $69.69</h2>
+              <h2>Coin2: $69.69</h2>
+              <h2>Coin3: $69.69</h2>
+            </div>
+          </Coins>
         <URLWarning />
         <HeaderWrapper>
           <Header />
