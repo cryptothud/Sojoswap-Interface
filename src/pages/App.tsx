@@ -140,7 +140,7 @@ const Coins = styled.div`
   top: 0;
   width: 100vw;
   height: 30px;
-  z-index:100;
+  z-index: 100;
   background: #0c0c0c40;
   display: flex;
   align-items: center;
@@ -151,7 +151,7 @@ const Coins = styled.div`
     justify-content: space-around;
     align-items: center;
     width: 100%;
-    animation: ${marquee} 30s linear infinite
+    animation: ${marquee} 30s linear infinite;
   }
   h2 {
     padding: 0;
@@ -177,13 +177,13 @@ export default function App() {
       <Route component={GoogleAnalyticsReporter} />
       <Route component={DarkModeQueryParamReader} />
       <AppWrapper>
-          <Coins>
-            <div>
-              <h2>Coin1: $69.69</h2>
-              <h2>Coin2: $69.69</h2>
-              <h2>Coin3: $69.69</h2>
-            </div>
-          </Coins>
+        <Coins>
+          <div>
+            <h2>Coin1: $69.69</h2>
+            <h2>Coin2: $69.69</h2>
+            <h2>Coin3: $69.69</h2>
+          </div>
+        </Coins>
         <URLWarning />
         <HeaderWrapper>
           <Header />
