@@ -57,18 +57,37 @@ const HeaderFrame = styled.div`
 
 const Socials = styled.div`
   display: flex;
-  column-gap: 5px;
+  column-gap: 8px;
   margin: 5px;
-  width: 100%;
-  justify-content: space-evenly;
   img {
     width: 23px;
     cursor: pointer;
-    filter: invert(100%);
     transition: 0.2s ease-in-out;
     &:hover {
-      opacity: 0.2;
+      opacity: 0.7;
     }
+  }
+  @media only screen and (max-width: 960px) {
+    display: none;
+  }
+`
+const Socials2 = styled.div`
+  display: none;
+  column-gap: 5px;
+  margin: 5px;
+  width: 100%;
+  justify-content: space-evenly
+  img {
+    width: 23px;
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+    filter: invert(100%);
+    &:hover {
+      opacity: 0.4;
+    }
+  }
+  @media only screen and (max-width: 960px) {
+    display: flex;
   }
 `
 
@@ -510,6 +529,12 @@ export default function Header() {
         */}
       </HeaderRow>
       <HeaderControls>
+        <Socials>
+          <img src="/images/sojo/twitter.png" alt="" />
+          <img src="/images/sojo/discord.png" alt="" />
+          <img src="/images/sojo/telegram.png" alt="" />
+          <img src="/images/sojo/email.png" alt="" />
+        </Socials>
         <HeaderElement>
           <HideSmall>
             {chainId && NETWORK_LABELS[chainId] && (
@@ -604,12 +629,12 @@ export default function Header() {
           >
             Whitepaper
           </StyledNavLink3>
-          <Socials>
+          <Socials2>
             <img src="/images/sojo/twitter.png" alt="" />
             <img src="/images/sojo/discord.png" alt="" />
             <img src="/images/sojo/telegram.png" alt="" />
             <img src="/images/sojo/email.png" alt="" />
-          </Socials>
+          </Socials2>
         </TheMenu>
       </HeaderControls>
     </HeaderFrame>

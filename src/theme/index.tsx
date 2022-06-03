@@ -226,7 +226,7 @@ html {
 body {
   min-height: 100vh;
   background-repeat: no-repeat;
-  background-image: url("https://i.ibb.co/Y2R6Rs9/photo-2022-06-01-01-10-43.png");
+  background-image: url("https://i.ibb.co/wdpKfrM/New-Project-2022-06-03-T000951-281.png");
   background-size: cover;
   background-attachment: fixed;
 }
