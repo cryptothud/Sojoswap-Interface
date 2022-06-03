@@ -142,7 +142,7 @@ const Coins = styled.div`
   width: 100vw;
   height: 30px;
   z-index: 100;
-  background: #0c0c0cbf;
+  background: #0c0c0c40;
   display: flex;
   align-items: center;
   backdrop-filter: blur(20px);
@@ -179,18 +179,11 @@ export default function App() {
       <Route component={GoogleAnalyticsReporter} />
       <Route component={DarkModeQueryParamReader} />
       <AppWrapper>
-        <img src="https://i.ibb.co/2ZN5KSQ/IMG-5784-Moment.png" alt="" id="newbg" />
-        <div className="backgroundVid">
-          <video loop autoPlay>
-            <source src="/images/sojo/bgvid.mp4" type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
-        </div>
         <Coins>
           <div>
-            <h2>$SUSD - $1.00</h2>
-            <h2>$SOJO - $69.42</h2>
-            <h2>$ROVER - $4.20</h2>
+            <h2>Coin1: $69.69</h2>
+            <h2>Coin2: $69.69</h2>
+            <h2>Coin3: $69.69</h2>
           </div>
         </Coins>
         <URLWarning />
