@@ -25,7 +25,7 @@ const Card = styled(NavLink)`
   width: 40%;
   min-height: 250px;
   background: linear-gradient(45deg, #00000080, #00000040);
-  box-shadow: 0 0 2px #ffffff59, 0 0 100px #0000001c, 0 0 100px #0000002e;
+  box-shadow: 0 0 2px #ffffff59;
   backdrop-filter: blur(10px);
   border-radius: 20px;
   box-sizing: border-box;
@@ -65,12 +65,13 @@ const Card = styled(NavLink)`
   h2 {
     font-weight: 200;
     font-size: 16px;
-    color: #ffffff80;
+    color: #ffffff99;
   }
   h3 {
     font-weight: 600;
     font-size: 16px;
     text-decoration: underline;
+    color: #fff;
   }
   @media only screen and (max-width: 800px) {
     width: 100%;
@@ -80,7 +81,7 @@ const DisabledCard = styled.div`
   width: 40%;
   min-height: 250px;
   background: linear-gradient(45deg, #00000080, #00000040);
-  box-shadow: 0 0 2px #ffffff59, 0 0 100px #0000001c, 0 0 100px #0000002e;
+  box-shadow: 0 0 2px #ffffff59;
   backdrop-filter: blur(10px);
   border-radius: 20px;
   box-sizing: border-box;
@@ -124,10 +125,11 @@ const DisabledCard = styled.div`
   h2 {
     font-weight: 200;
     font-size: 16px;
-    color: #ffffff80;
+    color: #ffffff99;
     cursor: not-allowed;
   }
   h3 {
+    color: #fff;
     font-weight: 600;
     font-size: 16px;
     text-decoration: underline;

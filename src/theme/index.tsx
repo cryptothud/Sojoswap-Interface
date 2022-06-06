@@ -41,9 +41,9 @@ export function colors(darkMode: boolean): Colors {
 
     // text
     text1: darkMode ? '#FFFFFF' : '#000000',
-    text2: darkMode ? '#C3C5CB' : '#565A69',
+    text2: darkMode ? '#fff' : '#565A69',
     text3: darkMode ? '#6C7284' : '#888D9B',
-    text4: darkMode ? '#565A69' : '#C3C5CB',
+    text4: darkMode ? '#565A69' : '#fff',
     text5: darkMode ? '#0c0c0c' : '#EDEEF2',
 
     // backgrounds / greys
@@ -229,6 +229,7 @@ body {
   background-image: url("https://i.ibb.co/wdpKfrM/New-Project-2022-06-03-T000951-281.png");
   background-size: cover;
   background-attachment: fixed;
+  background-position: 80%;
 }
 
 #root {
@@ -249,5 +250,17 @@ body {
 
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
+}
+
+#newbg {
+  display none;
+  position: fixed;
+  height: 100vh;
+  right: -20vw;
+}
+@media only screen and (max-width: 600px) {
+  #newbg {
+    display block;
+  }
 }
 `

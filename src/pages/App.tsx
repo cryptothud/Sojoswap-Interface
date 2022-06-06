@@ -38,6 +38,7 @@ const AppWrapper = styled.div`
   flex-flow: column;
   align-items: flex-start;
   overflow-x: hidden;
+  min-height:100vh;
 `
 
 const HeaderWrapper = styled.div`
@@ -84,7 +85,7 @@ const Trading = styled.div`
   width: 100%;
   border-radius: 15px;
   background: linear-gradient(45deg, #00000080, #00000040);
-  box-shadow: 0 0 2px #ffffff59, 0 0 100px #0000001c, 0 0 100px #0000002e;
+  box-shadow: 0 0 2px #ffffff59;
   backdrop-filter: blur(10px);
   display: none;
   z-index: 1;
@@ -158,6 +159,7 @@ const Coins = styled.div`
     margin: 0;
     font-size: 14px;
     font-weight: 400;
+    color: #fff;
   }
 `
 function TopLevelModals() {
@@ -177,6 +179,7 @@ export default function App() {
       <Route component={GoogleAnalyticsReporter} />
       <Route component={DarkModeQueryParamReader} />
       <AppWrapper>
+      <img src="https://i.ibb.co/wdpKfrM/New-Project-2022-06-03-T000951-281.png" alt="" id="newbg" />
         <Coins>
           <div>
             <h2>Coin1: $69.69</h2>

@@ -41,7 +41,7 @@ const Base = styled(RebassButton)<{
 export const ButtonPrimary = styled(Base)`
   background-color: transparent;
   color: white;
-  box-shadow: 0 0 2px #ffffff59, 0 0 100px #0000001c, 0 0 100px #0000002e;
+  box-shadow: 0 0 2px #ffffff59;
   transition: 0.2s ease-in-out;
   &:focus {
     background-color: #ffffff1c;
@@ -60,7 +60,7 @@ export const ButtonPrimary = styled(Base)`
 export const ButtonLight = styled(Base)`
   background-color: transparent;
   color: white;
-  box-shadow: 0 0 2px #ffffff59, 0 0 100px #0000001c, 0 0 100px #0000002e;
+  box-shadow: 0 0 2px #ffffff59;
   font-size: 16px;
   font-weight: 500;
   &:focus {
@@ -91,7 +91,7 @@ export const ButtonGray = styled(Base)`
   color: #fff;
   font-size: 16px;
   font-weight: 500;
-  box-shadow: 0 0 2px #ffffff59, 0 0 100px #0000001c, 0 0 100px #0000002e;
+  box-shadow: 0 0 2px #ffffff59;
   &:focus {
     background-color: transparent;
   }
@@ -104,7 +104,7 @@ export const ButtonGray = styled(Base)`
 `
 
 export const ButtonSecondary = styled(Base)`
-  box-shadow: 0 0 2px #ffffff59, 0 0 100px #0000001c, 0 0 100px #0000002e;
+  box-shadow: 0 0 2px #ffffff59;
   color: #fff;
   background-color: transparent;
   font-size: 16px;
