@@ -268,7 +268,7 @@ export default function Pool() {
               <Text
                 textAlign="center"
                 fontSize={14}
-                color={"#fff"}
+                color={'#fff'}
                 style={{ padding: '.5rem 0 .5rem 0', color: '#ffffff !important' }}
               >
                 {hasV1Liquidity ? 'Uniswap V1 liquidity found!' : "Don't see a pool you joined?"}{' '}

@@ -38,7 +38,7 @@ const AppWrapper = styled.div`
   flex-flow: column;
   align-items: flex-start;
   overflow-x: hidden;
-  min-height:100vh;
+  min-height: 100vh;
 `
 
 const HeaderWrapper = styled.div`
@@ -179,7 +179,7 @@ export default function App() {
       <Route component={GoogleAnalyticsReporter} />
       <Route component={DarkModeQueryParamReader} />
       <AppWrapper>
-      <img src="https://i.ibb.co/wdpKfrM/New-Project-2022-06-03-T000951-281.png" alt="" id="newbg" />
+        <img src="https://i.ibb.co/wdpKfrM/New-Project-2022-06-03-T000951-281.png" alt="" id="newbg" />
         <Coins>
           <div>
             <h2>Coin1: $69.69</h2>
