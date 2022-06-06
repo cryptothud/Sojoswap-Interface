@@ -14,7 +14,7 @@ import SwapRoute from './SwapRoute'
 const InfoLink = styled(ExternalLink)`
   width: 100%;
   border: none;
-  box-shadow: 0 0 2px #ffffff59, 0 0 100px #0000001c, 0 0 100px #0000002e;
+  box-shadow: 0 0 2px #ffffff59;
   padding: 6px 6px;
   border-radius: 8px;
   text-align: center;

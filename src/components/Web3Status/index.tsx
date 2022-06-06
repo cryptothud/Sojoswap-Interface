@@ -77,9 +77,6 @@ const Web3StatusConnect = styled(Web3StatusGeneric)<{ faded?: boolean }>`
     border: none;
     opacity: 0.6;
   }
-  @media only screen and (max-width: 960px) {
-    background-color: #212429;
-  }
 
   ${({ faded }) =>
     faded &&

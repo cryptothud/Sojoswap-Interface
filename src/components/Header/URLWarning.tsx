@@ -1,10 +1,10 @@
-import React from 'react'
-import styled from 'styled-components'
+//import React from 'react'
+//import styled from 'styled-components'
 
-import { AlertTriangle, X } from 'react-feather'
-import { useURLWarningToggle, useURLWarningVisible } from '../../state/user/hooks'
+//import { AlertTriangle, X } from 'react-feather'
+//import { useURLWarningToggle, useURLWarningVisible } from '../../state/user/hooks'
 import { isMobile } from 'react-device-detect'
-
+/*
 const PhishAlert = styled.div<{ isActive: any }>`
   width: 100%;
   padding: 6px 6px;
@@ -21,12 +21,13 @@ export const StyledClose = styled(X)`
     cursor: pointer;
   }
 `
+*/
 
 export default function URLWarning() {
-  const toggleURLWarning = useURLWarningToggle()
-  const showURLWarning = useURLWarningVisible()
+  //const toggleURLWarning = useURLWarningToggle()
+  //const showURLWarning = useURLWarningVisible()
 
-  return isMobile ? (
+  return isMobile ? (/*
     <PhishAlert isActive={showURLWarning}>
       <div style={{ display: 'flex' }}>
         <AlertTriangle style={{ marginRight: 6 }} size={12} /> Make sure the URL is
@@ -43,5 +44,5 @@ export default function URLWarning() {
       </div>
       <StyledClose size={12} onClick={toggleURLWarning} />
     </PhishAlert>
-  ) : null
+  */ null) : null
 }

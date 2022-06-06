@@ -92,7 +92,7 @@ const EmptyProposals = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  box-shadow: 0 0 2px #ffffff59, 0 0 100px #0000001c, 0 0 100px #0000002e;
+  box-shadow: 0 0 2px #ffffff59;
   background-color: none;
 `
 
@@ -190,7 +190,7 @@ export default function Pool() {
               position: 'relative',
               overflow: 'hidden',
               background: 'linear-gradient(45deg,#00000080,#00000040)',
-              boxShadow: '0 0 2px #ffffff59, 0 0 100px #0000001c, 0 0 100px #0000002e',
+              boxShadow: '0 0 2px #ffffff59',
               backdropFilter: 'blur(10px)'
             }}
           >
@@ -268,6 +268,7 @@ export default function Pool() {
               <Text
                 textAlign="center"
                 fontSize={14}
+                color={"#fff"}
                 style={{ padding: '.5rem 0 .5rem 0', color: '#ffffff !important' }}
               >
                 {hasV1Liquidity ? 'Uniswap V1 liquidity found!' : "Don't see a pool you joined?"}{' '}
