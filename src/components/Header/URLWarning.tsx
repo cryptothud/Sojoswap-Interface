@@ -27,7 +27,8 @@ export default function URLWarning() {
   //const toggleURLWarning = useURLWarningToggle()
   //const showURLWarning = useURLWarningVisible()
 
-  return isMobile ? (/*
+  return isMobile
+    ? /*
     <PhishAlert isActive={showURLWarning}>
       <div style={{ display: 'flex' }}>
         <AlertTriangle style={{ marginRight: 6 }} size={12} /> Make sure the URL is
@@ -44,5 +45,6 @@ export default function URLWarning() {
       </div>
       <StyledClose size={12} onClick={toggleURLWarning} />
     </PhishAlert>
-  */ null) : null
+  */ null
+    : null
 }
