@@ -179,6 +179,7 @@ export default function App() {
       <Route component={GoogleAnalyticsReporter} />
       <Route component={DarkModeQueryParamReader} />
       <AppWrapper>
+        <img src="https://i.ibb.co/wdpKfrM/New-Project-2022-06-03-T000951-281.png" alt="" id="newbg" />
         <Coins>
           <div>
             <h2>Coin1: $69.69</h2>
