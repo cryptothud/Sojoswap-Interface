@@ -25,7 +25,7 @@ const Card = styled(NavLink)`
   width: 40%;
   min-height: 250px;
   background: linear-gradient(45deg, #00000080, #00000040);
-  box-shadow: 0 0 2px #ffffff59;
+  box-shadow: 0 0 2px #ffffff59, 0 0 10px inset #00000080;
   backdrop-filter: blur(10px);
   border-radius: 20px;
   box-sizing: border-box;
@@ -53,7 +53,7 @@ const Card = styled(NavLink)`
     transform: translateY(-6px);
     filter: brightness(1.2);
     background: linear-gradient(45deg, #00000040, #00000080);
-    box-shadow: 0 0 30px #ffffff40;
+    box-shadow: 0 0 30px #ffffff40, 0 0 10px inset #00000080;
     img {
       transform: rotate(45deg) rotateY(-180deg);
     }
@@ -61,17 +61,24 @@ const Card = styled(NavLink)`
   h1 {
     font-weight: 800;
     font-size: 32px;
+    color: #e1e1e1;
   }
   h2 {
     font-weight: 200;
     font-size: 16px;
-    color: #ffffff99;
+    color: #e1e1e199;
   }
   h3 {
     font-weight: 600;
     font-size: 16px;
     text-decoration: underline;
-    color: #fff;
+    color: #e1e1e1;
+    background: #00000038;
+    backdrop-filter: blur(20px);
+    margin-right: auto;
+    border-radius: 50px;
+    padding: 10px 20px;
+    box-shadow: 0 0 10px inset #00000045;
   }
   @media only screen and (max-width: 800px) {
     width: 100%;
@@ -80,8 +87,8 @@ const Card = styled(NavLink)`
 const DisabledCard = styled.div`
   width: 40%;
   min-height: 250px;
-  background: linear-gradient(45deg, #00000080, #00000040);
-  box-shadow: 0 0 2px #ffffff59;
+  background: linear-gradient(45deg,#00000020,#00000010);
+  box-shadow: 0 0 2px #ffffff59, 0 0 10px inset #00000030;
   backdrop-filter: blur(10px);
   border-radius: 20px;
   box-sizing: border-box;
@@ -106,8 +113,8 @@ const DisabledCard = styled.div`
   &:hover {
     transform: translateY(-6px);
     filter: brightness(1.2);
-    background: linear-gradient(45deg, #00000040, #00000080);
-    box-shadow: 0 0 30px #ffffff40;
+    background: linear-gradient(45deg, #00000010, #00000020);
+    box-shadow: 0 0 30px #ffffff40, 0 0 10px inset #00000030;
     img {
       transform: rotate(45deg) rotateY(-180deg);
     }
@@ -121,22 +128,29 @@ const DisabledCard = styled.div`
     font-weight: 800;
     font-size: 32px;
     cursor: not-allowed;
+    color: #e1e1e170;
   }
   h2 {
     font-weight: 200;
     font-size: 16px;
-    color: #ffffff99;
+    color: #e1e1e140;
     cursor: not-allowed;
   }
   h3 {
-    color: #fff;
+    color: #e1e1e170;
     font-weight: 600;
     font-size: 16px;
     text-decoration: underline;
     cursor: not-allowed;
+    background: #00000038;
+    backdrop-filter: blur(20px);
+    margin-right: auto;
+    border-radius: 50px;
+    padding: 10px 20px;
+    box-shadow: 0 0 10px inset #00000025;
   }
-  opacity: 0.4;
   cursor: not-allowed;
+  opacity: 0.8;
   @media only screen and (max-width: 800px) {
     width: 100%;
   }
@@ -167,6 +181,46 @@ export default function Home({ history }: RouteComponentProps) {
           <h3>Add Liquidity {'→'}</h3>
         </Card>
         <DisabledCard>
+          <img src="https://img.icons8.com/ios/344/safe.png" alt="" />
+          <div>
+            <a>
+              <h1>Vault</h1>
+            </a>
+            <h2>View current ledger of gold in storage.</h2>
+          </div>
+          <h3>Enter Vault {'→'}</h3>
+        </DisabledCard>
+        <DisabledCard>
+          <img src="https://img.icons8.com/ios-filled/344/treasure-chest.png" alt="" />
+          <div>
+            <a>
+              <h1>FarmUp</h1>
+            </a>
+            <h2>Purchase treasury notes, backed by physical gold and earn royalties.</h2>
+          </div>
+          <h3>Purchase Now {'→'}</h3>
+        </DisabledCard>
+        <DisabledCard>
+          <img src="https://img.icons8.com/material/344/bullish--v1.png" alt="" />
+          <div>
+            <a>
+              <h1>MetaVerse</h1>
+            </a>
+            <h2>Terraform Mars by purchasing NFT land plots.</h2>
+          </div>
+          <h3>Provide Now {'→'}</h3>
+        </DisabledCard>
+        <DisabledCard>
+          <img src="https://img.icons8.com/pastel-glyph/344/nft-node--v1.png" alt="" />
+          <div>
+            <a>
+              <h1>NFTs</h1>
+            </a>
+            <h2>Digital art marketplace</h2>
+          </div>
+          <h3>Visit Marketplace {'→'}</h3>
+        </DisabledCard>
+        <DisabledCard>
           <img
             src="https://img.icons8.com/external-glyph-wichaiwi/344/external-business-business-glyph-wichaiwi-10.png"
             alt=""
@@ -180,26 +234,6 @@ export default function Home({ history }: RouteComponentProps) {
           <h3>Claim Tokens {'→'}</h3>
         </DisabledCard>
         <DisabledCard>
-          <img src="https://img.icons8.com/ios-filled/344/treasure-chest.png" alt="" />
-          <div>
-            <a>
-              <h1>Treasury</h1>
-            </a>
-            <h2>Purchase treasury notes, backed by physical gold and earn royalties.</h2>
-          </div>
-          <h3>Purchase Now {'→'}</h3>
-        </DisabledCard>
-        <DisabledCard>
-          <img src="https://img.icons8.com/ios/344/safe.png" alt="" />
-          <div>
-            <a>
-              <h1>Vault</h1>
-            </a>
-            <h2>View current ledger of gold in storage.</h2>
-          </div>
-          <h3>Enter Vault {'→'}</h3>
-        </DisabledCard>
-        <DisabledCard>
           <img src="https://img.icons8.com/ios-filled/344/dots-loading--v2.png" alt="" />
           <div>
             <a>
@@ -208,26 +242,6 @@ export default function Home({ history }: RouteComponentProps) {
             <h2>Airdrop tokens across the solar system.</h2>
           </div>
           <h3>Airdrop Now {'→'}</h3>
-        </DisabledCard>
-        <DisabledCard>
-          <img src="https://img.icons8.com/material/344/bullish--v1.png" alt="" />
-          <div>
-            <a>
-              <h1>FarmUp</h1>
-            </a>
-            <h2>Create a certificate of deposit by providing liquidity.</h2>
-          </div>
-          <h3>Provide Now {'→'}</h3>
-        </DisabledCard>
-        <DisabledCard>
-          <img src="https://img.icons8.com/pastel-glyph/344/nft-node--v1.png" alt="" />
-          <div>
-            <a>
-              <h1>NFTs</h1>
-            </a>
-            <h2>Digital art marketplace</h2>
-          </div>
-          <h3>Visit Marketplace {'→'}</h3>
         </DisabledCard>
       </Container>
     </>

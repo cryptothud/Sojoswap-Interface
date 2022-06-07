@@ -48,6 +48,8 @@ const HeaderFrame = styled.div`
     padding: 0 1rem;
     width: calc(100%);
     position: relative;
+    background: none;
+    backdrop-filter: none;
   `};
 
   ${({ theme }) => theme.mediaWidth.upToExtraSmall`
@@ -59,13 +61,19 @@ const Socials = styled.div`
   display: flex;
   column-gap: 8px;
   margin: 5px;
-  img {
-    width: 23px;
+  div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     cursor: pointer;
     transition: 0.2s ease-in-out;
     &:hover {
       opacity: 0.7;
     }
+  }
+  img {
+    width: 23px;
+    filter: drop-shadow(0px 0px 2px #00000050);
   }
   @media only screen and (max-width: 960px) {
     display: none;
@@ -248,7 +256,7 @@ const BalanceText = styled(Text)`
   `};
 `
 
-const Title = styled.a`
+const Title = styled(NavLink)`
   display: flex;
   align-items: center;
   pointer-events: auto;
@@ -268,10 +276,11 @@ const UniIcon = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  column-gap: 25px;
+  column-gap: 10px;
   h1 {
-    color: #fff;
+    color: #ffc115;
     text-decoration: none !important;
+    text-shadow: 0 0 2px #00000090;
   }
   :hover {
     transform: rotate(-5deg);
@@ -421,7 +430,8 @@ export const MenuIcon = styled.h1`
   cursor: pointer;
   font-weight: 30px;
   font-weight: 700;
-  color: #fff;
+  color: #ffc115;
+  text-shadow: 0 0 2px #00000090;
   &:hover {
     opacity: 0.7;
   }
@@ -487,7 +497,7 @@ export default function Header() {
         <UniBalanceContent setShowUniBalanceModal={setShowUniBalanceModal} />
       </Modal>
       <HeaderRow>
-        <Title href="/#/">
+        <Title to={'/'}>
           <UniIcon>
             <img width={'80px'} style={{ margin: '5px' }} src={Logo} alt="logo" />
             <h1>SOJOswap</h1>
@@ -530,10 +540,18 @@ export default function Header() {
       </HeaderRow>
       <HeaderControls>
         <Socials>
-          <img src="/images/sojo/twitter.png" alt="" />
-          <img src="/images/sojo/discord.png" alt="" />
-          <img src="/images/sojo/telegram.png" alt="" />
-          <img src="/images/sojo/email.png" alt="" />
+          <div>
+            <img src="/images/sojo/twitter.png" alt="" />
+          </div>
+          <div>
+            <img src="/images/sojo/discord.png" alt="" />
+          </div>
+          <div>
+            <img src="/images/sojo/telegram.png" alt="" />
+          </div>
+          <div>
+            <img src="/images/sojo/email.png" alt="" />
+          </div>
         </Socials>
         <HeaderElement>
           <HideSmall>
