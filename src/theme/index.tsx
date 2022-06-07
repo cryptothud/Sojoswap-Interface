@@ -226,7 +226,7 @@ html {
 body {
   min-height: 100vh;
   background-repeat: no-repeat;
-  background-image: url("https://i.ibb.co/wdpKfrM/New-Project-2022-06-03-T000951-281.png");
+  background-image: url("https://free4kwallpapers.com/uploads/originals/2022/01/25/we-must-conquer-mars-wallpaper.jpg");
   background-size: cover;
   background-attachment: fixed;
   background-position: 80%;
@@ -256,7 +256,7 @@ body {
   display none;
   position: fixed;
   height: 100vh;
-  right: -20vw;
+  right: -60vw;
 }
 @media only screen and (max-width: 600px) {
   #newbg {

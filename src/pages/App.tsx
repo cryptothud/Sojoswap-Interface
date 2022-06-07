@@ -142,10 +142,10 @@ const Coins = styled.div`
   width: 100vw;
   height: 30px;
   z-index: 100;
-  background: #0c0c0c40;
+  background: #0c0c0cbf;
   display: flex;
   align-items: center;
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(20px);
   box-shadow: 0 0 10px #00000090;
   div {
     display: flex;
@@ -179,12 +179,13 @@ export default function App() {
       <Route component={GoogleAnalyticsReporter} />
       <Route component={DarkModeQueryParamReader} />
       <AppWrapper>
-      <img src="https://i.ibb.co/wdpKfrM/New-Project-2022-06-03-T000951-281.png" alt="" id="newbg" />
+      <img src="https://free4kwallpapers.com/uploads/originals/2022/01/25/we-must-conquer-mars-wallpaper.jpg" alt="" id="newbg" />
+      {/*<img src="https://i.ibb.co/wdpKfrM/New-Project-2022-06-03-T000951-281.png" alt="" id="newbg" />*/}
         <Coins>
           <div>
-            <h2>Coin1: $69.69</h2>
-            <h2>Coin2: $69.69</h2>
-            <h2>Coin3: $69.69</h2>
+            <h2>$SUSD - $1.00</h2>
+            <h2>$SOJO - $69.42</h2>
+            <h2>$ROVER - $4.20</h2>
           </div>
         </Coins>
         <URLWarning />
