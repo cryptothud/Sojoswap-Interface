@@ -73,8 +73,7 @@ const Card = styled(NavLink)`
     font-size: 16px;
     text-decoration: underline;
     color: #e1e1e1;
-    background: #00000038;
-    backdrop-filter: blur(20px);
+    background: #0000001a;
     margin-right: auto;
     border-radius: 50px;
     padding: 10px 20px;
@@ -142,8 +141,7 @@ const DisabledCard = styled.div`
     font-size: 16px;
     text-decoration: underline;
     cursor: not-allowed;
-    background: #00000038;
-    backdrop-filter: blur(20px);
+    background: #0000001a;
     margin-right: auto;
     border-radius: 50px;
     padding: 10px 20px;
