@@ -43,6 +43,8 @@ const HeaderFrame = styled.div`
   position: relative;
   padding: 0 1rem;
   z-index: 5;
+  background: #0c0c0c50;
+  backdrop-filter: blur(20px);
   ${({ theme }) => theme.mediaWidth.upToMedium`
     grid-template-columns: 1fr;
     padding: 0 1rem;
@@ -277,7 +279,7 @@ const UniIcon = styled.div`
   align-items: center;
   column-gap: 10px;
   h1 {
-    color: #ffc115;
+    color: #ffa64b;
     text-decoration: none !important;
     text-shadow: 0 0 2px #00000090;
   }
@@ -432,7 +434,7 @@ export const MenuIcon = styled.h1`
   cursor: pointer;
   font-weight: 30px;
   font-weight: 700;
-  color: #ffc115;
+  color: #ffa64b;
   text-shadow: 0 0 2px #00000090;
   &:hover {
     opacity: 0.7;
