@@ -86,7 +86,7 @@ const Card = styled(NavLink)`
 const DisabledCard = styled.div`
   width: 40%;
   min-height: 250px;
-  background: linear-gradient(45deg,#00000020,#00000010);
+  background: linear-gradient(45deg, #00000020, #00000010);
   box-shadow: 0 0 2px #ffffff59, 0 0 10px inset #00000030;
   backdrop-filter: blur(10px);
   border-radius: 20px;
