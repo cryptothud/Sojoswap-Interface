@@ -226,7 +226,7 @@ html {
 body {
   min-height: 100vh;
   background-repeat: no-repeat;
-  background-image: url("https://i.ibb.co/Ny1dyzP/photo-2022-06-01-01-10-43-1.png");
+  background-image: url("https://i.ibb.co/2ZN5KSQ/IMG-5784-Moment.png");
   background-size: cover;
   background-attachment: fixed;
   background-position: 80%;
@@ -234,6 +234,7 @@ body {
 
 #root {
   min-height: 100vh;
+  background: linear-gradient(91deg, #3e0500a8, transparent);
 }
 
 ::-webkit-scrollbar {
@@ -256,7 +257,7 @@ body {
   display none;
   position: fixed;
   height: 100vh;
-  right: -60vw;
+  right: -70vw;
 }
 @media only screen and (max-width: 600px) {
   #newbg {
