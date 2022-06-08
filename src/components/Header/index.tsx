@@ -501,7 +501,7 @@ export default function Header() {
         <Title to={'/'}>
           <UniIcon>
             <img width={'80px'} style={{ margin: '5px' }} src={Logo} alt="logo" />
-            <h1>SOJOswap</h1>
+            <h1>SOJO | Swap</h1>
           </UniIcon>
         </Title>
         {/*

@@ -21,6 +21,68 @@ const Container = styled.div`
     width: 90vw;
   }
 `
+const TheCard = styled.a`
+  width: 40%;
+  min-height: 250px;
+  background: linear-gradient(45deg, #00000080, #00000040);
+  box-shadow: 0 0 2px #ffffff59, 0 0 10px inset #00000080;
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  box-sizing: border-box;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: not-allowed;
+  transition: 0.4s ease-in-out;
+  text-decoration: none;
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+  img {
+    position: absolute;
+    z-index: -1;
+    transform: rotate(45deg);
+    right: 0;
+    bottom: -30%;
+    filter: invert(1);
+    opacity: 0.06;
+    transition: 1s ease-in-out;
+  }
+  &:hover {
+    transform: translateY(-6px);
+    filter: brightness(1.2);
+    background: linear-gradient(45deg, #00000040, #00000080);
+    box-shadow: 0 0 30px #ffffff40, 0 0 10px inset #00000080;
+    img {
+      transform: rotate(45deg) rotateY(-180deg);
+    }
+  }
+  h1 {
+    font-weight: 800;
+    font-size: 32px;
+    color: #e1e1e1;
+  }
+  h2 {
+    font-weight: 200;
+    font-size: 16px;
+    color: #e1e1e199;
+  }
+  h3 {
+    font-weight: 600;
+    font-size: 16px;
+    text-decoration: underline;
+    color: #e1e1e1;
+    background: #0000001a;
+    margin-right: auto;
+    border-radius: 50px;
+    padding: 10px 20px;
+    box-shadow: 0 0 10px inset #00000045;
+  }
+  @media only screen and (max-width: 800px) {
+    width: 100%;
+  }
+`
 const Card = styled(NavLink)`
   width: 40%;
   min-height: 250px;
@@ -83,6 +145,7 @@ const Card = styled(NavLink)`
     width: 100%;
   }
 `
+/*
 const DisabledCard = styled.div`
   width: 40%;
   min-height: 250px;
@@ -153,6 +216,7 @@ const DisabledCard = styled.div`
     width: 100%;
   }
 `
+*/
 
 export default function Home({ history }: RouteComponentProps) {
   return (
@@ -178,7 +242,7 @@ export default function Home({ history }: RouteComponentProps) {
           </div>
           <h3>Add Liquidity {'→'}</h3>
         </Card>
-        <DisabledCard>
+        <TheCard>
           <img src="https://img.icons8.com/ios/344/safe.png" alt="" />
           <div>
             <a>
@@ -187,8 +251,8 @@ export default function Home({ history }: RouteComponentProps) {
             <h2>View current ledger of gold in storage.</h2>
           </div>
           <h3>Enter Vault {'→'}</h3>
-        </DisabledCard>
-        <DisabledCard>
+        </TheCard>
+        <TheCard>
           <img src="https://img.icons8.com/ios-filled/344/treasure-chest.png" alt="" />
           <div>
             <a>
@@ -197,8 +261,8 @@ export default function Home({ history }: RouteComponentProps) {
             <h2>Purchase treasury notes, backed by physical gold and earn royalties.</h2>
           </div>
           <h3>Purchase Now {'→'}</h3>
-        </DisabledCard>
-        <DisabledCard>
+        </TheCard>
+        <TheCard>
           <img src="https://img.icons8.com/material/344/bullish--v1.png" alt="" />
           <div>
             <a>
@@ -207,8 +271,8 @@ export default function Home({ history }: RouteComponentProps) {
             <h2>Terraform Mars by purchasing NFT land plots.</h2>
           </div>
           <h3>Provide Now {'→'}</h3>
-        </DisabledCard>
-        <DisabledCard>
+        </TheCard>
+        <TheCard>
           <img src="https://img.icons8.com/pastel-glyph/344/nft-node--v1.png" alt="" />
           <div>
             <a>
@@ -217,8 +281,8 @@ export default function Home({ history }: RouteComponentProps) {
             <h2>Digital art marketplace</h2>
           </div>
           <h3>Visit Marketplace {'→'}</h3>
-        </DisabledCard>
-        <DisabledCard>
+        </TheCard>
+        <TheCard>
           <img
             src="https://img.icons8.com/external-glyph-wichaiwi/344/external-business-business-glyph-wichaiwi-10.png"
             alt=""
@@ -230,8 +294,8 @@ export default function Home({ history }: RouteComponentProps) {
             <h2>Connect your wallet to claim your rewards.</h2>
           </div>
           <h3>Claim Tokens {'→'}</h3>
-        </DisabledCard>
-        <DisabledCard>
+        </TheCard>
+        <TheCard>
           <img src="https://img.icons8.com/ios-filled/344/dots-loading--v2.png" alt="" />
           <div>
             <a>
@@ -240,7 +304,7 @@ export default function Home({ history }: RouteComponentProps) {
             <h2>Airdrop tokens across the solar system.</h2>
           </div>
           <h3>Airdrop Now {'→'}</h3>
-        </DisabledCard>
+        </TheCard>
       </Container>
     </>
   )
