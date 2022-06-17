@@ -86,9 +86,9 @@ const InputPanel = styled.div<{ hideInput?: boolean }>`
   z-index: 1;
 `
 
-const Container = styled.div<{ hideInput: boolean }>`
+const Container = styled.div<{ hideInput: boolean, hideBorder?: boolean }>`
   border-radius: ${({ hideInput }) => (hideInput ? '8px' : '20px')};
-  box-shadow: 0 0 2px #ffffff59;
+  box-shadow: ${({hideBorder }) => (hideBorder ? 'none' : '0 0 2px #ffffff59')};
 `
 
 const StyledTokenName = styled.span<{ active?: boolean }>`
@@ -136,7 +136,9 @@ interface CurrencyInputPanelProps {
   otherCurrency?: Currency | null
   id: string
   showCommonBases?: boolean
-  customBalanceText?: string
+  customBalanceText?: string,
+  hideBorder?: boolean,
+  inputDisabled?: boolean,
 }
 
 export default function CurrencyInputPanel({
@@ -154,7 +156,9 @@ export default function CurrencyInputPanel({
   otherCurrency,
   id,
   showCommonBases,
-  customBalanceText
+  customBalanceText,
+  hideBorder,
+  inputDisabled,
 }: CurrencyInputPanelProps) {
   const { t } = useTranslation()
 
@@ -169,7 +173,7 @@ export default function CurrencyInputPanel({
 
   return (
     <InputPanel id={id}>
-      <Container hideInput={hideInput}>
+      <Container hideInput={hideInput} hideBorder={hideBorder}>
         {!hideInput && (
           <LabelRow>
             <RowBetween>
@@ -196,6 +200,7 @@ export default function CurrencyInputPanel({
           {!hideInput && (
             <>
               <NumericalInput
+                disabled={inputDisabled}
                 className="token-amount-input"
                 value={value}
                 onUserInput={val => {

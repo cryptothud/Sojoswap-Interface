@@ -123,6 +123,9 @@
   },
   "license": "GPL-3.0-or-later",
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.1.1",
+    "@fortawesome/free-solid-svg-icons": "^6.1.1",
+    "@fortawesome/react-fontawesome": "^0.1.18",
     "@uniswap/default-token-list": "^2.0.0"
   },
   "packageManager": "yarn@3.2.1"

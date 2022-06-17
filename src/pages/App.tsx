@@ -32,6 +32,7 @@ import { OpenClaimAddressModalAndRedirectToSwap, RedirectPathToSwapOnly, Redirec
 import Vote from './Vote'
 import VotePage from './Vote/VotePage'
 import { keyframes } from 'styled-components'
+import Disperse from './Disperse'
 
 const AppWrapper = styled.div`
   display: flex;
@@ -209,6 +210,7 @@ export default function App() {
               <Route exact strict path="/uni" component={Earn} />
               <Route exact strict path="/vote" component={Vote} />
               <Route exact strict path="/create" component={RedirectToAddLiquidity} />
+              {process.env.NODE_ENV === 'development' &&  <Route exact strict path="/disperse" component={Disperse} />}
               <Route exact path="/add" component={AddLiquidity} />
               <Route exact path="/add/:currencyIdA" component={RedirectOldAddLiquidityPathStructure} />
               <Route exact path="/add/:currencyIdA/:currencyIdB" component={RedirectDuplicateTokenIds} />

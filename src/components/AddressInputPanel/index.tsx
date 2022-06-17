@@ -6,6 +6,10 @@ import { ExternalLink, TYPE } from '../../theme'
 import { AutoColumn } from '../Column'
 import { RowBetween } from '../Row'
 import { getEtherscanLink } from '../../utils'
+import { Input as NumericalInput } from '../NumericalInput'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faXmark, faCaretDown, faCaretUp } from '@fortawesome/free-solid-svg-icons'
+import { Currency } from '@uniswap/sdk'
 
 const InputPanel = styled.div`
   ${({ theme }) => theme.flexColumnNoWrap}
@@ -14,6 +18,24 @@ const InputPanel = styled.div`
   background-color: ${({ theme }) => theme.bg1};
   z-index: 1;
   width: 100%;
+`
+
+const InputPanelTopSquare = styled.div`
+  ${({ theme }) => theme.flexColumnNoWrap}
+  position: relative;
+  border-radius: 0 0 1.25rem 1.25rem;
+  background-color: ${({ theme }) => theme.bg1};
+  z-index: 1;
+  width: 100%;
+`
+const InputPanelDropdownHeader = styled.div<{expanded?: boolean}>`
+  ${({ theme }) => theme.flexRowNoWrap}
+  position: relative;
+  border-radius: ${({expanded}) => expanded ? '1.25rem 1.25rem 0 0' : '1.25rem'};
+  background-color: ${({ theme }) => theme.bg1};
+  z-index: 1;
+  width: 100%;
+
 `
 
 const ContainerRow = styled.div<{ error: boolean }>`
@@ -30,6 +52,10 @@ const ContainerRow = styled.div<{ error: boolean }>`
 const InputContainer = styled.div`
   flex: 1;
   padding: 1rem;
+`
+
+const NumericalInputContainer = styled.div`
+  display: inline-flex;
 `
 
 const Input = styled.input<{ error?: boolean }>`
@@ -124,5 +150,143 @@ export default function AddressInputPanel({
         </InputContainer>
       </ContainerRow>
     </InputPanel>
+  )
+}
+
+const InputPanelSummaryContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  flex-shrink: 1;
+  flex-grow: 1;
+  margin-left: 16px;
+  margin-top: 8px;
+`
+const InputPanelControls = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  padding-right: 20px;
+  margin-left: auto;
+  flex-shrink: 1;
+  flex-grow: 0;
+  margin-right: 0px;
+`
+
+const IconContainer = styled.div`
+padding-top: 8px;
+padding-bottom: 8px;
+margin-left: -4px;
+margin-right: -4px;
+`
+
+const SummaryTextbox = styled.div`
+flex-shrink: 0;
+flex-grow: 1;
+flex-basis: 100%;
+`
+
+export function AddressCurrencyInputPanel({
+  id,
+  addressValue,
+  addressOnChange,
+  currencyValue,
+  currencyInputOnChange,
+  currencyError,
+  expanded,
+  currency,
+  toggleCollapse,
+  onCloseClick
+}: {
+  id?: string
+  // the typed string value
+  addressValue: string
+  // triggers whenever the typed value changes
+  addressOnChange: (value: string) => void,
+  currencyValue: string,
+  currencyInputOnChange: (value: string) => void,
+  currencyError?: boolean,
+  expanded?: boolean,
+  currency?: Currency,
+  toggleCollapse: () => void,
+  onCloseClick: () => void,
+}) {
+  const { chainId } = useActiveWeb3React()
+  const theme = useContext(ThemeContext)
+
+  const { address, loading, name } = useENS(addressValue)
+
+  const handleInput = useCallback(
+    event => {
+      const input = event.target.value
+      const withoutSpaces = input.replace(/\s+/g, '')
+      addressOnChange(withoutSpaces)
+    },
+    [addressOnChange]
+  )
+
+  const error = Boolean(addressValue.length > 0 && !loading && !address)
+
+  return (
+    <>
+      <InputPanelDropdownHeader expanded={expanded}>
+        {!expanded &&
+          <InputPanelSummaryContainer>
+            <SummaryTextbox>Recipient: {addressValue}</SummaryTextbox>
+            <SummaryTextbox>Amount: {currencyValue} {currency ? currency.symbol : ''}</SummaryTextbox>
+          </InputPanelSummaryContainer>
+        }
+        <InputPanelControls>
+          <IconContainer onClick={onCloseClick} aria-label='Delete row'>
+            <FontAwesomeIcon icon={faXmark} size="2x" fixedWidth />
+          </IconContainer>
+          <IconContainer onClick={toggleCollapse} aria-label={expanded ? 'Collapse' : 'Expand'}>
+            <FontAwesomeIcon icon={expanded ? faCaretUp : faCaretDown} size="2x" fixedWidth/>
+          </IconContainer>
+        </InputPanelControls>
+      </InputPanelDropdownHeader>
+      {expanded &&
+        <InputPanelTopSquare id={id}>
+          <ContainerRow error={error}>
+            <InputContainer>
+              <AutoColumn gap="md">
+                <RowBetween>
+                  <TYPE.black color={theme.text2} fontWeight={500} fontSize={14}>
+                    Recipient
+                  </TYPE.black>
+                  {address && chainId && (
+                    <ExternalLink href={getEtherscanLink(chainId, name ?? address, 'address')} style={{ fontSize: '14px' }}>
+                      (View on Etherscan)
+                    </ExternalLink>
+                  )}
+                </RowBetween>
+                <Input
+                  className="recipient-address-input"
+                  type="text"
+                  autoComplete="off"
+                  autoCorrect="off"
+                  autoCapitalize="off"
+                  spellCheck="false"
+                  placeholder="Wallet Address or ENS name"
+                  error={error}
+                  pattern="^(0x[a-fA-F0-9]{40})$"
+                  onChange={handleInput}
+                  value={addressValue}
+                />
+              </AutoColumn>
+              <AutoColumn gap="md">
+                <RowBetween>
+                  <TYPE.black color={theme.text2} fontWeight={500} fontSize={14}>
+                    Amount
+                  </TYPE.black>
+                </RowBetween>
+                <NumericalInputContainer>
+                  <NumericalInput value={currencyValue} onUserInput={currencyInputOnChange} error={currencyError} />
+                </NumericalInputContainer>
+              </AutoColumn>
+            </InputContainer>
+          </ContainerRow>
+        </InputPanelTopSquare>}
+    </>
   )
 }
