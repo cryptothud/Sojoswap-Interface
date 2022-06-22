@@ -54,6 +54,7 @@ const Wrapper = styled.div`
   justify-content: center;
   position: relative;
   z-index: 1;
+  margin: 0 100px 0 auto;
   @media only screen and (max-width: 1400px) {
     flex-direction: column;
     row-gap: 20px;

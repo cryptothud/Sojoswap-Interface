@@ -28,6 +28,7 @@ const PageWrapper = styled(AutoColumn)`
   max-width: 640px;
   width: 100%;
   backdrop-filter: blur(10px);
+  margin: 0 12% 0 auto;
 `
 
 const VoteCard = styled(DataCard)`

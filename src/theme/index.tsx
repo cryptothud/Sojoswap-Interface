@@ -263,6 +263,19 @@ body {
   left: 0;
 }
 
+#newbg {
+  display: none;
+  position: fixed;
+  height: 100vh;
+  left: -100vw;
+}
+
 @media only screen and (max-width: 600px) {
+  .backgroundVid {
+    display: none;
+  }
+  #newbg {
+    display: flex;
+  }
 }
 `

@@ -179,7 +179,7 @@ export default function App() {
       <Route component={GoogleAnalyticsReporter} />
       <Route component={DarkModeQueryParamReader} />
       <AppWrapper>
-        {/*<img src="https://free4kwallpapers.com/uploads/originals/2022/01/25/we-must-conquer-mars-wallpaper.jpg" alt="" id="newbg" />*/}
+        <img src="https://i.ibb.co/2ZN5KSQ/IMG-5784-Moment.png" alt="" id="newbg" />
         <div className="backgroundVid">
           <video loop autoPlay>
             <source

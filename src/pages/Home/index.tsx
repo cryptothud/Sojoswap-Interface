@@ -14,6 +14,7 @@ const Container = styled.div`
   column-gap: 30px;
   justify-content: center;
   align-items: center;
+  margin: 0 100px 0 auto;
   @media only screen and (max-width: 1650px) {
     width: 75vw;
   }
