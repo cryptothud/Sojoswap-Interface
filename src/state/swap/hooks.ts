@@ -72,7 +72,7 @@ export function tryParseAmount(
   value?: string,
   currency?: Currency
 ): CurrencyAmount<Currency> | undefined {
-  if (!value || !currency || !chainId) {
+  if (!value || !currency) {
     return undefined
   }
   try {
@@ -141,7 +141,6 @@ export function useDerivedSwapInfo(): {
 
   const bestTradeExactIn = useTradeExactIn(isExactIn ? parsedAmount : undefined, outputCurrency ?? undefined)
   const bestTradeExactOut = useTradeExactOut(inputCurrency ?? undefined, !isExactIn ? parsedAmount : undefined)
-
   const v2Trade = isExactIn ? bestTradeExactIn : bestTradeExactOut
 
   const currencyBalances = {

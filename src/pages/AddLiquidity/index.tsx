@@ -63,6 +63,7 @@ export default function AddLiquidity({
 
   // mint state
   const { independentField, typedValue, otherTypedValue } = useMintState()
+  const derivedMintInfo = useDerivedMintInfo(currencyA ?? undefined, currencyB ?? undefined)
   const {
     dependentField,
     currencies,
@@ -75,7 +76,7 @@ export default function AddLiquidity({
     liquidityMinted,
     poolTokenPercentage,
     error
-  } = useDerivedMintInfo(currencyA ?? undefined, currencyB ?? undefined)
+  } = derivedMintInfo
 
   const { onFieldAInput, onFieldBInput } = useMintActionHandlers(noLiquidity)
 
