@@ -253,15 +253,16 @@ body {
   background: #555;
 }
 
-#newbg {
-  display none;
-  position: fixed;
+
+.backgroundVid {
+  width: 100vw;
   height: 100vh;
-  right: -70vw;
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  left: 0;
 }
+
 @media only screen and (max-width: 600px) {
-  #newbg {
-    display block;
-  }
 }
 `
