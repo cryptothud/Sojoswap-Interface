@@ -365,6 +365,11 @@ const StyledNavLink2 = styled(NavLink).attrs({
     color: #0c0c0c;
     background: #0c0c0c27;
   }
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> main
 `
 const StyledNavLink3 = styled.a`
   padding: 0;
@@ -383,6 +388,13 @@ const StyledNavLink3 = styled.a`
   &:hover {
     opacity: 0.4;
   }
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 1b5e2ec (Fix code style issues with ESLint)
+=======
+>>>>>>> 1b5e2ec (Fix code style issues with ESLint)
+>>>>>>> main
 `
 /*
 const StyledExternalLink = styled(ExternalLink).attrs({
