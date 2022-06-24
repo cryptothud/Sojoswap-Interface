@@ -181,7 +181,7 @@ export default function App() {
       <AppWrapper>
         <img src="https://i.ibb.co/2ZN5KSQ/IMG-5784-Moment.png" alt="" id="newbg" />
         <div className="backgroundVid">
-          <video loop autoPlay>
+          <video loop autoPlay muted>
             <source
               src="/images/sojo/bgvid.mp4"
               type="video/mp4"

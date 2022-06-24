@@ -267,7 +267,7 @@ body {
   display: none;
   position: fixed;
   height: 100vh;
-  left: -100vw;
+  left: -130vw;
 }
 
 @media only screen and (max-width: 600px) {
