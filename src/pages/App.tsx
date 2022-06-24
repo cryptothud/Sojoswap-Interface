@@ -32,6 +32,7 @@ import { OpenClaimAddressModalAndRedirectToSwap, RedirectPathToSwapOnly, Redirec
 import Vote from './Vote'
 import VotePage from './Vote/VotePage'
 import { keyframes } from 'styled-components'
+import { MarsWeather } from 'components/MarsWeather'
 import Disperse from './Disperse'
 
 const AppWrapper = styled.div`
@@ -46,6 +47,7 @@ const HeaderWrapper = styled.div`
   ${({ theme }) => theme.flexRowNoWrap}
   width: 100%;
   justify-content: space-between;
+  z-index: 2;
 `
 
 const BodyWrapper = styled.div`
@@ -233,6 +235,7 @@ export default function App() {
             </Switch>
           </Web3ReactManager>
           <Marginer />
+          <MarsWeather />
         </BodyWrapper>
         {currentPage === '/swap' ? (
           <Trading>

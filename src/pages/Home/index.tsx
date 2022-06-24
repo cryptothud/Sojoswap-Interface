@@ -18,8 +18,9 @@ const Container = styled.div`
   @media only screen and (max-width: 1650px) {
     width: 75vw;
   }
-  @media only screen and (max-width: 1100px) {
+  @media only screen and (max-width: 960px) {
     width: 90vw;
+    margin: 0 auto;
   }
 `
 const TheCard = styled.a`
@@ -54,7 +55,6 @@ const TheCard = styled.a`
     transform: translateY(-6px);
     filter: brightness(1.2);
     background: linear-gradient(45deg, #00000040, #00000080);
-    box-shadow: 0 0 30px #ffffff40, 0 0 10px inset #00000080;
     img {
       transform: rotate(45deg) rotateY(-180deg);
     }
