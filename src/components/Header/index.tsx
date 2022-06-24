@@ -56,6 +56,7 @@ const HeaderFrame = styled.div`
   
   @media only screen and (max-width: 500px) {
     min-height: 90px;
+    padding: 0 10px;
   }
 
 `
@@ -124,6 +125,7 @@ const HeaderControls = styled.div`
     border-radius: 12px 12px 0 0;
     background-color: #0C0C0C;
   `};
+  
 `
 
 const HeaderElement = styled.div`
@@ -288,11 +290,13 @@ const UniIcon = styled.div`
     }
   }
   @media only screen and (max-width: 500px) {
+    column-gap: 5px;
     h1 {
       font-size: 25px;
     }
     img {
       width: 60px !important;
+      margin: 0 !important;
     }
   }
   :hover {
