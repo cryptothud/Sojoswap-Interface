@@ -46,6 +46,7 @@ const HeaderWrapper = styled.div`
   ${({ theme }) => theme.flexRowNoWrap}
   width: 100%;
   justify-content: space-between;
+  z-index: 2;
 `
 
 const BodyWrapper = styled.div`
