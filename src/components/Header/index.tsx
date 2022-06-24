@@ -42,7 +42,7 @@ const HeaderFrame = styled.div`
   top: 0;
   position: relative;
   padding: 0 1rem;
-  background: linear-gradient(45deg,#00000080,#00000040);
+  background: linear-gradient(45deg, #00000080, #00000040);
   box-shadow: 0 0 2px #ffffff59, 0 0 10px inset #00000080;
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
@@ -53,12 +53,11 @@ const HeaderFrame = styled.div`
     position: relative;
     backdrop-filter: none;
   `};
-  
+
   @media only screen and (max-width: 500px) {
     min-height: 90px;
     padding: 0 10px;
   }
-
 `
 
 const Socials = styled.div`
@@ -88,8 +87,7 @@ const Socials2 = styled.div`
   column-gap: 5px;
   margin: 5px;
   width: 100%;
-  justify-content: space-evenly
-  img {
+  justify-content: space-evenly img {
     width: 23px;
     cursor: pointer;
     transition: 0.2s ease-in-out;
@@ -126,7 +124,6 @@ const HeaderControls = styled.div`
     border-radius: 12px 12px 0 0;
     background-color: #0C0C0C;
   `};
-  
 `
 
 const HeaderElement = styled.div`
