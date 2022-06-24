@@ -15,6 +15,18 @@ type ChainTokenList = {
   readonly [chainId in ChainId]: Token[]
 }
 
+type ChainDisperseContractAddressList = {
+  readonly [chainId in ChainId]: string | undefined
+}
+
+export const DisperseContractAddress:ChainDisperseContractAddressList = {
+  [ChainId.MAINNET]: "0xD152f549545093347A162Dce210e7293f1452150",
+  [ChainId.RINKEBY]: "0xD152f549545093347A162Dce210e7293f1452150",
+  [ChainId.ROPSTEN]: "0xD152f549545093347A162Dce210e7293f1452150",
+  [ChainId.GÖRLI]: "0xD152f549545093347A162Dce210e7293f1452150",
+  [ChainId.KOVAN]: "0xD152f549545093347A162Dce210e7293f1452150",
+}
+
 export const AMPL = new Token(ChainId.MAINNET, '0xD46bA6D942050d489DBd938a2C909A5d5039A161', 9, 'AMPL', 'Ampleforth')
 export const DAI = new Token(ChainId.MAINNET, '0x6B175474E89094C44Da98b954EedeAC495271d0F', 18, 'DAI', 'Dai Stablecoin')
 export const USDC = new Token(ChainId.MAINNET, '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48', 6, 'USDC', 'USD//C')
