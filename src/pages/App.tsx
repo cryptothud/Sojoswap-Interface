@@ -180,8 +180,13 @@ export default function App() {
       <Route component={GoogleAnalyticsReporter} />
       <Route component={DarkModeQueryParamReader} />
       <AppWrapper>
-        {/*<img src="https://free4kwallpapers.com/uploads/originals/2022/01/25/we-must-conquer-mars-wallpaper.jpg" alt="" id="newbg" />*/}
-        <img src="https://i.ibb.co/wdpKfrM/New-Project-2022-06-03-T000951-281.png" alt="" id="newbg" />
+        <img src="https://i.ibb.co/2ZN5KSQ/IMG-5784-Moment.png" alt="" id="newbg" />
+        <div className="backgroundVid">
+          <video loop autoPlay muted>
+            <source src="/images/sojo/bgvid.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        </div>
         <Coins>
           <div>
             <h2>Coin1: $69.69</h2>
