@@ -32,6 +32,7 @@ import { OpenClaimAddressModalAndRedirectToSwap, RedirectPathToSwapOnly, Redirec
 import Vote from './Vote'
 import VotePage from './Vote/VotePage'
 import { keyframes } from 'styled-components'
+import Disperse from './Disperse'
 
 const AppWrapper = styled.div`
   display: flex;
@@ -85,7 +86,7 @@ const Trading = styled.div`
   width: 100%;
   border-radius: 15px;
   background: linear-gradient(45deg, #00000080, #00000040);
-  box-shadow: 0 0 2px #ffffff59;
+  box-shadow: 0 0 2px #ffffff59, 0 0 100px #0000001c, 0 0 100px #0000002e;
   backdrop-filter: blur(10px);
   display: none;
   z-index: 1;
@@ -142,7 +143,7 @@ const Coins = styled.div`
   width: 100vw;
   height: 30px;
   z-index: 100;
-  background: #0c0c0cbf;
+  background: #0c0c0c40;
   display: flex;
   align-items: center;
   backdrop-filter: blur(20px);
@@ -183,15 +184,14 @@ export default function App() {
         <div className="backgroundVid">
           <video loop autoPlay muted>
             <source src="/images/sojo/bgvid.mp4" type="video/mp4" />
-            <source src="/images/sojo/bgvid.mp4" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
         </div>
         <Coins>
           <div>
-            <h2>$SUSD - $1.00</h2>
-            <h2>$SOJO - $69.42</h2>
-            <h2>$ROVER - $4.20</h2>
+            <h2>Coin1: $69.69</h2>
+            <h2>Coin2: $69.69</h2>
+            <h2>Coin3: $69.69</h2>
           </div>
         </Coins>
         <URLWarning />
@@ -215,6 +215,7 @@ export default function App() {
               <Route exact strict path="/uni" component={Earn} />
               <Route exact strict path="/vote" component={Vote} />
               <Route exact strict path="/create" component={RedirectToAddLiquidity} />
+              <Route exact strict path="/disperse" component={Disperse} />
               <Route exact path="/add" component={AddLiquidity} />
               <Route exact path="/add/:currencyIdA" component={RedirectOldAddLiquidityPathStructure} />
               <Route exact path="/add/:currencyIdA/:currencyIdB" component={RedirectDuplicateTokenIds} />

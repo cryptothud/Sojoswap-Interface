@@ -349,6 +349,7 @@ const StyledNavLink2 = styled(NavLink).attrs({
     background: #0c0c0c27;
   }
 <<<<<<< HEAD
+<<<<<<< HEAD
 `
 const StyledNavLink3 = styled.a`
   padding: 0;
@@ -367,6 +368,8 @@ const StyledNavLink3 = styled.a`
   &:hover {
     opacity: 0.4;
   }
+=======
+>>>>>>> 1b5e2ec (Fix code style issues with ESLint)
 =======
 >>>>>>> 1b5e2ec (Fix code style issues with ESLint)
 `
