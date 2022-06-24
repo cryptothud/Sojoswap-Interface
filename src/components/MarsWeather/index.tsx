@@ -2,29 +2,89 @@ import styled from "styled-components"
 import React, { useEffect, useState } from 'react'
 const WeatherWrapperFloat = styled.div`
 position: fixed;
-top: 25%;
-left: 20px;
+top: 220px;
+left: 10px;
+img {
+    width: 100px;
+    position: absolute;
+    z-index: 1;
+    top: -70px;
+    left: 0;
+    filter: drop-shadow(0px 0px 4px #ffffff50);
+}
+
+@media only screen and (max-width: 960px) {
+    position: fixed;
+    top: 30px;
+    right: 10px;
+    left: auto;
+    height: 90px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    img {
+        width: 50px;
+        position: absolute;
+        z-index: 1;
+        top: 50%;
+        left: -50px;
+        -webkit-filter: drop-shadow(0px 0px 4px #ffffff50);
+        filter: drop-shadow(0px 0px 4px #ffffff50);
+        transform: translateY(-50%);
+    }
+}
+@media only screen and (max-width: 650px) {
+    img {
+        right: 0;
+        left: auto;
+        z-index: -1;
+        opacity: 0.06;
+        filter: brightness(100);
+        width: 100px;
+    }
+}
 `
 
 const WeatherWrapper = styled.div`
-background: rgba(100,100,100,0.6);
-border-radius: 20px;
-border: 1px solid black;
-padding: 20px;
 display: flex;
 flex-direction: column;
 flex-wrap: wrap;
 align-items: center;
 justify-content: center;
 color: white;
+background: linear-gradient(45deg,#00000080,#00000040);
+box-shadow: 0 0 2px #ffffff59, 0 0 10px inset #00000080;
+-webkit-backdrop-filter: blur(10px);
+backdrop-filter: blur(10px);
+border-radius: 20px;
+box-sizing: border-box;
+padding: 15px;
+@media only screen and (max-width: 960px) {
+    padding: 7px 30px;
+}
+@media only screen and (max-width: 650px) {
+    padding: 7px 12px;
+    overflow: hidden;
+}
 `
 const TextWrapper = styled.div`
 flex-grow: 1;
 flex-shrink: 0;
+font-size: 12px;
+font-weight: 400;
+font-style: italic;
+@media only screen and (max-width: 650px) {
+    font-size: 10px;
+}
 `
 
 const TextWrapperHeader = styled(TextWrapper)`
-font-size: 20px;
+font-size: 16px;
+font-weight: 600;
+font-style: normal;
+@media only screen and (max-width: 650px) {
+    font-size: 12px;
+}
 `
 
 type ApiQuery = {
@@ -97,14 +157,17 @@ export const MarsWeather = () => {
 
     const query = useSavedApiQuery()
     const date = query ? new Date(query.date).toLocaleDateString() : ""
-    return <WeatherWrapperFloat>
-        <WeatherWrapper>
-            <TextWrapperHeader>Martian Weather</TextWrapperHeader>
-            <LoadingWrapper value={query}>
-                <TextWrapper>Sol {query?.sol} ({date})</TextWrapper>
-                <TextWrapper>High: {query?.high}°C</TextWrapper>
-                <TextWrapper>High: {query?.low}°C</TextWrapper>
-            </LoadingWrapper>
-        </WeatherWrapper>
-    </WeatherWrapperFloat>
+    return (
+        <WeatherWrapperFloat>
+            <WeatherWrapper>
+                <img src="/images/sojo/weather.png" alt="" />
+                <TextWrapperHeader>Martian Weather</TextWrapperHeader>
+                <LoadingWrapper value={query}>
+                    <TextWrapper>Sol {query?.sol} ({date})</TextWrapper>
+                    <TextWrapper>High: {query?.high}°C</TextWrapper>
+                    <TextWrapper>High: {query?.low}°C</TextWrapper>
+                </LoadingWrapper>
+            </WeatherWrapper>
+        </WeatherWrapperFloat>
+    )
 }

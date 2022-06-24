@@ -86,7 +86,7 @@ const Trading = styled.div`
   width: 100%;
   border-radius: 15px;
   background: linear-gradient(45deg, #00000080, #00000040);
-  box-shadow: 0 0 2px #ffffff59;
+  box-shadow: 0 0 2px #ffffff59, 0 0 10px inset #00000080;
   backdrop-filter: blur(10px);
   display: none;
   z-index: 1;

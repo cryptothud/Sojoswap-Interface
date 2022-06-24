@@ -18,8 +18,9 @@ const Container = styled.div`
   @media only screen and (max-width: 1650px) {
     width: 75vw;
   }
-  @media only screen and (max-width: 1100px) {
+  @media only screen and (max-width: 960px) {
     width: 90vw;
+    margin: 0 auto;
   }
 `
 const TheCard = styled.a`

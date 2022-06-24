@@ -42,21 +42,22 @@ const HeaderFrame = styled.div`
   top: 0;
   position: relative;
   padding: 0 1rem;
-  z-index: 5;
-  background: #0c0c0c50;
-  backdrop-filter: blur(20px);
+  background: linear-gradient(45deg,#00000080,#00000040);
+  box-shadow: 0 0 2px #ffffff59, 0 0 10px inset #00000080;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
   ${({ theme }) => theme.mediaWidth.upToMedium`
     grid-template-columns: 1fr;
     padding: 0 1rem;
     width: calc(100%);
     position: relative;
-    background: none;
     backdrop-filter: none;
   `};
+  
+  @media only screen and (max-width: 500px) {
+    min-height: 90px;
+  }
 
-  ${({ theme }) => theme.mediaWidth.upToExtraSmall`
-        padding: 0.5rem 1rem;
-  `}
 `
 
 const Socials = styled.div`
@@ -282,6 +283,17 @@ const UniIcon = styled.div`
     color: #ffa64b;
     text-decoration: none !important;
     text-shadow: 0 0 2px #00000090;
+    @media only screen and (max-width: 500px) {
+      font-size: 25px;
+    }
+  }
+  @media only screen and (max-width: 500px) {
+    h1 {
+      font-size: 25px;
+    }
+    img {
+      width: 60px !important;
+    }
   }
   :hover {
     transform: rotate(-5deg);
@@ -348,7 +360,6 @@ const StyledNavLink2 = styled(NavLink).attrs({
     color: #0c0c0c;
     background: #0c0c0c27;
   }
-<<<<<<< HEAD
 `
 const StyledNavLink3 = styled.a`
   padding: 0;
@@ -367,8 +378,6 @@ const StyledNavLink3 = styled.a`
   &:hover {
     opacity: 0.4;
   }
-=======
->>>>>>> 1b5e2ec (Fix code style issues with ESLint)
 `
 /*
 const StyledExternalLink = styled(ExternalLink).attrs({

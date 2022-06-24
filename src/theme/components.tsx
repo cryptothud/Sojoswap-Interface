@@ -99,7 +99,7 @@ export const LinkStyledButton = styled.button<{ disabled?: boolean }>`
 export const StyledInternalLink = styled(Link)`
   text-decoration: none;
   cursor: pointer;
-  color: #ffc115;
+  color: #ffa64b;
   font-weight: 500;
 
   :hover {

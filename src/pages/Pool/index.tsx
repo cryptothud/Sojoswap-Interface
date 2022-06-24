@@ -28,7 +28,6 @@ const PageWrapper = styled(AutoColumn)`
   max-width: 640px;
   width: 100%;
   backdrop-filter: blur(10px);
-  margin: 0 12% 0 auto;
 `
 
 const VoteCard = styled(DataCard)`
@@ -191,7 +190,7 @@ export default function Pool() {
               position: 'relative',
               overflow: 'hidden',
               background: 'linear-gradient(45deg,#00000080,#00000040)',
-              boxShadow: '0 0 2px #ffffff59',
+              boxShadow: '0 0 2px #ffffff59, 0 0 10px inset #00000080',
               backdropFilter: 'blur(10px)'
             }}
           >
