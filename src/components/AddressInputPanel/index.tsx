@@ -28,14 +28,13 @@ const InputPanelTopSquare = styled.div`
   z-index: 1;
   width: 100%;
 `
-const InputPanelDropdownHeader = styled.div<{expanded?: boolean}>`
+const InputPanelDropdownHeader = styled.div<{ expanded?: boolean }>`
   ${({ theme }) => theme.flexRowNoWrap}
   position: relative;
-  border-radius: ${({expanded}) => expanded ? '1.25rem 1.25rem 0 0' : '1.25rem'};
+  border-radius: ${({ expanded }) => (expanded ? '1.25rem 1.25rem 0 0' : '1.25rem')};
   background-color: ${({ theme }) => theme.bg1};
   z-index: 1;
   width: 100%;
-
 `
 
 const ContainerRow = styled.div<{ error: boolean }>`
@@ -174,16 +173,16 @@ const InputPanelControls = styled.div`
 `
 
 const IconContainer = styled.div`
-padding-top: 8px;
-padding-bottom: 8px;
-margin-left: -4px;
-margin-right: -4px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  margin-left: -4px;
+  margin-right: -4px;
 `
 
 const SummaryTextbox = styled.div`
-flex-shrink: 0;
-flex-grow: 1;
-flex-basis: 100%;
+  flex-shrink: 0;
+  flex-grow: 1;
+  flex-basis: 100%;
 `
 
 export function AddressCurrencyInputPanel({
@@ -202,14 +201,14 @@ export function AddressCurrencyInputPanel({
   // the typed string value
   addressValue: string
   // triggers whenever the typed value changes
-  addressOnChange: (value: string) => void,
-  currencyValue: string,
-  currencyInputOnChange: (value: string) => void,
-  currencyError?: boolean,
-  expanded?: boolean,
-  currency?: Currency,
-  toggleCollapse: () => void,
-  onCloseClick: () => void,
+  addressOnChange: (value: string) => void
+  currencyValue: string
+  currencyInputOnChange: (value: string) => void
+  currencyError?: boolean
+  expanded?: boolean
+  currency?: Currency
+  toggleCollapse: () => void
+  onCloseClick: () => void
 }) {
   const { chainId } = useActiveWeb3React()
   const theme = useContext(ThemeContext)
@@ -230,22 +229,24 @@ export function AddressCurrencyInputPanel({
   return (
     <>
       <InputPanelDropdownHeader expanded={expanded}>
-        {!expanded &&
+        {!expanded && (
           <InputPanelSummaryContainer>
             <SummaryTextbox>Recipient: {addressValue}</SummaryTextbox>
-            <SummaryTextbox>Amount: {currencyValue} {currency ? currency.symbol : ''}</SummaryTextbox>
+            <SummaryTextbox>
+              Amount: {currencyValue} {currency ? currency.symbol : ''}
+            </SummaryTextbox>
           </InputPanelSummaryContainer>
-        }
+        )}
         <InputPanelControls>
-          <IconContainer onClick={onCloseClick} aria-label='Delete row'>
+          <IconContainer onClick={onCloseClick} aria-label="Delete row">
             <FontAwesomeIcon icon={faXmark} size="2x" fixedWidth />
           </IconContainer>
           <IconContainer onClick={toggleCollapse} aria-label={expanded ? 'Collapse' : 'Expand'}>
-            <FontAwesomeIcon icon={expanded ? faCaretUp : faCaretDown} size="2x" fixedWidth/>
+            <FontAwesomeIcon icon={expanded ? faCaretUp : faCaretDown} size="2x" fixedWidth />
           </IconContainer>
         </InputPanelControls>
       </InputPanelDropdownHeader>
-      {expanded &&
+      {expanded && (
         <InputPanelTopSquare id={id}>
           <ContainerRow error={error}>
             <InputContainer>
@@ -255,7 +256,10 @@ export function AddressCurrencyInputPanel({
                     Recipient
                   </TYPE.black>
                   {address && chainId && (
-                    <ExternalLink href={getEtherscanLink(chainId, name ?? address, 'address')} style={{ fontSize: '14px' }}>
+                    <ExternalLink
+                      href={getEtherscanLink(chainId, name ?? address, 'address')}
+                      style={{ fontSize: '14px' }}
+                    >
                       (View on Etherscan)
                     </ExternalLink>
                   )}
@@ -286,7 +290,8 @@ export function AddressCurrencyInputPanel({
               </AutoColumn>
             </InputContainer>
           </ContainerRow>
-        </InputPanelTopSquare>}
+        </InputPanelTopSquare>
+      )}
     </>
   )
 }

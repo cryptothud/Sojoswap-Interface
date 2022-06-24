@@ -19,12 +19,12 @@ type ChainDisperseContractAddressList = {
   readonly [chainId in ChainId]: string | undefined
 }
 
-export const DisperseContractAddress:ChainDisperseContractAddressList = {
-  [ChainId.MAINNET]: "0xD152f549545093347A162Dce210e7293f1452150",
-  [ChainId.RINKEBY]: "0xD152f549545093347A162Dce210e7293f1452150",
-  [ChainId.ROPSTEN]: "0xD152f549545093347A162Dce210e7293f1452150",
-  [ChainId.GÖRLI]: "0xD152f549545093347A162Dce210e7293f1452150",
-  [ChainId.KOVAN]: "0xD152f549545093347A162Dce210e7293f1452150",
+export const DisperseContractAddress: ChainDisperseContractAddressList = {
+  [ChainId.MAINNET]: '0xD152f549545093347A162Dce210e7293f1452150',
+  [ChainId.RINKEBY]: '0xD152f549545093347A162Dce210e7293f1452150',
+  [ChainId.ROPSTEN]: '0xD152f549545093347A162Dce210e7293f1452150',
+  [ChainId.GÖRLI]: '0xD152f549545093347A162Dce210e7293f1452150',
+  [ChainId.KOVAN]: '0xD152f549545093347A162Dce210e7293f1452150'
 }
 
 export const AMPL = new Token(ChainId.MAINNET, '0xD46bA6D942050d489DBd938a2C909A5d5039A161', 9, 'AMPL', 'Ampleforth')
