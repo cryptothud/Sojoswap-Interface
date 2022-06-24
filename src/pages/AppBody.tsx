@@ -9,12 +9,9 @@ export const BodyWrapper = styled.div`
   width: 100%;
   border-radius: 15px;
   background: linear-gradient(45deg, #00000080, #00000040);
-<<<<<<< HEAD
-  box-shadow: 0 0 2px #ffffff59, 0 0 10px inset #00000080;
-=======
-  box-shadow: 0 0 2px #ffffff59, 0 0 100px #0000001c, 0 0 100px #0000002e;
->>>>>>> main
-  backdrop-filter: blur(10px);
+  <<<<<<<headbox-shadow: 0 0 2px #ffffff59, 0 0 10px inset #00000080;
+  =======box-shadow: 0 0 2px #ffffff59, 0 0 100px #0000001c, 0 0 100px #0000002e;
+  >>>>>>>mainbackdrop-filter: blur(10px);
   @media only screen and (max-width: 720px) {
     min-width: 0px;
     max-width: 100%;
@@ -26,12 +23,9 @@ const Trading = styled.div`
   width: 100%;
   border-radius: 15px;
   background: linear-gradient(45deg, #00000080, #00000040);
-<<<<<<< HEAD
-  box-shadow: 0 0 2px #ffffff59, 0 0 10px inset #00000080;
-=======
-  box-shadow: 0 0 2px #ffffff59, 0 0 100px #0000001c, 0 0 100px #0000002e;
->>>>>>> main
-  backdrop-filter: blur(10px);
+  <<<<<<<headbox-shadow: 0 0 2px #ffffff59, 0 0 10px inset #00000080;
+  =======box-shadow: 0 0 2px #ffffff59, 0 0 100px #0000001c, 0 0 100px #0000002e;
+  >>>>>>>mainbackdrop-filter: blur(10px);
   pointer-events: none;
   z-index: 1;
   h2 {
