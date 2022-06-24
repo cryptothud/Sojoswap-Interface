@@ -1,7 +1,7 @@
 import styled from "styled-components"
 import React, { useEffect, useState } from 'react'
 const WeatherWrapperFloat = styled.div`
-position: fixed;
+position: absolute;
 top: 220px;
 left: 10px;
 img {
@@ -14,7 +14,7 @@ img {
 }
 
 @media only screen and (max-width: 960px) {
-    position: fixed;
+    position: absolute;
     top: 30px;
     right: 10px;
     left: auto;
