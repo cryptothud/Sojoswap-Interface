@@ -202,7 +202,9 @@ export default function Disperse({ history }: RouteComponentProps) {
         if (selected === index) {
           setSelected(null)
         }
-        setDisperseTargets(disperseTargets.filter((_, i) => i !== index))
+        let newTargets = disperseTargets.filter((_, i) => i !== index)
+        newTargets.pop()
+        setDisperseTargets(newTargets)
       }
     },
     [disperseTargets, selected]

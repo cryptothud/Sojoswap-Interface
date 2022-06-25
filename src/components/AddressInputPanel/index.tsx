@@ -8,7 +8,7 @@ import { RowBetween } from '../Row'
 import { getEtherscanLink } from '../../utils'
 import { Input as NumericalInput } from '../NumericalInput'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faXmark, faCaretDown, faCaretUp } from '@fortawesome/free-solid-svg-icons'
+import { faXmark } from '@fortawesome/free-solid-svg-icons'
 import { Currency } from '@uniswap/sdk'
 
 const InputPanel = styled.div`
@@ -24,7 +24,6 @@ const InputPanelTopSquare = styled.div`
   ${({ theme }) => theme.flexColumnNoWrap}
   position: relative;
   border-radius: 0 0 1.25rem 1.25rem;
-  background-color: ${({ theme }) => theme.bg1};
   z-index: 1;
   width: 100%;
 `
@@ -229,7 +228,7 @@ export function AddressCurrencyInputPanel({
   const error = Boolean(addressValue.length > 0 && !loading && !address)
 
   return (
-    <>
+    <> {!expanded &&
         <InputPanelDropdownHeader expanded={expanded}>
           {!expanded && (
             <InputPanelSummaryContainer>
@@ -243,11 +242,8 @@ export function AddressCurrencyInputPanel({
             <IconContainer onClick={onCloseClick} aria-label="Delete row">
               <FontAwesomeIcon icon={faXmark} size="2x" fixedWidth color="#0c0c0c" cursor="pointer" />
             </IconContainer>
-            <IconContainer onClick={toggleCollapse} aria-label={expanded ? 'Collapse' : 'Expand'}>
-              <FontAwesomeIcon icon={expanded ? faCaretUp : faCaretDown} size="2x" fixedWidth  color="#0c0c0c" cursor="pointer" />
-            </IconContainer>
           </InputPanelControls>
-        </InputPanelDropdownHeader>
+        </InputPanelDropdownHeader> }
       {expanded && (
         <InputPanelTopSquare id={id}>
           <ContainerRow error={error}>
