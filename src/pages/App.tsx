@@ -235,8 +235,8 @@ export default function App() {
             </Switch>
           </Web3ReactManager>
           <Marginer />
-          <MarsWeather />
         </BodyWrapper>
+        <MarsWeather />
         {currentPage === '/swap' ? (
           <Trading>
             <h2>Coming Soon...</h2>

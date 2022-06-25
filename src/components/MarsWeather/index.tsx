@@ -4,6 +4,7 @@ const WeatherWrapperFloat = styled.div`
   position: absolute;
   top: 220px;
   left: 10px;
+  z-index: 10;
   img {
     width: 100px;
     position: absolute;

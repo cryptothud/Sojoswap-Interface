@@ -87,7 +87,8 @@ const Socials2 = styled.div`
   column-gap: 5px;
   margin: 5px;
   width: 100%;
-  justify-content: space-evenly img {
+  justify-content: space-evenly
+  img {
     width: 23px;
     cursor: pointer;
     transition: 0.2s ease-in-out;
@@ -656,6 +657,9 @@ export default function Header() {
             }
           >
             Pool
+          </StyledNavLink2>
+          <StyledNavLink2 id={`disperse-nav-link`} to={'/disperse'}>
+            Disperse
           </StyledNavLink2>
           <StyledNavLink3 id={`whitepaper-nav-link`}>Whitepaper</StyledNavLink3>
           <Socials2>
