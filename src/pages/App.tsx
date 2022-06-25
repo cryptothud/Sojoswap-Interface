@@ -88,8 +88,8 @@ const Trading = styled.div`
   width: 100%;
   border-radius: 15px;
   background: linear-gradient(45deg, #00000080, #00000040);
-  box-shadow: 0 0 2px #ffffff59, 0 0 100px #0000001c, 0 0 100px #0000002e;
-  backdrop-filter: blur(10px);
+  box-shadow: 0 0 2px #ffffff59, 0 0 10px inset #00000080;
+  backdrop-filter: blur(5px);
   display: none;
   z-index: 1;
   pointer-events: none;
@@ -145,11 +145,11 @@ const Coins = styled.div`
   width: 100vw;
   height: 30px;
   z-index: 100;
-  background: #0c0c0c40;
   display: flex;
   align-items: center;
   backdrop-filter: blur(20px);
-  box-shadow: 0 0 10px #00000090;
+  background: #0c0c0cb8;
+  box-shadow: 0 0 10px inset #00000080;
   div {
     display: flex;
     justify-content: space-around;

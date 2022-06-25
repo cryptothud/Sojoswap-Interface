@@ -54,8 +54,8 @@ const WeatherWrapper = styled.div`
   color: white;
   background: linear-gradient(45deg, #00000080, #00000040);
   box-shadow: 0 0 2px #ffffff59, 0 0 10px inset #00000080;
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
   border-radius: 20px;
   box-sizing: border-box;
   padding: 15px;

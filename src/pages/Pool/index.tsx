@@ -27,7 +27,7 @@ import { useSdkConfig } from 'hooks/useSdkConfig'
 const PageWrapper = styled(AutoColumn)`
   max-width: 640px;
   width: 100%;
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(5px);
 `
 
 const VoteCard = styled(DataCard)`
@@ -191,7 +191,7 @@ export default function Pool() {
               overflow: 'hidden',
               background: 'linear-gradient(45deg,#00000080,#00000040)',
               boxShadow: '0 0 2px #ffffff59, 0 0 10px inset #00000080',
-              backdropFilter: 'blur(10px)'
+              backdropFilter: 'blur(5px)'
             }}
           >
             <TitleRow style={{ marginTop: '1rem' }} padding={'0'}>

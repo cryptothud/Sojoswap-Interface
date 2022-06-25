@@ -158,8 +158,7 @@ const InputPanelSummaryContainer = styled.div`
   flex-wrap: wrap;
   flex-shrink: 1;
   flex-grow: 1;
-  margin-left: 16px;
-  margin-top: 8px;
+  margin: 8px;
 `
 const InputPanelControls = styled.div`
   display: flex;
@@ -177,12 +176,16 @@ const IconContainer = styled.div`
   padding-bottom: 8px;
   margin-left: -4px;
   margin-right: -4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `
 
 const SummaryTextbox = styled.div`
   flex-shrink: 0;
   flex-grow: 1;
   flex-basis: 100%;
+  color: #0c0c0c !important;
 `
 
 export function AddressCurrencyInputPanel({
@@ -211,7 +214,6 @@ export function AddressCurrencyInputPanel({
   onCloseClick: () => void
 }) {
   const { chainId } = useActiveWeb3React()
-  const theme = useContext(ThemeContext)
 
   const { address, loading, name } = useENS(addressValue)
 
@@ -228,31 +230,31 @@ export function AddressCurrencyInputPanel({
 
   return (
     <>
-      <InputPanelDropdownHeader expanded={expanded}>
-        {!expanded && (
-          <InputPanelSummaryContainer>
-            <SummaryTextbox>Recipient: {addressValue}</SummaryTextbox>
-            <SummaryTextbox>
-              Amount: {currencyValue} {currency ? currency.symbol : ''}
-            </SummaryTextbox>
-          </InputPanelSummaryContainer>
-        )}
-        <InputPanelControls>
-          <IconContainer onClick={onCloseClick} aria-label="Delete row">
-            <FontAwesomeIcon icon={faXmark} size="2x" fixedWidth />
-          </IconContainer>
-          <IconContainer onClick={toggleCollapse} aria-label={expanded ? 'Collapse' : 'Expand'}>
-            <FontAwesomeIcon icon={expanded ? faCaretUp : faCaretDown} size="2x" fixedWidth />
-          </IconContainer>
-        </InputPanelControls>
-      </InputPanelDropdownHeader>
+        <InputPanelDropdownHeader expanded={expanded}>
+          {!expanded && (
+            <InputPanelSummaryContainer>
+              <SummaryTextbox>Recipient: {addressValue}</SummaryTextbox>
+              <SummaryTextbox>
+                Amount: {currencyValue} {currency ? currency.symbol : ''}
+              </SummaryTextbox>
+            </InputPanelSummaryContainer>
+          )}
+          <InputPanelControls>
+            <IconContainer onClick={onCloseClick} aria-label="Delete row">
+              <FontAwesomeIcon icon={faXmark} size="2x" fixedWidth color="#0c0c0c" cursor="pointer" />
+            </IconContainer>
+            <IconContainer onClick={toggleCollapse} aria-label={expanded ? 'Collapse' : 'Expand'}>
+              <FontAwesomeIcon icon={expanded ? faCaretUp : faCaretDown} size="2x" fixedWidth  color="#0c0c0c" cursor="pointer" />
+            </IconContainer>
+          </InputPanelControls>
+        </InputPanelDropdownHeader>
       {expanded && (
         <InputPanelTopSquare id={id}>
           <ContainerRow error={error}>
             <InputContainer>
               <AutoColumn gap="md">
                 <RowBetween>
-                  <TYPE.black color={theme.text2} fontWeight={500} fontSize={14}>
+                  <TYPE.black color={'#0c0c0c'} fontWeight={500} fontSize={14}>
                     Recipient
                   </TYPE.black>
                   {address && chainId && (
@@ -280,12 +282,12 @@ export function AddressCurrencyInputPanel({
               </AutoColumn>
               <AutoColumn gap="md">
                 <RowBetween>
-                  <TYPE.black color={theme.text2} fontWeight={500} fontSize={14}>
+                  <TYPE.black color={'#0c0c0c'} fontWeight={500} fontSize={14}>
                     Amount
                   </TYPE.black>
                 </RowBetween>
-                <NumericalInputContainer>
-                  <NumericalInput value={currencyValue} onUserInput={currencyInputOnChange} error={currencyError} />
+                <NumericalInputContainer id="disperseInput">
+                  <NumericalInput placeholder={'0'} value={currencyValue} onUserInput={currencyInputOnChange} error={currencyError} />
                 </NumericalInputContainer>
               </AutoColumn>
             </InputContainer>

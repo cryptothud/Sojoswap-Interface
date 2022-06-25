@@ -270,6 +270,10 @@ body {
   left: -130vw;
 }
 
+#disperseInput input {
+  color: #0c0c0c;
+}
+
 @media only screen and (max-width: 600px) {
   .backgroundVid {
     display: none;

@@ -28,7 +28,7 @@ const TheCard = styled.a`
   min-height: 250px;
   background: linear-gradient(45deg, #00000080, #00000040);
   box-shadow: 0 0 2px #ffffff59, 0 0 10px inset #00000080;
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(5px);
   border-radius: 20px;
   box-sizing: border-box;
   padding: 15px;
@@ -55,6 +55,7 @@ const TheCard = styled.a`
     transform: translateY(-6px);
     filter: brightness(1.2);
     background: linear-gradient(45deg, #00000040, #00000080);
+    box-shadow: 0 0 30px #ffffff40, 0 0 10px inset #00000080;
     img {
       transform: rotate(45deg) rotateY(-180deg);
     }
@@ -88,8 +89,8 @@ const Card = styled(NavLink)`
   width: 40%;
   min-height: 250px;
   background: linear-gradient(45deg, #00000080, #00000040);
-  box-shadow: 0 0 2px #ffffff59, 0 0 100px #0000001c, 0 0 100px #0000002e;
-  backdrop-filter: blur(10px);
+  box-shadow: 0 0 2px #ffffff59, 0 0 10px inset #00000080;
+  backdrop-filter: blur(5px);
   border-radius: 20px;
   box-sizing: border-box;
   padding: 15px;
@@ -116,7 +117,7 @@ const Card = styled(NavLink)`
     transform: translateY(-6px);
     filter: brightness(1.2);
     background: linear-gradient(45deg, #00000040, #00000080);
-    box-shadow: 0 0 30px #ffffff40;
+    box-shadow: 0 0 30px #ffffff40, 0 0 10px inset #00000080;
     img {
       transform: rotate(45deg) rotateY(-180deg);
     }
@@ -152,7 +153,7 @@ const DisabledCard = styled.div`
   min-height: 250px;
   background: linear-gradient(45deg, #00000020, #00000010);
   box-shadow: 0 0 2px #ffffff59, 0 0 10px inset #00000030;
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(5px);
   border-radius: 20px;
   box-sizing: border-box;
   padding: 15px;
@@ -296,7 +297,7 @@ export default function Home({ history }: RouteComponentProps) {
           </div>
           <h3>Claim Tokens {'→'}</h3>
         </TheCard>
-        <TheCard>
+        <Card to={'/disperse'}>
           <img src="https://img.icons8.com/ios-filled/344/dots-loading--v2.png" alt="" />
           <div>
             <a>
@@ -305,7 +306,7 @@ export default function Home({ history }: RouteComponentProps) {
             <h2>Airdrop tokens across the solar system.</h2>
           </div>
           <h3>Airdrop Now {'→'}</h3>
-        </TheCard>
+        </Card>
       </Container>
     </>
   )

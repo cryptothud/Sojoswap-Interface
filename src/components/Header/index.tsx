@@ -44,8 +44,8 @@ const HeaderFrame = styled.div`
   padding: 0 1rem;
   background: linear-gradient(45deg, #00000080, #00000040);
   box-shadow: 0 0 2px #ffffff59, 0 0 10px inset #00000080;
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
   ${({ theme }) => theme.mediaWidth.upToMedium`
     grid-template-columns: 1fr;
     padding: 0 1rem;
@@ -362,11 +362,6 @@ const StyledNavLink2 = styled(NavLink).attrs({
     color: #0c0c0c;
     background: #0c0c0c27;
   }
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> main
 `
 const StyledNavLink3 = styled.a`
   padding: 0;
@@ -385,13 +380,6 @@ const StyledNavLink3 = styled.a`
   &:hover {
     opacity: 0.4;
   }
-<<<<<<< HEAD
-=======
-=======
->>>>>>> 1b5e2ec (Fix code style issues with ESLint)
-=======
->>>>>>> 1b5e2ec (Fix code style issues with ESLint)
->>>>>>> main
 `
 /*
 const StyledExternalLink = styled(ExternalLink).attrs({
