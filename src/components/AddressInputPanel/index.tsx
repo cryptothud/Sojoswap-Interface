@@ -245,7 +245,7 @@ export function AddressCurrencyInputPanel({
           </InputPanelControls>
         </InputPanelDropdownHeader> }
       {expanded && (
-        <InputPanelTopSquare id={id}>
+        <InputPanelTopSquare id={id} className="disperseBox">
           <ContainerRow error={error}>
             <InputContainer>
               <AutoColumn gap="md">

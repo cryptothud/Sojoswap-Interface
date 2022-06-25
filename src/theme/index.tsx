@@ -270,8 +270,21 @@ body {
   left: -130vw;
 }
 
-#disperseInput input {
+.disperseBox > div > div{
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+}
+
+.disperseBox input, .disperseBox input::placeholder{
+  color: #a1a1a1;
+  font-weight: 400;
+}
+
+.disperseBox div {
   color: #0c0c0c;
+  font-weight: 600;
+  row-gap: 5px;
 }
 
 @media only screen and (max-width: 600px) {
