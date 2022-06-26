@@ -184,7 +184,6 @@ class DisperseAccountError implements IDisperseError {
 }
 
 export default function Disperse({ history }: RouteComponentProps) {
-
   const { chainId, account } = useActiveWeb3React()
   const [currency, setCurrency] = useState<Currency | undefined>(undefined)
   const [disperseTargets, setDisperseTargets] = useState<Array<DisperseTarget>>([])
@@ -277,6 +276,29 @@ export default function Disperse({ history }: RouteComponentProps) {
     let localError = new DisperseNoError()
     if (account === null) {
       localError = new DisperseAccountError()
+<<<<<<< HEAD
+=======
+    }
+    if (normalError === true) {
+      localError = new DisperseNormalError()
+      setTimeout(() => {
+        setNormalError(false)
+      }, 3000)
+    }
+    if (balanceError === true) {
+      localError = new DisperseNotEnough()
+      setTimeout(() => {
+        setBalanceError(false)
+      }, 3000)
+    }
+    disperseTargets.forEach((i, index) => {
+      if (Number(i.amount) === 0) {
+        localError = new DisperseAmountZero(index)
+      }
+    })
+    if (!chainId) {
+      localError = new DisperseNoChain()
+>>>>>>> aa5a9d032228c86845f657c0a73f32973cb9289d
     } else {
       if (normalError === true) {
         localError = new DisperseNormalError()
