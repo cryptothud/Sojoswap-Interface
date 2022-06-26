@@ -20,8 +20,8 @@ import { BigNumber, BigNumberish } from 'ethers'
 import { calculateGasMargin } from 'utils'
 import { TransactionResponse } from '@ethersproject/abstract-provider'
 import { ApprovalState, useApproveCallback } from 'hooks/useApproveCallback'
-//import styled from 'styled-components'
-/*
+import styled from 'styled-components'
+
 const ErrorWindow = styled.div`
   background: rgba(255, 0, 0, 0.3);
   margin: 20px 0;
@@ -29,7 +29,7 @@ const ErrorWindow = styled.div`
   border-radius: 20px;
   padding: 6px;
 `
-*/
+
 const useDisperseContract = () => {
   const { chainId } = useActiveWeb3React()
   return useContract(chainId && DisperseContractAddress[chainId], DisperseABI, true)
@@ -372,7 +372,7 @@ export default function Disperse({ history }: RouteComponentProps) {
       })
       .catch((e: any) => {
         setAttemptingTxn(false)
-        console.error(e)
+        console.error("here" + e)
       })
   }, [
     approval,
@@ -409,7 +409,7 @@ export default function Disperse({ history }: RouteComponentProps) {
               label=""
             />
           </AutoColumn>
-          {/*<AutoColumn>{error.error && error.showSayError && <ErrorWindow>{error.sayError()}</ErrorWindow>}</AutoColumn>*/}
+          <AutoColumn>{error.error && error.showSayError && <ErrorWindow>{error.sayError()}</ErrorWindow>}</AutoColumn>
           <AutoColumn gap={'md'}>
                 {currency &&
                   disperseTargets.map((_element, index) => (
