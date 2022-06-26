@@ -154,7 +154,31 @@ class DisperseNoChain implements IDisperseError {
   sayError = () => 'Not connected to wallet'
 }
 
+class DisperseAmountZero implements IDisperseError {
+  type = 'DisperseAmountZero'
+  entry: number
+  error = true
+  showSayError = true
+  constructor(entry: number) {
+    this.entry = entry
+  }
+  sayError = () => `Send amount must be greater than 0 in entry #${this.entry + 1}`
+}
+class DisperseNotEnough implements IDisperseError {
+  type = 'DisperseNotEnough'
+  error = true
+  showSayError = true
+  sayError = () => 'Not enough balance!'
+}
+class DisperseNormalError implements IDisperseError {
+  type = 'DisperseNormalError'
+  error = true
+  showSayError = true
+  sayError = () => 'Error!'
+}
+
 export default function Disperse({ history }: RouteComponentProps) {
+
   const { chainId, account } = useActiveWeb3React()
   const [currency, setCurrency] = useState<Currency | undefined>(undefined)
   const [disperseTargets, setDisperseTargets] = useState<Array<DisperseTarget>>([])
@@ -240,9 +264,29 @@ export default function Disperse({ history }: RouteComponentProps) {
     }
   }, [disperseTargets, chainId, currency])
 
+  const [balanceError, setBalanceError] = useState(false)
+  const [normalError, setNormalError] = useState(false)
+
   //error checking
   useEffect(() => {
     let localError = new DisperseNoError()
+    if (normalError === true) {
+      localError = new DisperseNormalError()
+      setTimeout(() => {
+        setNormalError(false)
+      },3000)
+    }
+    if (balanceError === true) {
+      localError = new DisperseNotEnough()
+      setTimeout(() => {
+        setBalanceError(false)
+      },3000)
+    }
+    disperseTargets.forEach((i,index) => {
+      if (Number(i.amount) === 0) {
+        localError = new DisperseAmountZero(index)
+      }
+    })
     if (!chainId) {
       localError = new DisperseNoChain()
     } else {
@@ -254,7 +298,7 @@ export default function Disperse({ history }: RouteComponentProps) {
         localError = new DisperseNoTargets()
       } else {
         for (let i = 0; i < disperseTargets.length; i++) {
-          const target = disperseTargets[0]
+          const target = disperseTargets[i]
           if (!target.resolvedAddress) {
             localError = new DisperseAddressError(i)
           }
@@ -264,7 +308,7 @@ export default function Disperse({ history }: RouteComponentProps) {
     if (JSON.stringify(localError) !== JSON.stringify(error)) {
       setError(localError)
     }
-  }, [balance, chainId, currency, disperseTargets, sum, error])
+  }, [balance, chainId, currency, disperseTargets, sum, error, balanceError])
   const txnSum = chainId && tryParseAmount(chainId, sum, currency)
   const [approval, approvalCallback] = useApproveCallback(currencyAsToken && txnSum, disperseContract?.address)
 
@@ -313,6 +357,9 @@ export default function Disperse({ history }: RouteComponentProps) {
     if (error && error.error) {
       console.log('Error while dispersing: ', error.sayError())
     }
+    if (error) {
+      console.log('Error while dispersing: ', error.sayError())
+    }
 
     if (currencyAsToken) {
       if (approval === ApprovalState.NOT_APPROVED) {
@@ -359,6 +406,7 @@ export default function Disperse({ history }: RouteComponentProps) {
     const safeGasEstimate = await disperseContract?.estimateGas[methodName](...args, { value })
       .then(calculateGasMargin)
       .catch(error => {
+        setNormalError(true)
         console.error(`estimateGas failed`, methodName, args, error)
         return undefined
       })
@@ -372,6 +420,7 @@ export default function Disperse({ history }: RouteComponentProps) {
       })
       .catch((e: any) => {
         setAttemptingTxn(false)
+        setBalanceError(true)
         console.error('here' + e)
       })
   }, [

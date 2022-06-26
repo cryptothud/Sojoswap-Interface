@@ -118,7 +118,7 @@ export default function AddressInputPanel({
     [onChange]
   )
 
-  const error = Boolean(value !== '' && value.length > 0 && !loading && !address)
+  const error = Boolean(!loading && !address)
 
   return (
     <InputPanel id={id}>
@@ -241,7 +241,7 @@ export function AddressCurrencyInputPanel({
     [addressOnChange]
   )
 
-  const error = Boolean(addressValue !== '' && addressValue.length > 0 && !loading && !address)
+  const error = Boolean(!loading && !address)
 
   return (
     <>
