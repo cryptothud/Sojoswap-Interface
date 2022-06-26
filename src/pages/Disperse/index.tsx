@@ -176,6 +176,12 @@ class DisperseNormalError implements IDisperseError {
   showSayError = true
   sayError = () => 'Error!'
 }
+class DisperseAccountError implements IDisperseError {
+  type = 'DisperseAccountError'
+  error = true
+  showSayError = true
+  sayError = () => 'Connect your wallet!'
+}
 
 export default function Disperse({ history }: RouteComponentProps) {
   const { chainId, account } = useActiveWeb3React()
@@ -194,7 +200,6 @@ export default function Disperse({ history }: RouteComponentProps) {
   const ethBalance = useETHBalances([account || undefined])[0]
   console.log(ethBalance)
   const balance = currencyAsNative ? ethBalance : tokenBalance
-
   const setDisperseTarget = useCallback(
     (index: number) => {
       return (newValue: DisperseTarget) => {
@@ -269,6 +274,9 @@ export default function Disperse({ history }: RouteComponentProps) {
   //error checking
   useEffect(() => {
     let localError = new DisperseNoError()
+    if (account === null) {
+      localError = new DisperseAccountError()
+    }
     if (normalError === true) {
       localError = new DisperseNormalError()
       setTimeout(() => {
