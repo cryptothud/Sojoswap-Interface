@@ -277,38 +277,39 @@ export default function Disperse({ history }: RouteComponentProps) {
     let localError = new DisperseNoError()
     if (account === null) {
       localError = new DisperseAccountError()
-    }
-    if (normalError === true) {
-      localError = new DisperseNormalError()
-      setTimeout(() => {
-        setNormalError(false)
-      },3000)
-    }
-    if (balanceError === true) {
-      localError = new DisperseNotEnough()
-      setTimeout(() => {
-        setBalanceError(false)
-      },3000)
-    }
-    disperseTargets.forEach((i,index) => {
-      if (Number(i.amount) === 0) {
-        localError = new DisperseAmountZero(index)
-      }
-    })
-    if (!chainId) {
-      localError = new DisperseNoChain()
     } else {
-      const parsedSum = tryParseAmount(chainId, sum, currency)
-      if (localError instanceof DisperseNoChain) {
-      } else if (balance && parsedSum?.greaterThan(balance.asFraction)) {
-        localError = new DisperseBalanceError(parsedSum, balance)
-      } else if (disperseTargets.length === 0) {
-        localError = new DisperseNoTargets()
+      if (normalError === true) {
+        localError = new DisperseNormalError()
+        setTimeout(() => {
+          setNormalError(false)
+        },3000)
+      }
+      if (balanceError === true) {
+        localError = new DisperseNotEnough()
+        setTimeout(() => {
+          setBalanceError(false)
+        },3000)
+      }
+      disperseTargets.forEach((i,index) => {
+        if (Number(i.amount) === 0) {
+          localError = new DisperseAmountZero(index)
+        }
+      })
+      if (!chainId) {
+        localError = new DisperseNoChain()
       } else {
-        for (let i = 0; i < disperseTargets.length; i++) {
-          const target = disperseTargets[i]
-          if (!target.resolvedAddress) {
-            localError = new DisperseAddressError(i)
+        const parsedSum = tryParseAmount(chainId, sum, currency)
+        if (localError instanceof DisperseNoChain) {
+        } else if (balance && parsedSum?.greaterThan(balance.asFraction)) {
+          localError = new DisperseBalanceError(parsedSum, balance)
+        } else if (disperseTargets.length === 0) {
+          localError = new DisperseNoTargets()
+        } else {
+          for (let i = 0; i < disperseTargets.length; i++) {
+            const target = disperseTargets[i]
+            if (!target.resolvedAddress) {
+              localError = new DisperseAddressError(i)
+            }
           }
         }
       }
@@ -316,7 +317,7 @@ export default function Disperse({ history }: RouteComponentProps) {
     if (JSON.stringify(localError) !== JSON.stringify(error)) {
       setError(localError)
     }
-  }, [balance, chainId, currency, disperseTargets, sum, error, balanceError])
+  }, [balance, chainId, currency, disperseTargets, sum, error, balanceError, account])
   const txnSum = chainId && tryParseAmount(chainId, sum, currency)
   const [approval, approvalCallback] = useApproveCallback(currencyAsToken && txnSum, disperseContract?.address)
 
