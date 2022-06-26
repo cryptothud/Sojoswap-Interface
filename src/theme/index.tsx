@@ -285,6 +285,19 @@ body {
   color: #0c0c0c;
   font-weight: 600;
   row-gap: 5px;
+  border: none !important;
+}
+
+.disperseBox {
+  margin: 5px 0;
+}
+
+#addRecipent {
+  transition: 0.2s ease-in-out;
+}
+
+#addRecipent:hover {
+  background-color: #ffffff1c;
 }
 
 @media only screen and (max-width: 600px) {

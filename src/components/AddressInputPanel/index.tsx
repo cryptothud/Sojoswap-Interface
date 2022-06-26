@@ -8,7 +8,7 @@ import { RowBetween } from '../Row'
 import { getEtherscanLink } from '../../utils'
 import { Input as NumericalInput } from '../NumericalInput'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faXmark } from '@fortawesome/free-solid-svg-icons'
+import { faXmark, faCaretDown, faCaretUp } from '@fortawesome/free-solid-svg-icons'
 import { Currency } from '@uniswap/sdk'
 
 const InputPanel = styled.div`
@@ -31,9 +31,13 @@ const InputPanelDropdownHeader = styled.div<{ expanded?: boolean }>`
   ${({ theme }) => theme.flexRowNoWrap}
   position: relative;
   border-radius: ${({ expanded }) => (expanded ? '1.25rem 1.25rem 0 0' : '1.25rem')};
-  background-color: ${({ theme }) => theme.bg1};
-  z-index: 1;
-  width: 100%;
+  width: ${({ expanded }) => (expanded ? 'auto' : '100%')};
+  background: ${({ expanded }) => (expanded ? 'none' : '#fff')};
+  margin: ${({ expanded }) => (expanded ? '0 0 -63px auto' : '5px 0')};
+  position: relative;
+  z-index: 100;
+  padding: 0 10px;
+}
 `
 
 const ContainerRow = styled.div<{ error: boolean }>`
@@ -114,19 +118,19 @@ export default function AddressInputPanel({
     [onChange]
   )
 
-  const error = Boolean(value.length > 0 && !loading && !address)
+  const error = Boolean(value !== '' && value.length > 0 && !loading && !address)
 
   return (
     <InputPanel id={id}>
       <ContainerRow error={error}>
         <InputContainer>
           <AutoColumn gap="md">
-            <RowBetween>
+            <RowBetween id="recipientText">
               <TYPE.black color={theme.text2} fontWeight={500} fontSize={14}>
                 Recipient
               </TYPE.black>
               {address && chainId && (
-                <ExternalLink href={getEtherscanLink(chainId, name ?? address, 'address')} style={{ fontSize: '14px' }}>
+                <ExternalLink href={getEtherscanLink(chainId, name ?? address, 'address')} style={{ fontSize: '14px', margin: '0 auto 0 10px' }}>
                   (View on Etherscan)
                 </ExternalLink>
               )}
@@ -168,6 +172,12 @@ const InputPanelControls = styled.div`
   flex-shrink: 1;
   flex-grow: 0;
   margin-right: 0px;
+  svg {
+    transition: .2s ease-in-out;
+    &:hover {
+      opacity: 0.5;
+    }
+  }
 `
 
 const IconContainer = styled.div`
@@ -185,6 +195,9 @@ const SummaryTextbox = styled.div`
   flex-grow: 1;
   flex-basis: 100%;
   color: #0c0c0c !important;
+  b {
+    font-weight: 600;
+  }
 `
 
 export function AddressCurrencyInputPanel({
@@ -225,25 +238,28 @@ export function AddressCurrencyInputPanel({
     [addressOnChange]
   )
 
-  const error = Boolean(addressValue.length > 0 && !loading && !address)
+  const error = Boolean(addressValue !== '' && addressValue.length > 0 && !loading && !address)
 
   return (
-    <> {!expanded &&
-        <InputPanelDropdownHeader expanded={expanded}>
+    <>
+        <InputPanelDropdownHeader expanded={expanded} className="dropdownHeader" >
           {!expanded && (
-            <InputPanelSummaryContainer>
-              <SummaryTextbox>Recipient: {addressValue}</SummaryTextbox>
+            <InputPanelSummaryContainer id="recipientText">
+              <SummaryTextbox><b>Recipient:</b> {addressValue ? addressValue : 'N/A'}</SummaryTextbox>
               <SummaryTextbox>
-                Amount: {currencyValue} {currency ? currency.symbol : ''}
+                <b>Amount:</b> {currencyValue} {currency ? currency.symbol : ''}
               </SummaryTextbox>
             </InputPanelSummaryContainer>
           )}
           <InputPanelControls>
+            <IconContainer onClick={toggleCollapse} aria-label={expanded ? 'Collapse' : 'Expand'}>
+              <FontAwesomeIcon icon={expanded ? faCaretUp : faCaretDown} size="2x" fixedWidth  color="#0c0c0c" cursor="pointer" />
+            </IconContainer>
             <IconContainer onClick={onCloseClick} aria-label="Delete row">
               <FontAwesomeIcon icon={faXmark} size="2x" fixedWidth color="#0c0c0c" cursor="pointer" />
             </IconContainer>
           </InputPanelControls>
-        </InputPanelDropdownHeader> }
+        </InputPanelDropdownHeader>
       {expanded && (
         <InputPanelTopSquare id={id} className="disperseBox">
           <ContainerRow error={error}>
@@ -256,7 +272,7 @@ export function AddressCurrencyInputPanel({
                   {address && chainId && (
                     <ExternalLink
                       href={getEtherscanLink(chainId, name ?? address, 'address')}
-                      style={{ fontSize: '14px' }}
+                      style={{ fontSize: '14px', margin: '0 auto 0 10px' }}
                     >
                       (View on Etherscan)
                     </ExternalLink>
@@ -283,7 +299,7 @@ export function AddressCurrencyInputPanel({
                   </TYPE.black>
                 </RowBetween>
                 <NumericalInputContainer id="disperseInput">
-                  <NumericalInput placeholder={'0'} value={currencyValue} onUserInput={currencyInputOnChange} error={currencyError} />
+                  <NumericalInput placeholder={'0'} value={currencyValue === '0' ? undefined : currencyValue} onUserInput={currencyInputOnChange} error={currencyError} />
                 </NumericalInputContainer>
               </AutoColumn>
             </InputContainer>

@@ -200,11 +200,15 @@ export default function Disperse({ history }: RouteComponentProps) {
     (index: number) => {
       return () => {
         if (selected === index) {
-          setSelected(null)
+          if (selected < disperseTargets.length + 1) {
+            //intentionally left blank
+          } else if(index > 0) {
+            setSelected(index-1);
+            } else {
+            setSelected(null);
+            }
         }
-        let newTargets = disperseTargets.filter((_, i) => i !== index)
-        newTargets.pop()
-        setDisperseTargets(newTargets)
+        setDisperseTargets(disperseTargets.filter((_, i) => i !== index))
       }
     },
     [disperseTargets, selected]
@@ -275,7 +279,7 @@ export default function Disperse({ history }: RouteComponentProps) {
       } else if (approval === ApprovalState.NOT_APPROVED) {
         return 'Approve'
       } else {
-        return 'Approve'
+        return 'Disperse'
       }
     }
   }, [approval, currencyAsNative])
@@ -388,6 +392,7 @@ export default function Disperse({ history }: RouteComponentProps) {
     <>
       <AppBody>
         <Card width="100%" style={{display: 'flex', flexDirection: 'column', rowGap: '5px'}}>
+          <h1 style={{margin: 0, fontSize: 16, fontWeight: 400}}>Disperse</h1>
           <AutoColumn gap={'md'}>
             <CurrencyInputPanel
               inputDisabled={true}
@@ -420,7 +425,7 @@ export default function Disperse({ history }: RouteComponentProps) {
                   ))}
           </AutoColumn>
           <AutoColumn style={{ rowGap: '10px'}}>
-            <ButtonSecondary onClick={addNewDisperseTarget} disabled={!currency}>
+            <ButtonSecondary id="addRecipent" onClick={addNewDisperseTarget} disabled={!currency}>
               {!currency ? 'Please select a token to disperse.' : 'Add recipient'}
             </ButtonSecondary>
             <ButtonPrimary onClick={onDisperseClick} disabled={disperseButtonDisabled}>

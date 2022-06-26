@@ -46,7 +46,7 @@ export const Input = React.memo(function InnerInput({
   placeholder,
   ...rest
 }: {
-  value: string | number
+  value: string | number | undefined
   onUserInput: (input: string) => void
   error?: boolean
   fontSize?: string

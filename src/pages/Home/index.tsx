@@ -66,9 +66,8 @@ const TheCard = styled.a`
     color: #e1e1e1;
   }
   h2 {
-    font-weight: 200;
+    font-weight: 300;
     font-size: 16px;
-    color: #e1e1e199;
   }
   h3 {
     font-weight: 600;
@@ -128,9 +127,8 @@ const Card = styled(NavLink)`
     color: #e1e1e1;
   }
   h2 {
-    font-weight: 200;
+    font-weight: 300;
     font-size: 16px;
-    color: #e1e1e199;
   }
   h3 {
     font-weight: 600;
