@@ -83,7 +83,6 @@ const Text = styled.h1`
  * The styled container element that wraps the content of most pages and the tabs.
  */
 export default function AppBody({ children }: { children: React.ReactNode }) {
-  
   const [currentPage, setCurrentPage] = useState('/swap')
   const location = useLocation()
   useEffect(() => {
@@ -94,11 +93,11 @@ export default function AppBody({ children }: { children: React.ReactNode }) {
     <Wrapper>
       <BodyWrapper>{children}</BodyWrapper>
       {currentPage === '/swap' ? (
-          <Trading>
-            <h2>Coming Soon...</h2>
-            <Text>Live Trades</Text>
-          </Trading>
-        ) : null}
+        <Trading>
+          <h2>Coming Soon...</h2>
+          <Text>Live Trades</Text>
+        </Trading>
+      ) : null}
     </Wrapper>
   )
 }

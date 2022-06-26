@@ -202,11 +202,11 @@ export default function Disperse({ history }: RouteComponentProps) {
         if (selected === index) {
           if (selected < disperseTargets.length + 1) {
             //intentionally left blank
-          } else if(index > 0) {
-            setSelected(index-1);
-            } else {
-            setSelected(null);
-            }
+          } else if (index > 0) {
+            setSelected(index - 1)
+          } else {
+            setSelected(null)
+          }
         }
         setDisperseTargets(disperseTargets.filter((_, i) => i !== index))
       }
@@ -372,7 +372,7 @@ export default function Disperse({ history }: RouteComponentProps) {
       })
       .catch((e: any) => {
         setAttemptingTxn(false)
-        console.error("here" + e)
+        console.error('here' + e)
       })
   }, [
     approval,
@@ -391,8 +391,8 @@ export default function Disperse({ history }: RouteComponentProps) {
   return (
     <>
       <AppBody>
-        <Card width="100%" style={{display: 'flex', flexDirection: 'column', rowGap: '5px'}}>
-          <h1 style={{margin: 0, fontSize: 16, fontWeight: 400}}>Disperse</h1>
+        <Card width="100%" style={{ display: 'flex', flexDirection: 'column', rowGap: '5px' }}>
+          <h1 style={{ margin: 0, fontSize: 16, fontWeight: 400 }}>Disperse</h1>
           <AutoColumn gap={'md'}>
             <CurrencyInputPanel
               inputDisabled={true}
@@ -411,20 +411,20 @@ export default function Disperse({ history }: RouteComponentProps) {
           </AutoColumn>
           <AutoColumn>{error.error && error.showSayError && <ErrorWindow>{error.sayError()}</ErrorWindow>}</AutoColumn>
           <AutoColumn gap={'md'}>
-                {currency &&
-                  disperseTargets.map((_element, index) => (
-                    <DisplayDisperseTarget
-                      onCollapseClick={onCollapseClick(index)}
-                      onCloseClick={onCloseClick(index)}
-                      selected={index === selected}
-                      currency={currency}
-                      index={index}
-                      getDisperseTarget={getDisperseTarget(index)}
-                      setDisperseTarget={setDisperseTarget(index)}
-                    />
-                  ))}
+            {currency &&
+              disperseTargets.map((_element, index) => (
+                <DisplayDisperseTarget
+                  onCollapseClick={onCollapseClick(index)}
+                  onCloseClick={onCloseClick(index)}
+                  selected={index === selected}
+                  currency={currency}
+                  index={index}
+                  getDisperseTarget={getDisperseTarget(index)}
+                  setDisperseTarget={setDisperseTarget(index)}
+                />
+              ))}
           </AutoColumn>
-          <AutoColumn style={{ rowGap: '10px'}}>
+          <AutoColumn style={{ rowGap: '10px' }}>
             <ButtonSecondary id="addRecipent" onClick={addNewDisperseTarget} disabled={!currency}>
               {!currency ? 'Please select a token to disperse.' : 'Add recipient'}
             </ButtonSecondary>

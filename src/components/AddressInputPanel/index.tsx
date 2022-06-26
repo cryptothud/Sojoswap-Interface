@@ -130,7 +130,10 @@ export default function AddressInputPanel({
                 Recipient
               </TYPE.black>
               {address && chainId && (
-                <ExternalLink href={getEtherscanLink(chainId, name ?? address, 'address')} style={{ fontSize: '14px', margin: '0 auto 0 10px' }}>
+                <ExternalLink
+                  href={getEtherscanLink(chainId, name ?? address, 'address')}
+                  style={{ fontSize: '14px', margin: '0 auto 0 10px' }}
+                >
                   (View on Etherscan)
                 </ExternalLink>
               )}
@@ -173,7 +176,7 @@ const InputPanelControls = styled.div`
   flex-grow: 0;
   margin-right: 0px;
   svg {
-    transition: .2s ease-in-out;
+    transition: 0.2s ease-in-out;
     &:hover {
       opacity: 0.5;
     }
@@ -242,24 +245,32 @@ export function AddressCurrencyInputPanel({
 
   return (
     <>
-        <InputPanelDropdownHeader expanded={expanded} className="dropdownHeader" >
-          {!expanded && (
-            <InputPanelSummaryContainer id="recipientText">
-              <SummaryTextbox><b>Recipient:</b> {addressValue ? addressValue : 'N/A'}</SummaryTextbox>
-              <SummaryTextbox>
-                <b>Amount:</b> {currencyValue} {currency ? currency.symbol : ''}
-              </SummaryTextbox>
-            </InputPanelSummaryContainer>
-          )}
-          <InputPanelControls>
-            <IconContainer onClick={toggleCollapse} aria-label={expanded ? 'Collapse' : 'Expand'}>
-              <FontAwesomeIcon icon={expanded ? faCaretUp : faCaretDown} size="2x" fixedWidth  color="#0c0c0c" cursor="pointer" />
-            </IconContainer>
-            <IconContainer onClick={onCloseClick} aria-label="Delete row">
-              <FontAwesomeIcon icon={faXmark} size="2x" fixedWidth color="#0c0c0c" cursor="pointer" />
-            </IconContainer>
-          </InputPanelControls>
-        </InputPanelDropdownHeader>
+      <InputPanelDropdownHeader expanded={expanded} className="dropdownHeader">
+        {!expanded && (
+          <InputPanelSummaryContainer id="recipientText">
+            <SummaryTextbox>
+              <b>Recipient:</b> {addressValue ? addressValue : 'N/A'}
+            </SummaryTextbox>
+            <SummaryTextbox>
+              <b>Amount:</b> {currencyValue} {currency ? currency.symbol : ''}
+            </SummaryTextbox>
+          </InputPanelSummaryContainer>
+        )}
+        <InputPanelControls>
+          <IconContainer onClick={toggleCollapse} aria-label={expanded ? 'Collapse' : 'Expand'}>
+            <FontAwesomeIcon
+              icon={expanded ? faCaretUp : faCaretDown}
+              size="2x"
+              fixedWidth
+              color="#0c0c0c"
+              cursor="pointer"
+            />
+          </IconContainer>
+          <IconContainer onClick={onCloseClick} aria-label="Delete row">
+            <FontAwesomeIcon icon={faXmark} size="2x" fixedWidth color="#0c0c0c" cursor="pointer" />
+          </IconContainer>
+        </InputPanelControls>
+      </InputPanelDropdownHeader>
       {expanded && (
         <InputPanelTopSquare id={id} className="disperseBox">
           <ContainerRow error={error}>
@@ -299,7 +310,12 @@ export function AddressCurrencyInputPanel({
                   </TYPE.black>
                 </RowBetween>
                 <NumericalInputContainer id="disperseInput">
-                  <NumericalInput placeholder={'0'} value={currencyValue === '0' ? undefined : currencyValue} onUserInput={currencyInputOnChange} error={currencyError} />
+                  <NumericalInput
+                    placeholder={'0'}
+                    value={currencyValue === '0' ? undefined : currencyValue}
+                    onUserInput={currencyInputOnChange}
+                    error={currencyError}
+                  />
                 </NumericalInputContainer>
               </AutoColumn>
             </InputContainer>
