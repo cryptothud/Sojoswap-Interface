@@ -276,8 +276,6 @@ export default function Disperse({ history }: RouteComponentProps) {
     let localError = new DisperseNoError()
     if (account === null) {
       localError = new DisperseAccountError()
-<<<<<<< HEAD
-=======
     }
     if (normalError === true) {
       localError = new DisperseNormalError()
@@ -298,7 +296,6 @@ export default function Disperse({ history }: RouteComponentProps) {
     })
     if (!chainId) {
       localError = new DisperseNoChain()
->>>>>>> aa5a9d032228c86845f657c0a73f32973cb9289d
     } else {
       if (normalError === true) {
         localError = new DisperseNormalError()
