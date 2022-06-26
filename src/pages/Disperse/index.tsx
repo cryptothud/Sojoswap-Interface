@@ -178,7 +178,6 @@ class DisperseNormalError implements IDisperseError {
 }
 
 export default function Disperse({ history }: RouteComponentProps) {
-
   const { chainId, account } = useActiveWeb3React()
   const [currency, setCurrency] = useState<Currency | undefined>(undefined)
   const [disperseTargets, setDisperseTargets] = useState<Array<DisperseTarget>>([])
@@ -274,15 +273,15 @@ export default function Disperse({ history }: RouteComponentProps) {
       localError = new DisperseNormalError()
       setTimeout(() => {
         setNormalError(false)
-      },3000)
+      }, 3000)
     }
     if (balanceError === true) {
       localError = new DisperseNotEnough()
       setTimeout(() => {
         setBalanceError(false)
-      },3000)
+      }, 3000)
     }
-    disperseTargets.forEach((i,index) => {
+    disperseTargets.forEach((i, index) => {
       if (Number(i.amount) === 0) {
         localError = new DisperseAmountZero(index)
       }
