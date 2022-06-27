@@ -260,10 +260,14 @@ export function AddressCurrencyInputPanel({
         {!expanded && (
           <InputPanelSummaryContainer id="recipientText">
             <SummaryTextbox>
-              <b>Recipient: </b><p>{addressValue ? addressValue : 'N/A'}</p>
+              <b>Recipient: </b>
+              <p>{addressValue ? addressValue : 'N/A'}</p>
             </SummaryTextbox>
             <SummaryTextbox>
-              <b>Amount: </b><p>{currencyValue} {currency ? currency.symbol : ''}</p>
+              <b>Amount: </b>
+              <p>
+                {currencyValue} {currency ? currency.symbol : ''}
+              </p>
             </SummaryTextbox>
           </InputPanelSummaryContainer>
         )}
