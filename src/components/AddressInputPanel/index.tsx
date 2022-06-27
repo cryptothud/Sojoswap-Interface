@@ -171,7 +171,6 @@ const InputPanelControls = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
-  padding-right: 20px;
   margin-left: auto;
   flex-shrink: 1;
   flex-grow: 0;
