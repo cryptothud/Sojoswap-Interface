@@ -639,12 +639,14 @@ export default function Header() {
         >
           MENU
         </MenuIcon>
-        <TheMenu style={showMenu}
+        <TheMenu
+          style={showMenu}
           onClick={() =>
             showMenu.opacity === '0'
               ? setShowMenu({ opacity: '1', pointerEvents: 'auto' as 'auto' })
               : setShowMenu({ opacity: '0', pointerEvents: 'none' as 'auto' })
-          }>
+          }
+        >
           <StyledNavLink2 id={`home-nav-link`} to={''} isActive={(match, { pathname }) => pathname.length === 1}>
             Home
           </StyledNavLink2>
