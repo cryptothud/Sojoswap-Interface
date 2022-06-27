@@ -10,7 +10,9 @@ const Container = styled.div`
   width: 60vw;
   display: flex;
   flex-wrap: wrap;
+  -webkit-row-gap: 30px;
   row-gap: 30px;
+  -webkit-column-gap: 30px;
   column-gap: 30px;
   justify-content: center;
   align-items: center;
@@ -25,13 +27,13 @@ const Container = styled.div`
 `
 const TheCard = styled.a`
   width: 40%;
-  min-height: 250px;
+  height: 220px;
   background: linear-gradient(45deg, #00000080, #00000040);
   box-shadow: 0 0 2px #ffffff59, 0 0 10px inset #00000080;
   backdrop-filter: blur(5px);
   border-radius: 20px;
   box-sizing: border-box;
-  padding: 15px;
+  padding: 25px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -64,10 +66,12 @@ const TheCard = styled.a`
     font-weight: 800;
     font-size: 32px;
     color: #e1e1e1;
+    margin: 0;
   }
   h2 {
     font-weight: 300;
     font-size: 16px;
+    margin: 0;
   }
   h3 {
     font-weight: 600;
@@ -75,75 +79,87 @@ const TheCard = styled.a`
     text-decoration: underline;
     color: #e1e1e1;
     background: #0000001a;
-    margin-right: auto;
     border-radius: 50px;
     padding: 10px 20px;
     box-shadow: 0 0 10px inset #00000045;
+    margin: 0 auto 0 0;
+  }
+  div {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
   }
   @media only screen and (max-width: 800px) {
     width: 100%;
   }
 `
 const Card = styled(NavLink)`
-  width: 40%;
-  min-height: 250px;
-  background: linear-gradient(45deg, #00000080, #00000040);
-  box-shadow: 0 0 2px #ffffff59, 0 0 10px inset #00000080;
-  backdrop-filter: blur(5px);
-  border-radius: 20px;
-  box-sizing: border-box;
-  padding: 15px;
+width: 40%;
+height: 220px;
+background: linear-gradient(45deg, #00000080, #00000040);
+box-shadow: 0 0 2px #ffffff59, 0 0 10px inset #00000080;
+backdrop-filter: blur(5px);
+border-radius: 20px;
+box-sizing: border-box;
+padding: 25px;
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+cursor: pointer;
+transition: 0.4s ease-in-out;
+text-decoration: none;
+color: #fff;
+position: relative;
+overflow: hidden;
+img {
+  position: absolute;
+  z-index: -1;
+  transform: rotate(45deg);
+  right: 0;
+  bottom: -30%;
+  filter: invert(1);
+  opacity: 0.06;
+  transition: 1s ease-in-out;
+}
+&:hover {
+  transform: translateY(-6px);
+  filter: brightness(1.2);
+  background: linear-gradient(45deg, #00000040, #00000080);
+  box-shadow: 0 0 30px #ffffff40, 0 0 10px inset #00000080;
+  img {
+    transform: rotate(45deg) rotateY(-180deg);
+  }
+}
+h1 {
+  font-weight: 800;
+  font-size: 32px;
+  color: #e1e1e1;
+  margin: 0;
+}
+h2 {
+  font-weight: 300;
+  font-size: 16px;
+  margin: 0;
+}
+h3 {
+  font-weight: 600;
+  font-size: 16px;
+  text-decoration: underline;
+  color: #e1e1e1;
+  background: #0000001a;
+  border-radius: 50px;
+  padding: 10px 20px;
+  box-shadow: 0 0 10px inset #00000045;
+  margin: 0 auto 0 0;
+}
+div {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  cursor: pointer;
-  transition: 0.4s ease-in-out;
-  text-decoration: none;
-  color: #fff;
-  position: relative;
-  overflow: hidden;
-  img {
-    position: absolute;
-    z-index: -1;
-    transform: rotate(45deg);
-    right: 0;
-    bottom: -30%;
-    filter: invert(1);
-    opacity: 0.06;
-    transition: 1s ease-in-out;
-  }
-  &:hover {
-    transform: translateY(-6px);
-    filter: brightness(1.2);
-    background: linear-gradient(45deg, #00000040, #00000080);
-    box-shadow: 0 0 30px #ffffff40, 0 0 10px inset #00000080;
-    img {
-      transform: rotate(45deg) rotateY(-180deg);
-    }
-  }
-  h1 {
-    font-weight: 800;
-    font-size: 32px;
-    color: #e1e1e1;
-  }
-  h2 {
-    font-weight: 300;
-    font-size: 16px;
-  }
-  h3 {
-    font-weight: 600;
-    font-size: 16px;
-    text-decoration: underline;
-    color: #e1e1e1;
-    background: #0000001a;
-    margin-right: auto;
-    border-radius: 50px;
-    padding: 10px 20px;
-    box-shadow: 0 0 10px inset #00000045;
-  }
-  @media only screen and (max-width: 800px) {
-    width: 100%;
-  }
+  gap: 10px;
+}
+@media only screen and (max-width: 800px) {
+  width: 100%;
+}
 `
 /*
 const DisabledCard = styled.div`
