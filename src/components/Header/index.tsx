@@ -360,7 +360,7 @@ const StyledNavLink2 = styled(NavLink).attrs({
   &.${activeClassName} {
     font-weight: 600;
     color: #0c0c0c;
-    background: #0c0c0c27;
+    background: #0c0c0c20;
   }
 `
 const StyledNavLink3 = styled.a`

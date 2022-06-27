@@ -304,6 +304,10 @@ body {
   background-color: #ffffff1c;
 }
 
+#addLiqBottomText div {
+  color: #0c0c0c;
+}
+
 @media only screen and (max-width: 600px) {
   .backgroundVid {
     display: none;
