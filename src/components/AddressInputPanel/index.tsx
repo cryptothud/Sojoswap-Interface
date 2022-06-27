@@ -36,7 +36,8 @@ const InputPanelDropdownHeader = styled.div<{ expanded?: boolean }>`
   margin: ${({ expanded }) => (expanded ? '0 0 -63px auto' : '5px 0')};
   position: relative;
   z-index: 100;
-  padding: 0 10px;
+  padding: 5px 10px;
+  overflow: hidden;
 }
 `
 

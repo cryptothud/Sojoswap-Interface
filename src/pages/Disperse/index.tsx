@@ -27,7 +27,7 @@ const ErrorWindow = styled.div`
   margin: 20px 0;
   border: 1px solid red;
   border-radius: 20px;
-  padding: 6px;
+  padding: 6px 15px;
 `
 
 const useDisperseContract = () => {

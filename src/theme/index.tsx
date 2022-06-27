@@ -276,7 +276,11 @@ body {
   row-gap: 10px;
 }
 
-.disperseBox input, .disperseBox input::placeholder{
+.disperseBox input {
+  color: #0c0c0c;
+  font-weight: 400;
+}
+.disperseBox input::placeholder {
   color: #a1a1a1;
   font-weight: 400;
 }
