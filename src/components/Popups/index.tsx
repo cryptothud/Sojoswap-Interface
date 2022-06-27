@@ -33,15 +33,18 @@ const MobilePopupInner = styled.div`
 
 const FixedPopupColumn = styled(AutoColumn)<{ extraPadding: boolean }>`
   position: fixed;
-  top: ${({ extraPadding }) => (extraPadding ? '108px' : '88px')};
+  top: 130px;
   right: 1rem;
   max-width: 355px !important;
   width: 100%;
-  z-index: 3;
+  z-index: 100;
 
   ${({ theme }) => theme.mediaWidth.upToSmall`
     display: none;
   `};
+  div {
+    color: #0c0c0c;
+  }
 `
 
 export default function Popups() {

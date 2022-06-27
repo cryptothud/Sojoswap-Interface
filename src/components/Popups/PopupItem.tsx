@@ -34,6 +34,9 @@ export const Popup = styled.div`
       margin-right: 20px;
     }
   `}
+  div {
+    color: #0c0c0c;
+  }
 `
 const Fader = styled.div`
   position: absolute;
