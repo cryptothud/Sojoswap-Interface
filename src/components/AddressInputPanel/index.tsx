@@ -199,8 +199,19 @@ const SummaryTextbox = styled.div`
   flex-grow: 1;
   flex-basis: 100%;
   color: #0c0c0c !important;
+  display: flex;
+  align-items: center;
+  column-gap: 5px;
   b {
     font-weight: 600;
+  }
+  p {
+    margin: 0;
+    width: 100px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    flex: 1;
   }
 `
 
@@ -250,10 +261,10 @@ export function AddressCurrencyInputPanel({
         {!expanded && (
           <InputPanelSummaryContainer id="recipientText">
             <SummaryTextbox>
-              <b>Recipient:</b> {addressValue ? addressValue : 'N/A'}
+              <b>Recipient: </b><p>{addressValue ? addressValue : 'N/A'}</p>
             </SummaryTextbox>
             <SummaryTextbox>
-              <b>Amount:</b> {currencyValue} {currency ? currency.symbol : ''}
+              <b>Amount: </b><p>{currencyValue} {currency ? currency.symbol : ''}</p>
             </SummaryTextbox>
           </InputPanelSummaryContainer>
         )}
