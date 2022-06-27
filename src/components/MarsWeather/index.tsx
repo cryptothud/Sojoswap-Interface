@@ -170,7 +170,7 @@ export const MarsWeather = () => {
             Sol {query?.sol} ({date})
           </TextWrapper>
           <TextWrapper>High: {query?.high}°C</TextWrapper>
-          <TextWrapper>High: {query?.low}°C</TextWrapper>
+          <TextWrapper>Low: {query?.low}°C</TextWrapper>
         </LoadingWrapper>
       </WeatherWrapper>
     </WeatherWrapperFloat>

@@ -63,6 +63,7 @@ const HeaderFrame = styled.div`
 const Socials = styled.div`
   display: flex;
   column-gap: 8px;
+  -webkit-column-gap: 8px;
   margin: 5px;
   div {
     display: flex;
@@ -84,6 +85,7 @@ const Socials = styled.div`
 `
 const Socials2 = styled.div`
   display: none;
+  -webkit-column-gap: 5px;
   column-gap: 5px;
   margin: 5px;
   width: 100%;
@@ -360,7 +362,7 @@ const StyledNavLink2 = styled(NavLink).attrs({
   &.${activeClassName} {
     font-weight: 600;
     color: #0c0c0c;
-    background: #0c0c0c27;
+    background: #0c0c0c20;
   }
 `
 const StyledNavLink3 = styled.a`
@@ -637,7 +639,12 @@ export default function Header() {
         >
           MENU
         </MenuIcon>
-        <TheMenu style={showMenu}>
+        <TheMenu style={showMenu}
+          onClick={() =>
+            showMenu.opacity === '0'
+              ? setShowMenu({ opacity: '1', pointerEvents: 'auto' as 'auto' })
+              : setShowMenu({ opacity: '0', pointerEvents: 'none' as 'auto' })
+          }>
           <StyledNavLink2 id={`home-nav-link`} to={''} isActive={(match, { pathname }) => pathname.length === 1}>
             Home
           </StyledNavLink2>

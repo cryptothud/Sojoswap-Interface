@@ -253,15 +253,23 @@ body {
   background: #555;
 }
 
-
 .backgroundVid {
-  width: 100vw;
   height: 100vh;
-  overflow: hidden;
+  width: 100vw;
   position: fixed;
-  top: 0;
-  left: 0;
 }
+
+#video{
+  width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    z-index: -1;
+}
+
 
 #newbg {
   display: none;
@@ -302,6 +310,10 @@ body {
 
 #addRecipent:hover {
   background-color: #ffffff1c;
+}
+
+#addLiqBottomText div {
+  color: #0c0c0c;
 }
 
 @media only screen and (max-width: 600px) {
